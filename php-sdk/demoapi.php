@@ -13,9 +13,6 @@ class DemoApiException extends Exception
 
 class DemoApi
 {
-	//$host = 'https://nish-test.cloudaccess.net:9000/oauth/authorization?client_id=nisheeth@cloudaccess.net&response_type=code';
-	//         https://nish-test.cloudaccess.net:9000/oauth/authorization?client_id=nisheeth@cloudaccess.net&reponse_type=code'
-	
 	protected $_host = null;
 	protected $_client_id = null;
 	protected $_client_secret = null;
@@ -28,7 +25,7 @@ class DemoApi
 
 	public function __construct($config)
 	{
-		$this->_host = 'https://nish-test.cloudaccess.net:9000';
+		$this->_host = 'https://api.cloudaccess.net';
 		if ( ! isset($config['client_id']))
 		{
 			throw new DemoApiException('Client ID not specified in the config', 1);
@@ -116,7 +113,6 @@ class DemoApi
 	
 	public function api($method, $args=array())
 	{
-		$this->_host = 'http://dim-test1.cloudaccess.net:9000';
 		$url = $this->_build_url('/api');
 		
 		$r = $this->_request($url, array_merge($args, array(

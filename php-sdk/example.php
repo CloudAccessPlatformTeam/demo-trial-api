@@ -10,9 +10,9 @@
 require_once (__DIR__.'/demoapi.php');
 
 $dapi = new DemoApi(array(
-	'client_id' => 'user@domain.com',
+	'client_id' => 'user@cloudaccess.net',
 	'client_secret' => 'XXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-	'verify_ssl' => false
+	'verify_ssl' => true
 ));
 
 try
