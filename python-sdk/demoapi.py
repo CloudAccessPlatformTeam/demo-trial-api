@@ -25,10 +25,10 @@ class DemoApi(object):
         self._host = 'https://api.cloudaccess.net'
         self._client_id = config['client_id']
         self._client_secret = config['client_secret']
-        self._verify_ssl = config['verify_ssl'] if config.has_key('verify_sll') else False
+        self._verify_ssl = config['verify_ssl'] if config.has_key('verify_ssl') else False
         self._code = None
-        self._access_token = config['access_token'] if config.has_key('verify_sll') else None
-        self._refresh_token = config['refresh_token'] if config.has_key('verify_sll') else None
+        self._access_token = config['access_token'] if config.has_key('access_token') else None
+        self._refresh_token = config['refresh_token'] if config.has_key('refresh_token') else None
     
     def get_code(self, redirect_uri=''):
         url = self._build_url('/oauth/authorization', {
