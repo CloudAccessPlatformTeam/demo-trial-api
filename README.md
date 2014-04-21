@@ -7,10 +7,10 @@ API Methods
 ### CreateService (`client_details`, `demo_details`) ###
 Creates the demo service 
 
- Name             | Type               | Required | Description
-:-----------------|:-------------------|:---------|:-------------
- `client_details` | Array              | Yes      | Associative array representing client details
- `demo_details`   | Array              | Yes      | Associative array representing details for the demo instance
+ Name               | Type               | Required | Description
+:-------------------|:-------------------|:---------|:-------------
+ `p_client_details` | Array              | Yes      | Associative array representing client details
+ `p_demo_details`   | Array              | Yes      | Associative array representing details for the demo instance
  
 ```
     client_details
@@ -32,13 +32,18 @@ Creates the demo service
         p_datasetid
 
 ```
+_Note: `*` indicates required keys_
 
 #### Response ####
 ```
-    Error Code?
+    []
+    	taskid
 ```
-
-_Note: `*` indicates required keys_
+```
+    []
+		error
+		err_code
+```
 
 
 ### ListDatasets (`application`, `affid`) ###
@@ -46,24 +51,53 @@ Lists the allowed datasets for `CreateService`
 
  Name             | Type               | Required | Description  
 :-----------------|:-------------------|:---------|:--------------
- `application`    | String             | Yes      | String representing the application, `joomla` or `wordpress`
- `affid`          | Integer            | Yes      | Id signifying the affiliate to fetch the dataset list for
+ `p_application`  | String             | Yes      | String representing the application, `joomla` or `wordpress`
+ `p_affid`        | Integer            | Yes      | Id signifying the affiliate to fetch the dataset list for
 
 #### Response ####
 ```
-    Error Code?
+	[]
+		[result]
+			[datasets]
+				[joomla]
+					[0]
+						date_added
+						version
+						app_family
+						datasetid
+						name
+					[1]
+						date_added
+						version
+						app_family
+						datasetid
+						name
+			[families]
+				[joomla]
+					0
+					1
 ```
-
+```
+	[]
+		error
+		err_code
+```
 ### GetAsyncOptStatus (`taskid`) ###
 Fetch the status for the `CreateService` task
 
  Name             | Type               | Required | Description  
 :-----------------|:-------------------|:---------|:--------------
- `taskid`         | String             | Yes      | Id returned from the `CreateService` response
+ `p_taskid`       | String             | Yes      | Id returned from the `CreateService` response
 
 #### Response ####
 ```
-    Error Code?
+    []
+		result
+```
+```
+    []
+		error
+		err_code
 ```
 
 
@@ -72,11 +106,17 @@ Validates the existance of a domain for `CreateService`
 
  Name             | Type               | Required | Description  
 :-----------------|:-------------------|:---------|:--------------
- `domain`         | String             | Yes      | Domain name to check (excluding scheme and `www.`)
+ `p_domain`       | String             | Yes      | Domain name to check (excluding scheme and `www.`)
 
 #### Response ####
 ```
-    Error Code?
+    []
+		result (bool)
+```
+```
+	[]
+		error
+		err_code
 ```
 
 ### CheckEmailExistance (`email`) ###
@@ -84,9 +124,15 @@ Validates the existance of an email for `CreateService`
 
  Name             | Type               | Required | Description  
 :-----------------|:-------------------|:---------|:--------------
- `email`          | String             | Yes      | Email ID to check
+ `p_email`        | String             | Yes      | Email ID to check
 
 #### Response ####
 ```
-    Error Code?
+    []
+		result (bool)
+```
+```
+	[]
+		error
+		err_code
 ```
