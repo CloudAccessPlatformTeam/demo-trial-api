@@ -4,7 +4,7 @@
 API Methods
 ==============
 
-## CreateService (`client_details`, `demo_details`) ##
+### CreateService (`client_details`, `demo_details`) ###
 Creates the demo service 
 
  Name             | Type               | Required | Description
@@ -41,7 +41,7 @@ Creates the demo service
 _Note: `*` indicates required keys_
 
 
-## ListDatasets (`application`, `affid`) ##
+### ListDatasets (`application`, `affid`) ###
 Lists the allowed datasets for `CreateService`
 
  Name             | Type               | Required | Description  
@@ -54,7 +54,7 @@ Lists the allowed datasets for `CreateService`
     Error Code?
 ```
 
-## GetAsyncOptStatus (`taskid`) ##
+### GetAsyncOptStatus (`taskid`) ###
 Fetch the status for the `CreateService` task
 
  Name             | Type               | Required | Description  
@@ -67,7 +67,7 @@ Fetch the status for the `CreateService` task
 ```
 
 
-## CheckDomainExistance (`domain`) ##
+### CheckDomainExistance (`domain`) ###
 Validates the existance of a domain for `CreateService`
 
  Name             | Type               | Required | Description  
@@ -79,7 +79,7 @@ Validates the existance of a domain for `CreateService`
     Error Code?
 ```
 
-## CheckEmailExistance (`email`) ##
+### CheckEmailExistance (`email`) ###
 Validates the existance of an email for `CreateService`
 
  Name             | Type               | Required | Description  
