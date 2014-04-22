@@ -72,7 +72,7 @@ Lists the allowed datasets for `CreateService`
 		error
 		err_code
 ```
-### GetAsyncOptStatus (`taskid`) ###
+### GetAsyncOpStatus (`taskid`) ###
 Fetch the status for the `CreateService` task
 
  Name             | Type               | Required | Description  
