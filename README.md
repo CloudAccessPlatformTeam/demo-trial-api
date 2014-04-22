@@ -20,7 +20,7 @@ Creates the demo service
  `p_state`           | String             | Yes      | User's state of residence
  `p_postcode`        | String             | Yes      | User's postal code
  `p_country`         | String             | Yes      | User's country of residence
- `p_domain`          | String             | Yes      | Domain to use for the application (without scheme or `www.`)
+ `p_domain`          | String             | Yes      | Cloudaccess sub-domain to use for the application (without scheme or `www.`)
  `p_application`     | String             | Yes      | Application to be created. Format `name-version`, eg: `joomla-3.2`. The supported versions/families can be obtained via `ListDatasets`
  `p_datasetid`       | Integer            | No       | Dataset Id to use while creating the application. The supported datasets can be obtained via `ListDatasets`
  
