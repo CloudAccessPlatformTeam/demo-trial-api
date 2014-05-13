@@ -490,22 +490,22 @@ jQuery(document).ready(function() {
 		if (postCode.length>0) {
 			postCode.validate = function(){
 				var phonenumberVal = postCode.val();
-				var regex = /^$|(^[0-9\+\(\)\+\- ]{6,25}$)/;
+				var regex = /^[0-9]([0-9]|-(?!-))+$/;
 				var match = regex.exec(phonenumberVal);
 	
 				if (phonenumberVal != 'Post Code') 
 				{
 					if (match == null) 
 					{
-						postCode.addClass('validationRed');
-						jQuery('#postcodeHelp').html('6 chars minimum, 25 maximum. Only numbers');
+						postCode.removeClass('validationGreen').addClass('validationRed');
+						jQuery('#postcodeHelp').html('Only numbers and "-"');
 						jQuery('#postcodeHelp').css('display','block');
 						jQuery('#hidden_error').css('visibility','visible');
 						return false;
 					}   
 					else
 					{
-						phonenumber.addClass('');
+						postCode.removeClass('validationRed').addClass('validationGreen');
 						jQuery('#postcodeHelp').html('');
 						jQuery('#postcodeHelp').css('display','none');
 						jQuery('#hidden_error').css('visibility','hidden');
@@ -514,8 +514,8 @@ jQuery(document).ready(function() {
 				}else{
 					if (phonenumberVal != 'Post Code')
 						jQuery('#postcode').value = phonenumberVal.replace(/\+/g, '').replace(/-/g, '').replace(/ /g, '');
-					postCode.addClass('validationRed');
-					jQuery('#postcodeHelp').html('6 chars minimum, 25 maximum. Only numbers');
+					postCode.removeClass('validationGreen').addClass('validationRed');
+					jQuery('#postcodeHelp').html('Only numbers and "-"');
 					jQuery('#postcodeHelp').css('display','block');
 					jQuery('#hidden_error').css('visibility','visible');
 					return true;
