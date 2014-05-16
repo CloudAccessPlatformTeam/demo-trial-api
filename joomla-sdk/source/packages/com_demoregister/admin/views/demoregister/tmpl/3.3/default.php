@@ -142,4 +142,24 @@ JHtml::_('formbehavior.chosen', 'select');
 </form>
 <script type="text/javascript">
     jQuery('#configTabs a:first').tab('show'); // Select first tab
+    jQuery('#thankyou').find('.control-group:last').css('display','none');
+    jQuery('#jform_thankyou_engine').change(function(){
+        if (this.value == 1) {
+            jQuery('#thankyou').find('.control-group:last').css('display','block');
+        } else {
+            jQuery('#thankyou').find('.control-group:last').css('display','none');
+        }
+    });
+    jQuery('#template').find('.control-group:nth-child(5)').css('display','none');
+    jQuery('#jform_template_engine').change(function(){
+        if (this.value == 1) {
+            jQuery('#template').find('.control-group:last').css('display','none');
+            jQuery('#template').find('.control-group:nth-child(5)').css('display','block');
+        } else {
+            jQuery('#template').find('.control-group:last').css('display','block');
+            jQuery('#template').find('.control-group:nth-child(5)').css('display','none');
+        }
+    });
+    jQuery('#jform_thankyou_engine').fire('click');
+    jQuery('#jform_template_engine').fire('click');
 </script>

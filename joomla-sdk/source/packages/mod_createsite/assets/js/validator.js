@@ -362,16 +362,16 @@ jQuery(document).ready(function() {
 		var phonenumber = jQuery('#phonenumber');
 		if (phonenumber.length>0) {
 			phonenumber.validate = function(){
-				var phonenumberVal = phonenumber.value;
+				var phonenumberVal = phonenumber.val();
 				var regex = /^$|(^[0-9\+\(\)\+\- ]{6,25}$)/;
 				var match = regex.exec(phonenumberVal);
 	
-				if (phonenumberVal != 'PhoneNumber(Optional)') 
+				if (phonenumberVal != 'PhoneNumber') 
 				{
 					if (match == null) 
 					{
 						var phonenumberValResult = jQuery('#phonenumberValResult');
-						phonenumber.addClass('validationRed');
+						phonenumber.removeClass('validationGreen').addClass('validationRed');
 						jQuery('#phonenumberHelp').html('6 chars minimum, 25 maximum. Only numbers');
 						jQuery('#phonenumberHelp').css('display','block');
 						jQuery('#hidden_error').css('visibility','visible');
@@ -379,31 +379,26 @@ jQuery(document).ready(function() {
 					}   
 					else
 					{
-						phonenumber.addClass('');
+						phonenumber.addClass('validationGreen').removeClass('validationRed');
 						jQuery('#phonenumberHelp').html('');
 						jQuery('#phonenumberHelp').css('display','none');
 						jQuery('#hidden_error').css('visibility','hidden');
 						return true;
 					}
 				}else{
-					var phonenumberValResult = jQuery('#phonenumberValResult');
-					phonenumber.addClass('');
-					if (phonenumberVal != 'PhoneNumber(Optional)')
-						jQuery('#phonenumber').value = phonenumberVal.replace(/\+/g, '').replace(/-/g, '').replace(/ /g, '');
-					var phonenumberValResult = jQuery('phonenumberValResult');
-					phonenumber.addClass('validationRed');
+					phonenumber.removeClass('validationGreen').addClass('validationRed');
 					jQuery('#phonenumberHelp').html('6 chars minimum, 25 maximum. Only numbers');
 					jQuery('#phonenumberHelp').css('display','block');
 					jQuery('#hidden_error').css('visibility','visible');
-					return true;
+					return false;
 				}
 			};
 		
 			phonenumber.focus(function(){
-				if (phonenumber.val().trim()=='PhoneNumber(Optional)') this.value='';
+				if (phonenumber.val().trim()=='PhoneNumber') this.value='';
 			});
 			phonenumber.blur(function(){
-				if (phonenumber.val().trim()=='') this.value = 'PhoneNumber(Optional)';
+				if (phonenumber.val().trim()=='') this.value = 'PhoneNumber';
 				phonenumber.validate();
 			});
 		}
@@ -431,7 +426,7 @@ jQuery(document).ready(function() {
 			address.validate = function(){
 				var adrVal = address.val();
 				//change regex to accept Full Name
-				var regex = /^[a-z\sA-Z]*$/i;
+				var regex = /^[a-zA-Z0-9\/., ]*$/i;
 				var match = regex.exec(adrVal);
 	            if (match == null || match == "Address" ) 
 	            {
@@ -445,7 +440,7 @@ jQuery(document).ready(function() {
 				}
 				else
 				{
-					var chkstring = adrVal.split(" ");	
+					var chkstring = adrVal.split(" ");
 					if(chkstring.length <= 1)
 					{
 						jQuery('#addressHelp').html('Minimum 2 words for Address');
@@ -457,7 +452,7 @@ jQuery(document).ready(function() {
 					}
 					else
 					{
-						fullname.addClass('validationGreen');
+						address.addClass('validationGreen');
 						jQuery('#addressHelp').html('');
 						jQuery('#addressHelp').css('display','none');
 						jQuery('#hidden_error').css('visibility','hidden');

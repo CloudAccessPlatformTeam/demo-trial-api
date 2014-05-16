@@ -4,7 +4,7 @@
 			<field id="fullname" name="fullname" default="Full Name" type="text" label="MOD_CREATESITE_FIELD_FULLNAME_LABEL" description="" />
 			<field id="sitename" name="sitename" default="Site Name" type="text" label="MOD_CREATESITE_FIELD_SITENAME_LABEL" description="" />
 			<field id="email" name="email" default="Email Address" type="text" label="MOD_CREATESITE_FIELD_EMAIL_LABEL" description="" />
-			<field id="phonenumber" name="phonenumber" default="PhoneNumber(Optional)" type="text" label="MOD_CREATESITE_FIELD_PHONENUMBER_LABEL" description="" />
+			<field id="phonenumber" name="phonenumber" default="PhoneNumber" type="text" label="MOD_CREATESITE_FIELD_PHONENUMBER_LABEL" description="" />
 			<field id="country" type="list" name="country" class="styled" label="MOD_CREATESITE_FIELD_COUNTRY_LABEL" description="">
 				<option value="empty">Country</option>
 					<option value="AF">Afghanistan</option>

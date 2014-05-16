@@ -22,6 +22,31 @@ JHtml::_('behavior.formvalidation');
 			Joomla.submitform(task, document.getElementById('component-form'));
 		}
 	}
+    window.addEvent('domready', function() {
+        $('jform_thankyou_engine').getParent('li').getNext().setStyle('display','none');
+        $('jform_body_content').getParent('li').setStyle('display','none');
+        $('jform_body_aid_name').getParent('li').setStyle('display','none');
+        $('jform_thankyou_engine').addEvent('change', function(){
+            if (this.value == 1) {
+                $('jform_thankyou_engine').getParent('li').getNext().setStyle('display','block');
+            } else {
+                $('jform_thankyou_engine').getParent('li').getNext().setStyle('display','none');
+            }
+        });
+        $('jform_template_engine').addEvent('change', function(){
+            if (this.value == 1) {
+                $('jform_body_content').getParent('li').setStyle('display','none');
+                $('jform_body_aid_name').getParent('li').setStyle('display','block');
+            } else {
+                $('jform_body_content').getParent('li').setStyle('display','block');
+                $('jform_body_aid_name').getParent('li').setStyle('display','none');
+            }
+        })
+    });
+    window.onload=function(){
+        $('jform_thankyou_engine').fireEvent('change');
+        $('jform_template_engine').fireEvent('change');
+    }
 </script>
 <form action="<?php echo JRoute::_('index.php?option=com_demoregister');?>" id="component-form" method="post" name="adminForm" autocomplete="off" class="form-validate">
 	<?php

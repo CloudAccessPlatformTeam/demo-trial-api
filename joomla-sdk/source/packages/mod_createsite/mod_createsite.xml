@@ -24,7 +24,7 @@
     <config>
         <fields name="params" addfieldpath="/modules/mod_createsite/fields/">
         	<fieldset name="basic">
-        		<field name="form_field_phonenumber" type="list" label="Phone Number (Optional)" default="0" description="Show this optional form field">
+        		<field name="form_field_phonenumber" type="list" label="Phone Number" default="0" description="Optional for show, required validation">
         			<option value="0">JNO</option>
 					<option value="1">JYES</option>
         		</field>
@@ -36,7 +36,7 @@
         			<option value="0">JNO</option>
 					<option value="1">JYES</option>
         		</field>
-        		<field name="form_field_address" type="list" label="Address (Optional)" default="0" description="Show this optional form field">
+        		<field name="form_field_address" type="list" label="Address" default="0" description="Optional for show, required validation">
         			<option value="0">JNO</option>
 					<option value="1">JYES</option>
         		</field>
@@ -44,7 +44,7 @@
         			<option value="0">JNO</option>
 					<option value="1">JYES</option>
         		</field>
-        		<field name="form_field_postcode" type="list" label="Post Code(Optional)" default="0" description="Show this optional form field">
+        		<field name="form_field_postcode" type="list" label="Post Code" default="0" description="Optional for show, required validation">
         			<option value="0">JNO</option>
 					<option value="1">JYES</option>
         		</field>
