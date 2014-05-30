@@ -17,7 +17,7 @@ $helper = new createSiteHelper;
 $helper->initialise();
 
 $applicationsOptions = array();
-$cids = JComponentHelper::getParams('com_demoregister')->get('cid');
+$cids = $params->get('cid');
 if (!empty($cids)) {
     foreach ($cids as $cid) {
         $parts = explode(';', $cid);
@@ -28,6 +28,9 @@ if (!empty($cids)) {
             $applicationsOptions[$value] = $text;
         }
     }
+} else {
+    JFactory::getApplication()->enqueueMessage(sprintf('Please configure module "%s"',$module->name),'error');
+    return '';
 }
 
 if (JVERSION < 3.0) {
@@ -52,26 +55,30 @@ function getModuleLayoutPath($module, $layout = 'default')
 {
     $template = JFactory::getApplication()->getTemplate();
     $defaultLayout = $layout;
-
     if (strpos($layout, ':') !== false) {
         // Get the template and file name from the string
         $temp = explode(':', $layout);
         $template = ($temp[0] == '_') ? $template : $temp[0];
         $layout = $temp[1];
         $defaultLayout = ($temp[1]) ? $temp[1] : 'default';
+    } else {
+        $temp = $layout;
     }
 
     $jversion = substr(JVERSION, 0, 3);
     // Build the template and base path for the layout
     $tPath = JPATH_THEMES . '/' . $template . '/html/' . $module . '/' . $layout . '.php';
-    $bPath = JPATH_BASE . '/modules/' . $module . '/tmpl/' . $jversion . '/' . $defaultLayout . '.php';
+    $jdPath = JPATH_BASE . '/modules/' . $module . '/tmpl/' . substr($jversion,0,1) . '.X/' . $defaultLayout . '.php';
+    $jsPath = JPATH_BASE . '/modules/' . $module . '/tmpl/' . $jversion . '/' . $defaultLayout . '.php';
     $dPath = JPATH_BASE . '/modules/' . $module . '/tmpl/' . $jversion . '/default.php';
 
     // If the template has a layout override use it
     if (file_exists($tPath) && ($temp[0] != '_')) {
         return $tPath;
-    } elseif (file_exists($bPath) && ($temp[0] == '_')) {
-        return $bPath;
+    } elseif (file_exists($jdPath) && ($temp[0] != '_')) {
+        return $jdPath;
+    } elseif (file_exists($jsPath) && ($temp[0] != '_')) {
+        return $jsPath;
     } else {
         return $dPath;
     }

@@ -10,6 +10,7 @@
 defined('_JEXEC') or die( 'Restricted access' );
 
 jimport( 'joomla.application.component.view');
+jimport( 'joomla.filesystem.folder' );
 
 JLoader::import('helpers.api',JPATH_COMPONENT);
 
@@ -38,8 +39,13 @@ class DemoRegisterViewDemoRegister extends DRView
         if ($canDo->get('core.admin'))
         {
             $jversion = substr(JVERSION, 0, 3);
-        	$basePath = __DIR__. DIRECTORY_SEPARATOR . 'tmpl' . DIRECTORY_SEPARATOR . $jversion;
-			$this->addTemplatePath($basePath);
+        	$basePath = __DIR__ . DIRECTORY_SEPARATOR . 'tmpl' . DIRECTORY_SEPARATOR . $jversion;
+            // family generic. 3.X, 2.X
+            $defaultPath = __DIR__ . DIRECTORY_SEPARATOR . 'tmpl' . DIRECTORY_SEPARATOR . substr($jversion,0,1) . '.X';
+            $this->addTemplatePath($defaultPath);
+            if (JFolder::exists($basePath)) {
+                $this->addTemplatePath($basePath);
+            }
 			
 			JToolBarHelper::apply('apply');
 			
@@ -57,16 +63,7 @@ class DemoRegisterViewDemoRegister extends DRView
 			$this->assignRef('form',		$form);
 			$this->assignRef('component',	$component);
 
-
-            $token = HelperDemoRegisterApi::getApiKey();
-            if ($token) {
-                $list = HelperDemoRegisterApi::call(array('method' => 'ListDatasets', 'p_application' => 'joomla'));
-            } else {
-                $list = array();
-            }
-
             $this->assignRef('list',		$list);
-
         }
         
         parent::display($tpl);

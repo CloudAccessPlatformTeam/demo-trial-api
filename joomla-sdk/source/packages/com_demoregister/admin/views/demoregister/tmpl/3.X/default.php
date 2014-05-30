@@ -31,12 +31,6 @@ JHtml::_('formbehavior.chosen', 'select');
             <ul class="nav nav-tabs" id="configTabs">
                 <?php
                 $fieldSets = $this->form->getFieldsets();
-                if (!empty($this->list['families'])) {
-                    $tab = new stdClass();
-                    $tab->name = 'managedatasets';
-                    $tab->label = 'Manage Datasets';
-                    $fieldSets[$tab->name] = $tab;
-                }
                 foreach ($fieldSets as $name => $fieldSet) :
                     $label = empty($fieldSet->label) ? 'COM_CONFIG_'.$name.'_FIELDSET_LABEL' : $fieldSet->label;
                     ?>
@@ -47,7 +41,6 @@ JHtml::_('formbehavior.chosen', 'select');
             </ul>
             <div class="tab-content">
                 <?php
-                unset($fieldSets[$tab->name]);
                 foreach ($fieldSets as $name => $fieldSet) :
                     ?>
                     <div class="tab-pane" id="<?php echo $name;?>">
@@ -74,61 +67,7 @@ JHtml::_('formbehavior.chosen', 'select');
                     </div>
                 <?php
                 endforeach;
-                if (!empty($this->list['families'])):
-                    $cids = JComponentHelper::getParams('com_demoregister')->get('cid');
-                    ?>
-                    <div class="tab-pane" id="<?php echo $tab->name; ?>">
-                        <p><?php echo JText::_('COM_DEMOREGISTER_DATASETS_DESC'); ?></p>
-
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th>
-                                    <?php echo JHtml::_('grid.checkall'); ?>
-                                </th>
-                                <th>Pkg. Name</th>
-                                <th>Pkg. Version</th>
-                                <th>Joomla Version</th>
-                                <th>Pkg. Date</th>
-                                <th>ID</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php if (empty($this->list['datasets'])): ?>
-                                <tr>
-                                    <td colspan="100%">
-                                        Empty List
-                                    </td>
-                                </tr>
-                            <?php else: ?>
-                                <?php foreach ($this->list['datasets']['joomla'] as $key => $row): ?>
-                                    <?php $checked = false; foreach ($cids as $cid) { if ($cid == sprintf('%s;%s;%s',$row['datasetid'],$row['name'],$row['app_family'])) { $checked = true; break; } } ?>
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox" id="cb<?php echo $key; ?>" <?php if ($checked): ?> checked <?php endif; ?> name="<?php echo $this->form->getFormControl(); ?>[cid][]" value="<?php echo $row['datasetid']; ?>;<?php echo $row['name']; ?>;<?php echo $row['app_family']; ?>">
-                                        </td>
-                                        <td>
-                                            <?php echo $row['name']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $row['version']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $row['app_family']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $row['date_added']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $row['datasetid']; ?>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            <?php endif; ?>
-                            </tbody>
-                        </table>
-                    </div>
-                <?php endif; ?>
+                ?>
             </div>
         </div>
     </div>

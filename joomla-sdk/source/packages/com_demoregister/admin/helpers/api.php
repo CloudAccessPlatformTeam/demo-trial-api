@@ -21,7 +21,6 @@ class HelperDemoRegisterApi
         }
 
         return $token;
-
     }
 
     static public function call($data, $try = 1)

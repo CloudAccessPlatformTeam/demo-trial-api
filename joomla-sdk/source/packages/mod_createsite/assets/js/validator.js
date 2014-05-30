@@ -19,7 +19,7 @@ jQuery(document).ready(function() {
 				jQuery('#fullnameHelp').css('display','block');
 				jQuery('#hidden_error').css('visibility','visible');
 				
-            	fullname.addClass('validationRed');
+            	fullname.removeClass('validationGreen').addClass('validationRed');
 				fullnameIsOk=-1;
 				return false;
 			}
@@ -31,14 +31,13 @@ jQuery(document).ready(function() {
 					jQuery('#fullnameHelp').html('Minimum 2 words for Full Name.');
 					jQuery('#fullnameHelp').css('display','block');
 					jQuery('#hidden_error').css('visibility','visible');
-					fullname.addClass('validationRed');
+					fullname.removeClass('validationGreen').addClass('validationRed');
 					fullnameIsOk = 0;
 					return false;
 				}
 				else
 				{
-					fullname.removeClass('validationRed');
-					fullname.addClass('validationGreen');
+					fullname.removeClass('validationRed').addClass('validationGreen');
 					jQuery('#fullnameHelp').html('');
 					jQuery('#fullnameHelp').css('display','none');
 					jQuery('#hidden_error').css('visibility','hidden');
@@ -62,7 +61,7 @@ jQuery(document).ready(function() {
 			var sitenameVal = jQuery('#sitename').val();
 			if (sitenameVal == "Domain Name")
 			{
-				sitename.addClass('validationRed');
+				sitename.removeClass('validationGreen').addClass('validationRed');
 				jQuery('#hidden_error').css('visibility','visible');
 				return false;
 			} 
@@ -73,7 +72,7 @@ jQuery(document).ready(function() {
 				jQuery('#sitenameHelp').html('Please delete spaces/dots in your domain name.');
 				jQuery('#sitenameHelp').css('display','block');
 				jQuery('#hidden_error').css('visibility','visible');
-				sitename.addClass('validationRed');
+				sitename.removeClass('validationGreen').addClass('validationRed');
 				sitenameBlankIsOk = false;
 			}   
 			else{
@@ -87,11 +86,10 @@ jQuery(document).ready(function() {
                             jQuery('#sitenameHelp').css('display','block');
                             jQuery('#hidden_error').css('visibility','visible');
                             jQuery('#cursorBlink').html('');
-                            sitename.addClass('validationRed');
+                            sitename.removeClass('validationGreen').addClass('validationRed');
                             sitenameBlankIsOk = false;
                         } else if (response == 'false') {
-                        	sitename.removeClass('validationRed');
-                            sitename.addClass('validationGreen');
+                            sitename.removeClass('validationRed').addClass('validationGreen');
                             jQuery('#cursorBlink').html(jQuery('#sitename').val().trim());
                             jQuery('#sitenameHelp').html('');
                             jQuery('#sitenameHelp').css('display','none');
@@ -102,7 +100,7 @@ jQuery(document).ready(function() {
                             jQuery('#cursorBlink').html('');
                             jQuery('#sitenameHelp').css('display','block');
                             jQuery('#hidden_error').css('visibility','visible');
-                            sitename.addClass('validationRed');
+                            sitename.removeClass('validationGreen').addClass('validationRed');
                             sitenameBlankIsOk = false;
                         }
                     },
@@ -111,7 +109,7 @@ jQuery(document).ready(function() {
                         jQuery('#sitenameHelp').css('display','block');
                         jQuery('#hidden_error').css('visibility','visible');
                         jQuery('#cursorBlink').html('');
-                        sitename.addClass('validationRed');
+                        sitename.removeClass('validationGreen').addClass('validationRed');
                         sitenameBlankIsOk = false;
                 	}
                 });
@@ -132,7 +130,7 @@ jQuery(document).ready(function() {
 			var sitenameVal = jQuery('#sitename').val().trim();
 			if (sitenameVal == "Domain Name")
 			{
-				sitename.addClass('validationRed');
+				sitename.removeClass('validationGreen').addClass('validationRed');
 				jQuery('#hidden_error').css('visibility','visible');
 				return false;
 			}
@@ -145,7 +143,7 @@ jQuery(document).ready(function() {
 				jQuery('#sitenameHelp').html('Please delete spaces/dots in your domain name.');
 				jQuery('#sitenameHelp').css('display','block');
 				jQuery('#hidden_error').css('visibility','visible');
-				sitename.addClass('validationRed');
+				sitename.removeClass('validationGreen').addClass('validationRed');
 				sitenameBlankIsOk = false;
 			}   
 			else{
@@ -159,10 +157,10 @@ jQuery(document).ready(function() {
                             jQuery('#cursorBlink').html('');
                             jQuery('#sitenameHelp').css('display','block');
                             jQuery('#hidden_error').css('visibility','visible');
-                            sitename.addClass('validationRed');
+                            sitename.removeClass('validationGreen').addClass('validationRed');
                             sitenameBlankIsOk = false;
                         } else if (response == 'false') {
-                            sitename.addClass('validationGreen');
+                            sitename.removeClass('validationRed').addClass('validationGreen');
                             jQuery('#cursorBlink').html(sitenameVal);
                             jQuery('#sitenameHelp').html('');
                             jQuery('#sitenameHelp').css('display','none');
@@ -173,7 +171,7 @@ jQuery(document).ready(function() {
                             jQuery('#cursorBlink').html('');
                             jQuery('#sitenameHelp').css('display','block');
                             jQuery('#hidden_error').css('visibility','visible');
-                            sitename.addClass('validationRed');
+                            sitename.removeClass('validationGreen').addClass('validationRed');
                             sitenameBlankIsOk = false;
                         }
                     },
@@ -182,7 +180,7 @@ jQuery(document).ready(function() {
                         jQuery('#cursorBlink').html('');
                         jQuery('#sitenameHelp').css('display','block');
                         jQuery('#hidden_error').css('visibility','visible');
-                        sitename.addClass('validationRed');
+                        sitename.removeClass('validationGreen').addClass('validationRed');
                         sitenameBlankIsOk = false;
                     }
                 });
@@ -198,11 +196,12 @@ jQuery(document).ready(function() {
 
 			if (match == null) {
 				var emailValResult = jQuery('#email');
-				email.addClass('validationRed');
+				email.removeClass('validationGreen').addClass('validationRed');
 				emailBlankIsOk = false;
 				jQuery('#emailHelp').html('Invalid email provided.');
 				jQuery('#emailHelp').css('display','block');
 				jQuery('#hidden_error').css('visibility','visible');
+				email.toggleValidation(false);
 			}   
 			else{
                 var emailValResult = jQuery('#email');
@@ -211,32 +210,32 @@ jQuery(document).ready(function() {
                     data: {email: emailVal},
                     success: function (response) {
                         if (response == 'true') {
-                            jQuery('#emailHelp').html('email already exists, please choose another one.');
-                            jQuery('#emailHelp').css('display','block');
-                            jQuery('#hidden_error').css('visibility','visible');
-                            email.addClass('validationRed');
-                            emailBlankIsOk = false;
-                        } else if (response == 'false') {
-                            email.addClass('validationGreen');
+                            email.removeClass('validationRed').addClass('validationGreen');
                             jQuery('#emailHelp').html('');
                             jQuery('#emailHelp').css('display','none');
                             jQuery('#hidden_error').css('visibility','hidden');
                             emailBlankIsOk = true;
-                            console.log(emailBlankIsOk);
+                            email.toggleValidation(true);
+                        } else if (response == 'false') {
+                            email.removeClass('validationRed').addClass('validationGreen');
+                            jQuery('#emailHelp').html('');
+                            jQuery('#emailHelp').css('display','none');
+                            jQuery('#hidden_error').css('visibility','hidden');
+                            emailBlankIsOk = true;
+                        	email.toggleValidation(false);
                         } else {
                             jQuery('#emailHelp').html(response);
                             jQuery('#emailHelp').css('display','block');
                             jQuery('#hidden_error').css('visibility','visible');
-                            email.addClass('validationRed');
+                            email.removeClass('validationGreen').addClass('validationRed');
                             emailBlankIsOk = false;
                         }
-                        console.log(emailBlankIsOk);
                     },
                     error: function (){
                     	jQuery('#emailHelp').html('Our service cant validate email, please try again.');
                         jQuery('#emailHelp').css('display','block');
                         jQuery('#hidden_error').css('visibility','visible');
-                        email.addClass('validationRed');
+                        email.removeClass('validationGreen').addClass('validationRed');
                         emailBlankIsOk = false;
                     }
                 });
@@ -251,6 +250,36 @@ jQuery(document).ready(function() {
 			email.validate()
 		});
 
+		email.toggleValidation = function(validate) {
+			fullname.toggleClass('dn');
+			fullnameIsOk = validate;
+			country.toggleClass('dn');
+			jQuery('#selectcountry').toggleClass('dn');
+			countryIsOk = validate;
+			if (phonenumber.length>0) {
+				phonenumber.toggleClass('dn');
+				phonenumberOk = validate;
+			}
+			if (city.length>0) { 
+				city.toggleClass('dn');
+			}
+			console.log(state.length);
+			if (state.length>0) {
+				state.toggleClass('dn'); 
+			}
+			if (address.length>0) {
+				address.toggleClass('dn');
+				addressOk = validate;
+			}
+			if (address2.length>0) {
+				address2.toggleClass('dn');
+			}
+			if (postCode.length>0) {
+				postcodeOk = validate;
+				postcode.toggleClass('dn');
+			}
+		};
+
 		email.blankvalidate = function(){
 			var emailVal = email.val().trim();
 			var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -258,11 +287,12 @@ jQuery(document).ready(function() {
 
 			if (match == null) {
 				var emailValResult = jQuery('#email');
-				email.addClass('validationRed');
+				email.removeClass('validationGreen').addClass('validationRed');
 				jQuery('emailHelp').html('Invalid email provided.');
 				jQuery('emailHelp').css('display','block');
 				jQuery('#hidden_error').css('visibility','visible');
 				emailBlankIsOk = false;
+				email.toggleValidation(false);
 			}   
 			else{
                 var emailValResult = jQuery('#email');
@@ -274,19 +304,21 @@ jQuery(document).ready(function() {
                             jQuery('#emailHelp').html('email already exists, please choose another one.');
                             jQuery('#emailHelp').css('display','block');
                             jQuery('#hidden_error').css('visibility','visible');
-                            email.addClass('validationRed');
-                            emailBlankIsOk = false;
+                            email.removeClass('validationGreen').addClass('validationRed');
+                            emailBlankIsOk = true;
+                            email.toggleValidation(true);
                         } else if (response == 'false') {
-                            email.addClass('validationGreen');
+                            email.removeClass('validationRed').addClass('validationGreen');
                             jQuery('#emailHelp').html('');
                             jQuery('#emailHelp').css('display','none');
                             jQuery('#hidden_error').css('visibility','hidden');
                             emailBlankIsOk = true;
+                            email.toggleValidation(false);
                         } else {
                             jQuery('#emailHelp').html(response);
                             jQuery('#emailHelp').css('display','block');
                             jQuery('#hidden_error').css('visibility','visible');
-                            email.addClass('validationRed');
+                            email.removeClass('validationGreen').addClass('validationRed');
                             emailBlankIsOk = false;
                         }
                     },
@@ -294,7 +326,7 @@ jQuery(document).ready(function() {
                     	jQuery('#emailHelp').html('Our service cant validate email, please try again.');
                         jQuery('#emailHelp').css('display','block');
                         jQuery('#hidden_error').css('visibility','visible');
-                        email.addClass('validationRed');
+                        email.removeClass('validationGreen').addClass('validationRed');
                         emailBlankIsOk = false;
                     }
                 });
@@ -339,7 +371,7 @@ jQuery(document).ready(function() {
 				
 				if (captchaFieldVal == '')
 				{
-					recaptchaField.addClass('validationRed');
+					recaptchaField.removeClass('validationGreen').addClass('validationRed');
 					jQuery('#recpatchareponseHelp').html('Enter Captcha value!');
 					jQuery('#recpatchareponseHelp').css('display','block');
 					jQuery('#hidden_error').css('visibility','visible');
@@ -362,11 +394,11 @@ jQuery(document).ready(function() {
 		var phonenumber = jQuery('#phonenumber');
 		if (phonenumber.length>0) {
 			phonenumber.validate = function(){
-				var phonenumberVal = phonenumber.val();
+				var phonenumberVal = phonenumber.value;
 				var regex = /^$|(^[0-9\+\(\)\+\- ]{6,25}$)/;
 				var match = regex.exec(phonenumberVal);
 	
-				if (phonenumberVal != 'PhoneNumber') 
+				if (phonenumberVal != 'PhoneNumber(Optional)') 
 				{
 					if (match == null) 
 					{
@@ -379,26 +411,31 @@ jQuery(document).ready(function() {
 					}   
 					else
 					{
-						phonenumber.addClass('validationGreen').removeClass('validationRed');
+						phonenumber.addClass('');
 						jQuery('#phonenumberHelp').html('');
 						jQuery('#phonenumberHelp').css('display','none');
 						jQuery('#hidden_error').css('visibility','hidden');
 						return true;
 					}
 				}else{
+					var phonenumberValResult = jQuery('#phonenumberValResult');
+					phonenumber.addClass('');
+					if (phonenumberVal != 'PhoneNumber(Optional)')
+						jQuery('#phonenumber').value = phonenumberVal.replace(/\+/g, '').replace(/-/g, '').replace(/ /g, '');
+					var phonenumberValResult = jQuery('phonenumberValResult');
 					phonenumber.removeClass('validationGreen').addClass('validationRed');
 					jQuery('#phonenumberHelp').html('6 chars minimum, 25 maximum. Only numbers');
 					jQuery('#phonenumberHelp').css('display','block');
 					jQuery('#hidden_error').css('visibility','visible');
-					return false;
+					return true;
 				}
 			};
 		
 			phonenumber.focus(function(){
-				if (phonenumber.val().trim()=='PhoneNumber') this.value='';
+				if (phonenumber.val().trim()=='PhoneNumber(Optional)') this.value='';
 			});
 			phonenumber.blur(function(){
-				if (phonenumber.val().trim()=='') this.value = 'PhoneNumber';
+				if (phonenumber.val().trim()=='') this.value = 'PhoneNumber(Optional)';
 				phonenumber.validate();
 			});
 		}
@@ -426,7 +463,7 @@ jQuery(document).ready(function() {
 			address.validate = function(){
 				var adrVal = address.val();
 				//change regex to accept Full Name
-				var regex = /^[a-zA-Z0-9\/., ]*$/i;
+				var regex = /^[a-z\sA-Z]*$/i;
 				var match = regex.exec(adrVal);
 	            if (match == null || match == "Address" ) 
 	            {
@@ -434,25 +471,25 @@ jQuery(document).ready(function() {
 					jQuery('#addressHelp').css('display','block');
 					jQuery('#hidden_error').css('visibility','visible');
 					
-	            	address.addClass('validationRed');
+	            	address.removeClass('validationGreen').addClass('validationRed');
 					addressOk=-1;
 					return false;
 				}
 				else
 				{
-					var chkstring = adrVal.split(" ");
+					var chkstring = adrVal.split(" ");	
 					if(chkstring.length <= 1)
 					{
 						jQuery('#addressHelp').html('Minimum 2 words for Address');
 						jQuery('#addressHelp').css('display','block');
 						jQuery('#hidden_error').css('visibility','visible');
-						address.addClass('validationRed');
+						address.removeClass('validationGreen').addClass('validationRed');
 						addressOk = 0;
 						return false;
 					}
 					else
 					{
-						address.addClass('validationGreen');
+						fullname.removeClass('validationRed').addClass('validationGreen');
 						jQuery('#addressHelp').html('');
 						jQuery('#addressHelp').css('display','none');
 						jQuery('#hidden_error').css('visibility','hidden');
@@ -485,7 +522,7 @@ jQuery(document).ready(function() {
 		if (postCode.length>0) {
 			postCode.validate = function(){
 				var phonenumberVal = postCode.val();
-				var regex = /^[0-9]([0-9]|-(?!-))+$/;
+				var regex = /^$|(^[0-9\+\(\)\+\- ]{6,25}$)/;
 				var match = regex.exec(phonenumberVal);
 	
 				if (phonenumberVal != 'Post Code') 
@@ -493,14 +530,14 @@ jQuery(document).ready(function() {
 					if (match == null) 
 					{
 						postCode.removeClass('validationGreen').addClass('validationRed');
-						jQuery('#postcodeHelp').html('Only numbers and "-"');
+						jQuery('#postcodeHelp').html('6 chars minimum, 25 maximum. Only numbers');
 						jQuery('#postcodeHelp').css('display','block');
 						jQuery('#hidden_error').css('visibility','visible');
 						return false;
 					}   
 					else
 					{
-						postCode.removeClass('validationRed').addClass('validationGreen');
+						phonenumber.addClass('');
 						jQuery('#postcodeHelp').html('');
 						jQuery('#postcodeHelp').css('display','none');
 						jQuery('#hidden_error').css('visibility','hidden');
@@ -510,7 +547,7 @@ jQuery(document).ready(function() {
 					if (phonenumberVal != 'Post Code')
 						jQuery('#postcode').value = phonenumberVal.replace(/\+/g, '').replace(/-/g, '').replace(/ /g, '');
 					postCode.removeClass('validationGreen').addClass('validationRed');
-					jQuery('#postcodeHelp').html('Only numbers and "-"');
+					jQuery('#postcodeHelp').html('6 chars minimum, 25 maximum. Only numbers');
 					jQuery('#postcodeHelp').css('display','block');
 					jQuery('#hidden_error').css('visibility','visible');
 					return true;
@@ -567,6 +604,7 @@ jQuery(document).ready(function() {
 		
 		jQuery('#demoForm_j25').submit(function(){
 			var tos = jQuery('#tos');
+
 			var fullnameOk = fullname.validate();
 			sitename.blankvalidate();
 			email.blankvalidate();

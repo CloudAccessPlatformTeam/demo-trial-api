@@ -52,12 +52,6 @@ JHtml::_('behavior.formvalidation');
 	<?php
 	echo JHtml::_('tabs.start', 'config-tabs-'.$this->component->option.'_configuration', array('useCookie'=>1));
 		$fieldSets = $this->form->getFieldsets();
-        if (!empty($this->list['families'])) {
-            $tab = new stdClass();
-            $tab->name = 'managedatasets';
-            $tab->label = 'Manage Datasets';
-            $fieldSets[$tab->name] = $tab;
-        }
 		foreach ($fieldSets as $name => $fieldSet) :
 			$label = empty($fieldSet->label) ? 'COM_CONFIG_'.$name.'_FIELDSET_LABEL' : $fieldSet->label;
 			echo JHtml::_('tabs.panel', JText::_($label), 'publishing-details');
@@ -84,59 +78,6 @@ JHtml::_('behavior.formvalidation');
 	<div class="clr"></div>
 	<?php
 		endforeach;
-    ?>
-    <?php if ($this->list['families']): $cids = JComponentHelper::getParams('com_demoregister')->get('cid'); ?>
-    <p><?php echo JText::_('COM_DEMOREGISTER_DATASETS_DESC'); ?></p>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>
-                    <input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
-                </th>
-                <th>Pkg. Name</th>
-                <th>Pkg. Version</th>
-                <th>Joomla Version</th>
-                <th>Pkg. Date</th>
-                <th>ID</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php if (empty($this->list['datasets'])): ?>
-                <tr>
-                    <td colspan="100%">
-                        Empty List
-                    </td>
-                </tr>
-            <?php else: ?>
-                <?php foreach ($this->list['datasets']['joomla'] as $key => $row): ?>
-                    <?php $checked = false; foreach ($cids as $cid) { if ($cid == sprintf('%s;%s;%s',$row['datasetid'],$row['name'],$row['app_family'])) { $checked = true; break; } } ?>
-                    <tr>
-                        <td>
-                            <input type="checkbox" id="cb<?php echo $key; ?>" <?php if ($checked): ?> checked <?php endif; ?> name="<?php echo $this->form->getFormControl(); ?>[cid][]" value="<?php echo $row['datasetid']; ?>;<?php echo $row['name']; ?>;<?php echo $row['app_family']; ?>">
-                        </td>
-                        <td>
-                            <?php echo $row['name']; ?>
-                        </td>
-                        <td>
-                            <?php echo $row['version']; ?>
-                        </td>
-                        <td>
-                            <?php echo $row['app_family']; ?>
-                        </td>
-                        <td>
-                            <?php echo $row['date_added']; ?>
-                        </td>
-                        <td>
-                            <?php echo $row['datasetid']; ?>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php endif; ?>
-            </tbody>
-        </table>
-        <div class="clr"></div>
-    <?php
-    endif;
 	echo JHtml::_('tabs.end');
 	?>
 	<div>
