@@ -51,14 +51,16 @@ class JFormFieldDatasetslist extends JFormField
             $cids = !empty($this->value) ? $this->value :  array() ;
 
             if (!empty($this->element['description'])) {
-            	$html[] = '<hr>';
+            	$html[] = '<br clear="all" /><hr>';
 			$html[] = sprintf('<p>%s</p>', $this->element['description']);
             }
+
+            $checkbox = (JVERSION >= 3) ? JHtml::_('grid.checkall') : '<input type="checkbox" name="checkall-toggle" value="" title="Check All" onclick="Joomla.checkAll(this)" />';
 
             $html[] = '<hr><table class="table table-striped">';
             $html[] = '<thead>';
             $html[] = '<tr>';
-            $html[] = '<th>' . JHtml::_('grid.checkall') . '</th>';
+            $html[] = '<th>' . $checkbox . '</th>';
             $html[] = '<th>Pkg. Name</th>';
             $html[] = '<th>Pkg. Type</th>';
             $html[] = '<th>Tags</th>';

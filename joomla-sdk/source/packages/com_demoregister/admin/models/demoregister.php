@@ -216,7 +216,12 @@ class DemoregisterModelDemoregister extends JModelForm
 
         $api_key = $this->getState('api_key');
         if (is_null($api_key) && !empty($parse_url['scheme'])) {
-    		HelperDemoRegisterApi::createApiKey($data);
+    		if (!HelperDemoRegisterApi::createApiKey($data)) {
+    			JFactory::getApplication()->enqueueMessage('Cant create API keys','error');
+				return false;
+    		} else {
+    			JFactory::getApplication()->enqueueMessage('Your Token has been created','success');
+    		}
         }
 
 		// Store the data.

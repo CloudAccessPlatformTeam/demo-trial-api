@@ -126,14 +126,17 @@ class HelperDemoRegisterApi
             return false;
         }
         
-        if ($response->code == 200) {
+        if ($response->code == 302) {
+            $locationUri = parse_url($response->headers['Location']);
+            parse_str($locationUri['query'], $arguments);
+
             $json = json_decode($response->body);
 
             $post_data = array(
-                'code' => $json->code,
+                'code' => $arguments['code'],
                 'client_id' => $api_user,
                 'client_secret' => $api_pass,
-                'scope' => 'global',
+                'scope' => $arguments['scope'],
                 'grant_type' => 'authorization_code'
             );
 
