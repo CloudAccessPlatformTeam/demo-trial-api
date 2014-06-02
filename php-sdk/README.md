@@ -103,6 +103,10 @@ $response = $dapi->api('ListDatasets', array(
 				  int(156)
 				  ["name"]=>
 				  string(4) "dset"
+				  ["type"]=>
+				  string(6) "public"
+				  ["tag"]=>
+				  string(10) "custom-tag"
 				}
 			  }
 			}
