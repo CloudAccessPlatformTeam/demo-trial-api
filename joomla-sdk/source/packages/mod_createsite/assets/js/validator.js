@@ -1,3 +1,5 @@
+
+var mid = 0;
 jQuery(document).ready(function() {
 	var form = jQuery('#demoSignUp');
 	/* Global variables */
@@ -569,7 +571,7 @@ jQuery(document).ready(function() {
             var app = family.split('-');
             jQuery.ajax({
                 dataType: 'json',
-                url: 'index.php?option=com_demoregister&format=json&task=listdatasets&application='+app[0]+'&family='+family,
+                url: 'index.php?option=com_demoregister&format=json&task=listdatasets&application='+app[0]+'&family='+family+'&mid='+mid,
                 beforeSend: function( xhr, settings ) {
                     jQuery('#selectdataset').addClass('disabled').text('Loading...');
                     jQuery('#dataset').attr('disabled','disabled').find('option')

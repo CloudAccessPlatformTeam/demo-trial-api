@@ -156,24 +156,40 @@ class DemoRegisterController extends DRController
      */
     public function listDatasets()
     {
+        jimport( 'joomla.registry.registry' );
+
         $input = JFactory::getApplication()->input;
         $application = $input->get('application','','string');
         $family = $input->get('family','','string');
+        $module_id = $input->get('mid',0,'int');
         $options = array();
 
-        if (!empty($application) || empty($family)) {
-            $cids = JComponentHelper::getParams('com_demoregister')->get('cid');
-            if (!empty($cids)) {
-                foreach ($cids as $cid) {
-                    $parts = explode(';', $cid);
-                    $value = $parts[0];
-                    $app_family = end($parts);
-                    if (strpos($app_family,$family) === false) continue;
-                    $text = $parts[1];
-                    $options[] = array(
-                        'value' => $value,
-                        'text' => $text
-                    );
+        if (!empty($application) || empty($family) || $module_id) {
+
+            $db = JFactory::getDbo();
+            // get module and check access level permision
+            $query = $db->getQuery(true);
+            $groups = implode(',', JFactory::getUser()->getAuthorisedViewLevels());
+            $query->select('params')->from('#__modules')->where('id='.$module_id)->where('access IN ('.$groups.')');
+            $db->setQuery($query);
+
+            $params = $db->loadResult();
+            if (!empty($params)) {
+                $moduleParams = new JRegistry($params);
+
+                $cids = $moduleParams->get('cid');
+                if (!empty($cids)) {
+                    foreach ($cids as $cid) {
+                        $parts = explode(';', $cid);
+                        $value = $parts[0];
+                        $app_family = end($parts);
+                        if (strpos($app_family,$family) === false) continue;
+                        $text = $parts[1];
+                        $options[] = array(
+                            'value' => $value,
+                            'text' => $text
+                        );
+                    }
                 }
             }
         }

@@ -14,14 +14,15 @@ $form = $helper->getForm();
 <script src="modules/<?php echo $module->module; ?>/assets/js/custom-form-elements.js" type="text/javascript"></script>
 <link href="modules/<?php echo $module->module; ?>/assets/css/createsite.css" media="screen" rel="stylesheet" type="text/css" />
 <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-<?php if ($helper->captchaIsEnabled()): ?>
 <script type="text/javascript">
+mid = <?php echo $module->id; ?>;
+<?php if ($helper->captchaIsEnabled()): ?>
 var RecaptchaOptions = {
 theme : 'custom',
 custom_theme_widget: 'recaptcha_widget'
 };
-</script>
 <?php endif; ?>
+</script>
 <div id="page" class="clearfix;">
 <div id="demoForm_j25" class="clearfix <?php echo $params->get('moduleclass_sfx'); ?>">
 <form id="demoSignUp" name="demoSignUp" action="<?php echo JRoute::_('index.php?option=com_demoregister&amp;task=save'); ?>" method="post">
