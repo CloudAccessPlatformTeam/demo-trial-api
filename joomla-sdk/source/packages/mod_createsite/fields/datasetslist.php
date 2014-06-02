@@ -60,6 +60,7 @@ class JFormFieldDatasetslist extends JFormField
             $html[] = '<tr>';
             $html[] = '<th>' . JHtml::_('grid.checkall') . '</th>';
             $html[] = '<th>Pkg. Name</th>';
+            $html[] = '<th>Pkg. Type</th>';
             $html[] = '<th>Tags</th>';
             $html[] = '<th>Pkg. Version</th>';
             $html[] = '<th>Joomla Version</th>';
@@ -69,7 +70,7 @@ class JFormFieldDatasetslist extends JFormField
             $html[] = '</thead>';
             $html[] = '<tbody>';
             foreach ($list['datasets']['joomla'] as $key => $row) {
-                  $row['tags'] = !empty($row['tags']) ? $row['tags'] : '' ;
+                  $row['tag'] = !empty($row['tag']) ? $row['tag'] : '' ;
             	$checked = false;
             	foreach ($cids as $cid) {
             		if ($cid == sprintf('%s;%s;%s',$row['datasetid'],$row['name'],$row['app_family'])) { $checked = true; break; }
@@ -88,7 +89,8 @@ class JFormFieldDatasetslist extends JFormField
 				$html[] = '</td>';
 
             		$html[] = sprintf('<td>%s</td>',$row['name']);
-                        $html[] = sprintf('<td>%s</td>',$row['tags']);
+                        $html[] = sprintf('<td>%s</td>',ucfirst($row['type']));
+                        $html[] = sprintf('<td>%s</td>',$row['tag']);
             		$html[] = sprintf('<td>%s</td>',$row['version']);
             		$html[] = sprintf('<td>%s</td>',$row['app_family']);
             		$html[] = sprintf('<td>%s</td>',$row['date_added']);
