@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Joomla! 2.5 uses fieldset -->
+<config>
+    <fieldset name="api" label="API credentials">
+        <field name="api_host" type="text" label="API Host" default="http://api.cloudaccess.net:9000" value="http://api.cloudaccess.net:9000" />
+        <field name="api_user" type="text" default="" label="API User" description="" />
+        <field name="api_password" type="password" default="" label="API Password" description="" />
+        <field name="cid" type="hidden" />
+    </fieldset>
+    <fieldset name="thankyou" label="Thank you Page">
+        <field name="thankyou_engine" type="list" label="Template Engine" default="0" description="Choose your template option">
+            <option value="0">Default Thank you page</option>
+            <option value="1">Custom Article</option>
+        </field>
+        <field name="thankyou_aid" type="modal_article" label="Article" description="" />
+    </fieldset>
+    <fieldset name="template" label="Email Template" addfieldpath="/administrator/components/com_content/models/fields">
+    	<field name="from" type="text" default="demosupport@cloudaccess.net" label="From" description="" />
+    	<field name="fromname" type="text" default="Cloudaccess.net" label="From name" description="" />
+    	<field name="subject" type="text" default="Confirm your email address to create your Joomla! website" size="60" label="Subject" description="" />
+    	<field name="template_engine" type="list" label="Template Engine" default="0" description="Choose your template option">
+			<option value="0">Textarea</option>
+			<option value="1">Article</option>
+		</field>
+    	<field name="body_aid" type="modal_article" label="Template Article" description="Put on your article special vars: %FIRSTNAME% and %LINK%" />
+    	<field name="body_content" type="textarea" default="Dear %FIRSTNAME%, please activate your demo site by this url: %LINK%" label="Body" description="Put your custom template body. Special vars: %FIRSTNAME% and %LINK%" />
+    </fieldset>
+	<fieldset name="captcha" label="Captcha">
+		<field name="captcha_enabled" type="list" label="Enable Captcha" default="0" description="Enable and disable captcha">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+		<field name="captcha_publickey" type="text" label="Recaptcha Public Key" />
+		<field name="captcha_privatekey" type="text" label="Recaptcha Private Key" />
+        <field name="captcha_width" type="text" label="Recaptcha Width" default="300" />
+        <field name="captcha_height" type="text" label="Recaptcha Height" default="57" />
+	</fieldset>
+</config>
