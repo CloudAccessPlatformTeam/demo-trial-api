@@ -126,7 +126,6 @@ class HelperDemoRegisterApi
             return false;
         }
         
-
         if ($response->code == 200) {
             $json = json_decode($response->body);
 
@@ -153,7 +152,14 @@ class HelperDemoRegisterApi
                 $db->setQuery($query);
                 $db->execute();
                 return true;
+            }
+            else
+            {
+                $json = json_decode($oauth->body, true);
+                $values = array_values($json);
 
+                JFactory::getApplication()->enqueueMessage($values[0],'error');
+                return false;
             }
         }
 
