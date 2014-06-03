@@ -104,8 +104,8 @@ class HelperDemoRegisterApi
     public static function createApiKey($data)
     {
         $api_host = trim($data['params']['api_host']);
-        $api_user = $data['params']['api_user'];
-        $api_pass = $data['params']['api_password'];
+        $api_user = trim($data['params']['api_user']);
+        $api_pass = trim($data['params']['api_password']);
 
         if (empty($api_host) || empty($api_user) || empty($api_pass)) {
             JFactory::getApplication()->enqueueMessage('Please fill api fields!','warning');
@@ -125,12 +125,24 @@ class HelperDemoRegisterApi
             JFactory::getApplication()->enqueueMessage(sprintf('Error when try to connect with api host "%s", please verify url.',$api_host),'error');
             return false;
         }
-        
-        if ($response->code == 302) {
+
+        $arguments = array();
+
+        if ( !in_array($response->code, array(200, 302, 301))) {
+            $json = json_decode($response->body, true);
+            JFactory::getApplication()->enqueueMessage(sprintf('%s Error: %s',$response->code,$json['error']),'error');
+            return false;
+        } else if ($response->code == 302 || $response->code == 301) {
             $locationUri = parse_url($response->headers['Location']);
             parse_str($locationUri['query'], $arguments);
+        } else if ($response->code == 200) {
+            $arguments = json_decode($response->body, true);
+        }
 
-            $json = json_decode($response->body);
+        if (!empty($arguments)) {
+            if (!isset($arguments['scope'])) {
+                $arguments['scope'] = 'code';
+            }
 
             $post_data = array(
                 'code' => $arguments['code'],
@@ -165,6 +177,7 @@ class HelperDemoRegisterApi
                 return false;
             }
         }
+
 
         return false;
     }
