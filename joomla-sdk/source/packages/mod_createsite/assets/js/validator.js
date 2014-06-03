@@ -231,6 +231,7 @@ jQuery(document).ready(function() {
                             jQuery('#hidden_error').css('visibility','visible');
                             email.removeClass('validationGreen').addClass('validationRed');
                             emailBlankIsOk = false;
+                            email.toggleValidation(false);
                         }
                     },
                     error: function (){
@@ -253,32 +254,64 @@ jQuery(document).ready(function() {
 		});
 
 		email.toggleValidation = function(validate) {
-			fullname.toggleClass('dn');
+			if (validate) {
+				fullname.addClass('dn');
+			} else {
+				fullname.removeClass('dn');
+			}
 			fullnameIsOk = validate;
-			country.toggleClass('dn');
+			if (validate) {
+				country.addClass('dn');
+			} else {
+				country.removeClass('dn');
+			}
 			jQuery('#selectcountry').toggleClass('dn');
 			countryIsOk = validate;
 			if (phonenumber.length>0) {
-				phonenumber.toggleClass('dn');
+				if (validate) {
+					phonenumber.addClass('dn');
+				} else {
+					phonenumber.removeClass('dn');
+				}
 				phonenumberOk = validate;
 			}
 			if (city.length>0) { 
-				city.toggleClass('dn');
+				if (validate) {
+					city.addClass('dn');
+				} else {
+					city.removeClass('dn');
+				}
 			}
 			console.log(state.length);
 			if (state.length>0) {
-				state.toggleClass('dn'); 
+				if (validate) {
+					state.addClass('dn');
+				} else {
+					state.removeClass('dn');
+				}
 			}
 			if (address.length>0) {
-				address.toggleClass('dn');
+				if (validate) {
+					address.addClass('dn');
+				} else {
+					address.removeClass('dn');
+				}
 				addressOk = validate;
 			}
 			if (address2.length>0) {
-				address2.toggleClass('dn');
+				if (validate) {
+					address2.addClass('dn');
+				} else {
+					address2.removeClass('dn');
+				}
 			}
 			if (postCode.length>0) {
 				postcodeOk = validate;
-				postcode.toggleClass('dn');
+				if (validate) {
+					postcode.addClass('dn');
+				} else {
+					postcode.removeClass('dn');
+				}
 			}
 		};
 
@@ -322,6 +355,7 @@ jQuery(document).ready(function() {
                             jQuery('#hidden_error').css('visibility','visible');
                             email.removeClass('validationGreen').addClass('validationRed');
                             emailBlankIsOk = false;
+                            email.toggleValidation(false);
                         }
                     },
                     error: function (){
@@ -573,15 +607,19 @@ jQuery(document).ready(function() {
                 dataType: 'json',
                 url: 'index.php?option=com_demoregister&format=json&task=listdatasets&application='+app[0]+'&family='+family+'&mid='+mid,
                 beforeSend: function( xhr, settings ) {
-                    jQuery('#selectdataset').addClass('disabled').text('Loading...');
+                    //jQuery('#selectdataset').addClass('disabled').text('Loading...');
                     jQuery('#dataset').attr('disabled','disabled').find('option')
                         .remove()
                         .end()
                         .append('<option value="">Loading...</option>')
-                        .val('')
+                        .val('');
+                    // check if chosen are in use
+                    if ((jQuery().chosen != undefined)) {
+                    	jQuery('#dataset').chosen({disable_search_threshold: 10}).trigger("chosen:updated");
+                    }
                 },
                 success: function (response) {
-                    jQuery('#selectdataset').removeClass('disabled').text('Default Installation');
+                    //jQuery('#selectdataset').removeClass('disabled').text('Default Installation');
                     jQuery('#dataset').find('option')
                         .remove()
                         .end()
@@ -593,6 +631,10 @@ jQuery(document).ready(function() {
                             text = this.text;
                             jQuery('#dataset').append('<option value="'+value+'">'+text+'</option>');
                         });
+                    }
+                    // check if chosen are in use
+                    if ((jQuery().chosen != undefined)) {
+                    	jQuery('#dataset').chosen({disable_search_threshold: 10}).trigger("chosen:updated");
                     }
                 }
             });

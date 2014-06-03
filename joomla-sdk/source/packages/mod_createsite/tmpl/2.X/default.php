@@ -10,8 +10,9 @@
 defined( '_JEXEC' ) or die( 'Restricted access' );
 $form = $helper->getForm();
 ?>
+<script src="modules/<?php echo $module->module; ?>/assets/js/chosen.js" type="text/javascript"></script>
 <script src="modules/<?php echo $module->module; ?>/assets/js/validator.js" type="text/javascript"></script>
-<script src="modules/<?php echo $module->module; ?>/assets/js/custom-form-elements.js" type="text/javascript"></script>
+<link href="modules/<?php echo $module->module; ?>/assets/css/chosen.css" media="screen" rel="stylesheet" type="text/css" />
 <link href="modules/<?php echo $module->module; ?>/assets/css/createsite.css" media="screen" rel="stylesheet" type="text/css" />
 <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
 <script type="text/javascript">
@@ -161,3 +162,8 @@ custom_theme_widget: 'recaptcha_widget'
 </form>
 </div>
 </div>
+<script>
+jQuery(document).ready(function(){
+	jQuery('select.styled').chosen({disable_search_threshold: 10});
+});
+</script>
