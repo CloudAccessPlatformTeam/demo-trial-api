@@ -6,6 +6,7 @@ jQuery(document).ready(function() {
 	var fullname = jQuery('#fullname');
 	var emailBlankIsOk = false;
 	var sitenameBlankIsOk = false;
+	var registeredUser = false;
 
 	if(form)
 	{
@@ -211,6 +212,7 @@ jQuery(document).ready(function() {
                     url: 'index.php?option=com_demoregister&task=checkEmail&format=json',
                     data: {email: emailVal},
                     success: function (response) {
+                    	registeredUser = response;
                         if (response == 'true') {
                             email.removeClass('validationRed').addClass('validationGreen');
                             jQuery('#emailHelp').html('');
@@ -334,11 +336,12 @@ jQuery(document).ready(function() {
                     url: 'index.php?option=com_demoregister&task=checkEmail&format=json',
                     data: {email: emailVal},
                     success: function (response) {
+                    	registeredUser = response;
                         if (response == 'true') {
-                            jQuery('#emailHelp').html('email already exists, please choose another one.');
+                            jQuery('#emailHelp').html('');
                             jQuery('#emailHelp').css('display','block');
                             jQuery('#hidden_error').css('visibility','visible');
-                            email.removeClass('validationGreen').addClass('validationRed');
+                            email.removeClass('validationRed').addClass('validationGreen');
                             emailBlankIsOk = true;
                             email.toggleValidation(true);
                         } else if (response == 'false') {
@@ -688,6 +691,14 @@ jQuery(document).ready(function() {
 				jQuery('#hidden_error').css('visibility','hidden');
 				tosOK = true;
 			}
+
+			if (registeredUser) {
+				postcodeOk = true;
+				fullnameOk = true;
+				phonenumberOk = true;
+				countryOK = true;
+			}
+
 			
 			if (fullnameOk === false || postcodeOk == false || emailBlankIsOk == false || sitenameBlankIsOk == false ||  phonenumberOk == false || countryOK === false || demosecureOK === false || tosOK === false)
 			{	

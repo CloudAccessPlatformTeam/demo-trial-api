@@ -107,7 +107,54 @@ class DemoRegisterModelDemoRegister extends DRModel
         $input = JFactory::getApplication()->input;
 
         $componentParams = JComponentHelper::getParams('com_demoregister');
+
         $post_array["error_msg"] = array();
+
+        // moved to top
+        $post_array["posted_email"] = trim($input->get('email','','string'));
+
+        //validate email
+        if($post_array["posted_email"] == "") {
+            $post_array["error_msg"]["email"] = "Wrong e-mail.";
+        } elseif(!eregi("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$", $post_array["posted_email"])) {
+            //validate correct email id
+            $post_array["error_msg"]["email"] = "Wrong e-mail.";
+        }
+
+        // check if user are already registered in system
+        $userRegistred = false;
+        // if not errors check
+        if (!isset($post_array["error_msg"]["email"])) {
+            $userRegistred = $this->checkEmail($post_array["posted_email"]);
+        }
+
+        // site name
+        $post_array["posted_sname"] = strtolower(trim($input->get('sitename')));
+
+        //validate sitename
+        if ($post_array["posted_sname"] == "sitename"){
+            $post_array["error_msg"]["sitename"] = "Please choose your domain name.";
+        }
+        else if($post_array["posted_sname"] == "")
+        {
+            $post_array["error_msg"]["sitename"] = "Please delete spaces in you domain name.";
+        }
+        else
+        {
+            //check for special characters
+            if(!eregi("^[a-z0-9][a-z0-9\-]*[a-z0-9]$", $post_array["posted_sname"] ))
+            {
+                $post_array["error_msg"]["sitename"] = "Please delete spaces in you domain name.";
+            }
+        }
+
+        // if no errors check
+        if (!isset($post_array["error_msg"]["sitename"])) {
+            if ($this->checkDomain($post_array["posted_sname"])) {
+                $post_array["error_msg"]["sitename"] = 'Domain already taken, please chose another.';
+            }
+        }
+
         $fullname = $input->get('fullname','','string');
         if ($fullname == 'Full Name') {
             $post_array["error_msg"]["fullname"] = "Please type a Full Name";
@@ -120,10 +167,8 @@ class DemoRegisterModelDemoRegister extends DRModel
         }
 
         $post_array["posted_prodid"] = $input->get('productid',102,'int');
-        $post_array["posted_sname"] = strtolower(trim($input->get('sitename')));
         $post_array["posted_fname"] = trim($input->get('firstname',$nameParts[0],'string'));
         $post_array["posted_lname"] = trim($input->get('lastname',$nameParts[1],'string'));
-        $post_array["posted_email"] = trim($input->get('email','','string'));
         $post_array["posted_phnum"] = trim($input->get('phonenumber','','string'));
         $post_array["posted_zip"] = trim($input->get('postcode','','string'));
         $post_array["posted_cntry"] = trim($input->get('country','','string'));
@@ -147,13 +192,6 @@ class DemoRegisterModelDemoRegister extends DRModel
             $post_array["posted_postcode"] = "";
         }
 
-        /*
-        $domainCheck = $this->checkDomain($input->get('sitename'));
-        if ($domainCheck == 1 || $domainCheck == 2)
-        {
-            $post_array["error_msg"]["sitename"] = "This domain name is already taken";
-        }*/
-
         // validate posted values
         if($post_array["posted_prodid"] == 0)
         {
@@ -162,22 +200,6 @@ class DemoRegisterModelDemoRegister extends DRModel
         elseif($post_array["posted_prodid"] != 102) //demo productid from billing
         {
             $post_array["error_msg"]["prodid"] = "Please choose correct Joomla! version.";
-        }
-        //validate sitename
-        if ($post_array["posted_sname"] == "sitename"){
-            $post_array["error_msg"]["sitename"] = "Please choose your domain name.";
-        }
-        else if($post_array["posted_sname"] == "")
-        {
-            $post_array["error_msg"]["sname"] = "Please delete spaces in you domain name.";
-        }
-        else
-        {
-            //check for special characters
-            if(!eregi("^[a-z0-9][a-z0-9\-]*[a-z0-9]$", $post_array["posted_sname"] ))
-            {
-                $post_array["error_msg"]["sname"] = "Please delete spaces in you domain name.";
-            }
         }
 
         //validate firstname
@@ -189,14 +211,6 @@ class DemoRegisterModelDemoRegister extends DRModel
             if(!eregi("^[^\'\"\^0-9]{2,50}$", $post_array["posted_fname"] )) {
                 $post_array["error_msg"]["fname"] = "2 chars minimum, 50 maximum, only letters.";
             }
-        }
-
-        //validate email
-        if($post_array["posted_email"] == "") {
-            $post_array["error_msg"]["email"] = "Wrong e-mail.";
-        } elseif(!eregi("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$", $post_array["posted_email"])) {
-            //validate correct email id
-            $post_array["error_msg"]["email"] = "Wrong e-mail.";
         }
 
         if ($post_array["posted_phnum"] == 'PhoneNumber(Optional)')
@@ -226,6 +240,11 @@ class DemoRegisterModelDemoRegister extends DRModel
         //validate country
         if($post_array["posted_cntry"] == "empty") {
             $post_array["error_msg"]["cntry"] = "Please choose option from list.";
+        }
+
+        // if user registered reset errors from fields
+        if ($userRegistred) {
+            $post_array["error_msg"] = array();
         }
 
         //validate captchs
@@ -309,6 +328,37 @@ class DemoRegisterModelDemoRegister extends DRModel
         } else {
             $this->error(implode('<br />',array_values($post_array["error_msg"])));
         }
+    }
+
+    /**
+     * Check if email already exists
+     */
+    private function checkEmail($email)
+    {
+        $return = HelperDemoRegisterApi::call(array(
+            'method' => 'CheckEmailExistance',
+            'p_email' => $email
+        ));
+
+        return $return;
+    }
+
+    /**
+     * check if a domain already exists
+     */
+    public function checkDomain($domain)
+    {
+        if (strpos($domain,'.cloudaccess.net') === false) {
+            $domain .= '.cloudaccess.net';
+        }
+
+        $parse_domain = parse_url($domain);
+        $return = HelperDemoRegisterApi::call(array(
+            'method' => 'CheckDomainExistance',
+            'p_domain' => $parse_domain['host'] ? $parse_domain['host'] : $parse_domain['path']
+        ));
+
+        return $return;
     }
 
     /**
