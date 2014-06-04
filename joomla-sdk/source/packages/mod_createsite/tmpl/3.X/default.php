@@ -102,7 +102,6 @@ custom_theme_widget: 'recaptcha_widget'
 		<?php endif; ?>
         <?php if (!empty($applicationsOptions)): ?>
             <p>
-                <span class="select" id="selectapplication">Joomla 1.5</span>
                 <select size="1" class="styled" name="application" id="application">
                     <?php foreach ($applicationsOptions as $value => $text): ?>
                         <option value="<?php echo $value; ?>"><?php echo $text; ?></option>

@@ -382,6 +382,6 @@ div.ToolTips div.footer
 	float:right;
 }
 
-#signup_inwrapper input.dn,#signup_inwrapper select.dn, #signup_inwrapper span.dn {
+#signup_inwrapper p.dn {
 	display: none;
 }

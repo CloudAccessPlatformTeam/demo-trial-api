@@ -255,61 +255,61 @@ jQuery(document).ready(function() {
 
 		email.toggleValidation = function(validate) {
 			if (validate) {
-				fullname.addClass('dn');
+				fullname.parent().addClass('dn');
 			} else {
-				fullname.removeClass('dn');
+				fullname.parent().removeClass('dn');
 			}
 			fullnameIsOk = validate;
 			if (validate) {
-				jQuery('#country').next().css('visibility','hidden');
+				country.parent().addClass('dn');
 			} else {
-				jQuery('#country').next().css('visibility','visible');
+				country.parent().removeClass('dn');
 			}
 			countryIsOk = validate;
 			
 			if (phonenumber.length>0) {
 				if (validate) {
-					phonenumber.addClass('dn');
+					phonenumber.parent().addClass('dn');
 				} else {
-					phonenumber.removeClass('dn');
+					phonenumber.parent().removeClass('dn');
 				}
 				phonenumberOk = validate;
 			}
 			if (city.length>0) { 
 				if (validate) {
-					city.addClass('dn');
+					city.parent().addClass('dn');
 				} else {
-					city.removeClass('dn');
+					city.parent().removeClass('dn');
 				}
 			}
 			if (state.length>0) {
 				if (validate) {
-					state.addClass('dn');
+					state.parent().addClass('dn');
 				} else {
-					state.removeClass('dn');
+					state.parent().removeClass('dn');
 				}
 			}
 			if (address.length>0) {
 				if (validate) {
-					address.addClass('dn');
+					address.parent().addClass('dn');
 				} else {
-					address.removeClass('dn');
+					address.parent().removeClass('dn');
 				}
 				addressOk = validate;
 			}
 			if (address2.length>0) {
 				if (validate) {
-					address2.addClass('dn');
+					address2.parent().addClass('dn');
 				} else {
-					address2.removeClass('dn');
+					address2.parent().removeClass('dn');
 				}
 			}
 			if (postCode.length>0) {
 				postcodeOk = validate;
 				if (validate) {
-					postCode.addClass('dn');
+					postCode.parent().addClass('dn');
 				} else {
-					postCode.removeClass('dn');
+					postCode.parent().removeClass('dn');
 				}
 			}
 		};
