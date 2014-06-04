@@ -261,12 +261,12 @@ jQuery(document).ready(function() {
 			}
 			fullnameIsOk = validate;
 			if (validate) {
-				country.addClass('dn');
+				jQuery('#country').next().css('visibility','hidden');
 			} else {
-				country.removeClass('dn');
+				jQuery('#country').next().css('visibility','visible');
 			}
-			jQuery('#selectcountry').toggleClass('dn');
 			countryIsOk = validate;
+			
 			if (phonenumber.length>0) {
 				if (validate) {
 					phonenumber.addClass('dn');
@@ -282,7 +282,6 @@ jQuery(document).ready(function() {
 					city.removeClass('dn');
 				}
 			}
-			console.log(state.length);
 			if (state.length>0) {
 				if (validate) {
 					state.addClass('dn');
@@ -308,9 +307,9 @@ jQuery(document).ready(function() {
 			if (postCode.length>0) {
 				postcodeOk = validate;
 				if (validate) {
-					postcode.addClass('dn');
+					postCode.addClass('dn');
 				} else {
-					postcode.removeClass('dn');
+					postCode.removeClass('dn');
 				}
 			}
 		};
