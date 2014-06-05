@@ -32,11 +32,17 @@ if (!empty($cids)) {
     JFactory::getApplication()->enqueueMessage(sprintf('Please configure module "%s"',$module->name),'error');
     return '';
 }
-
+$doc = JFactory::getDocument();
 if (JVERSION < 3.0) {
-    $doc = JFactory::getDocument();
     $doc->addScript('modules/'.$module->module.'/assets/js/jquery.js');
 }
+
+$form = $helper->getForm();
+$caFormDefaultValues = array();
+foreach ($form->getFieldset() as $field) {
+    $caFormDefaultValues[$field->id] = $field->value;
+}
+
 
 /**
  * Function for support dif templates by joomla version

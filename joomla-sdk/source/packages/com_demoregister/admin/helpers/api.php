@@ -67,7 +67,7 @@ class HelperDemoRegisterApi
                     return self::call($data, $try);
                 }
             }
-            JFactory::getApplication()->enqueueMessage('Error when try to authenticate, please try again.','warning');
+            JFactory::getApplication()->enqueueMessage($json['error'],'error');
             return $json;
         } else {
             if (empty($json)) {
@@ -93,7 +93,7 @@ class HelperDemoRegisterApi
             }
 
             if (isset($json['error'])) {
-                JFactory::getApplication()->enqueueMessage('Please contact www.cloudaccess.net and copy this message: '.$json['error'],'warning');
+                JFactory::getApplication()->enqueueMessage($json['error'],'error');
                 return $json;
             } else {
                 return $json['result'];

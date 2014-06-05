@@ -8,7 +8,6 @@
 
 // no direct access
 defined( '_JEXEC' ) or die( 'Restricted access' );
-$form = $helper->getForm();
 ?>
 <script src="modules/<?php echo $module->module; ?>/assets/js/chosen.js" type="text/javascript"></script>
 <script src="modules/<?php echo $module->module; ?>/assets/js/validator.js" type="text/javascript"></script>
@@ -17,6 +16,7 @@ $form = $helper->getForm();
 <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
 <script type="text/javascript">
 mid = <?php echo $module->id; ?>;
+caFormDefaultValues = <?php echo json_encode($caFormDefaultValues); ?>;
 <?php if ($helper->captchaIsEnabled()): ?>
 var RecaptchaOptions = {
 theme : 'custom',
