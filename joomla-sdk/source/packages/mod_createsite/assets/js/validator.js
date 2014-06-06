@@ -126,7 +126,9 @@ jQuery(document).ready(function() {
 		   if (sitename.val().trim()==caFormDefaultValues[this.id]) this.value = ''; 
 	    });
 		sitename.blur(function(){
-			if (sitename.val().trim()=='') this.value = caFormDefaultValues[this.id]; 
+			if (sitename.val().trim()=='') this.value = caFormDefaultValues[this.id];
+		});
+		sitename.change(function(){
 			sitename.validate()
 		});
 		
@@ -185,7 +187,9 @@ jQuery(document).ready(function() {
 		})
 		email.blur(function(){
 			if (email.val().trim()=='') this.value=caFormDefaultValues[this.id];
-			email.validate()
+		});
+		email.change(function(){
+			email.validate();
 		});
 
 		email.toggleValidation = function(validate) {
@@ -506,8 +510,7 @@ jQuery(document).ready(function() {
 
         jQuery('#application').trigger('change');
 		
-		jQuery('#demoForm_j25').submit(function(){
-			if (formCanSubmit) return true;
+		function caCheckFormBeforeSubmit() {
 			var nextStep = true;
 			var fullnameOk = fullname.validate();
 			var countryOK = country.validate();
@@ -553,8 +556,6 @@ jQuery(document).ready(function() {
 				email.toggleValidation(false);
 				nextStep = false;
 			}
-
-			
 
 			if (!nextStep) return false;
 
@@ -625,7 +626,7 @@ jQuery(document).ready(function() {
 								formCanSubmit = true;
 
 								//submit
-								form.submit();
+							 	document.getElementById("demoSignUp").submit();
 		                    },
 		                    error: function (){
 		                    	jQuery('#emailHelp').html('Our service cant validate email, please try again.');
@@ -651,8 +652,11 @@ jQuery(document).ready(function() {
                     sitename.removeClass('validationGreen').addClass('validationRed');
 	        	}
 	        });
-	        return false;
-		});
-		
+			return false;
+		};
+
+		jQuery('#demoSubmit').click(function(){
+        	caCheckFormBeforeSubmit();
+        });
 	}
 });

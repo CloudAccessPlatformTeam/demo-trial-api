@@ -147,7 +147,7 @@ custom_theme_widget: 'recaptcha_widget'
 		<p id="submitWholeForm">
 			<span id="mysubtbttn">
 			<!--input value="Click here to launch your Joomla! instance" name="demoSubmit" id="demoSubmit" type="submit" / -->
-			<input type="submit" id="demoSubmit" class="launchBtn" name="demoSubmit" value="Launch Joomla! Application in the Cloud"/>
+			<input type="button" id="demoSubmit" class="launchBtn" name="demoSubmit" value="Launch Joomla! Application in the Cloud"/>
 			</span>
 
 			<span id="aftersubtbttn">

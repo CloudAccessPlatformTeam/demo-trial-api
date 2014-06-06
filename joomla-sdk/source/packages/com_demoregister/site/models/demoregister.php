@@ -146,12 +146,9 @@ class DemoRegisterModelDemoRegister extends DRModel
             {
                 $post_array["error_msg"]["sitename"] = "Please delete spaces in you domain name.";
             }
-        }
 
-        // if no errors check
-        if (!isset($post_array["error_msg"]["sitename"])) {
-            if ($this->checkDomain($post_array["posted_sname"])) {
-                $post_array["error_msg"]["sitename"] = 'Domain already taken, please chose another.';
+            if (strpos($post_array["posted_sname"],'.') !== false && strpos($post_array["posted_sname"],'.cloudaccess.net') === false) {
+                $post_array["error_msg"]["sitename"] = "Please delete spaces in you domain name.";
             }
         }
 
@@ -242,8 +239,8 @@ class DemoRegisterModelDemoRegister extends DRModel
             $post_array["error_msg"]["cntry"] = "Please choose option from list.";
         }
 
-        // if user registered reset errors from fields
-        if ($userRegistred) {
+        // if user registered reset errors from fields exception if get error from sitename
+        if ($userRegistred && !isset($post_array["error_msg"]["sitename"])) {
             $post_array["error_msg"] = array();
         }
 
@@ -380,7 +377,6 @@ class DemoRegisterModelDemoRegister extends DRModel
             $params = Activation::use_code($code);
 
             if ($params) {
-
                 $params['phonenumber'] = str_replace("+", "", $params['phonenumber']);
 
                 $client_details = array(
@@ -413,6 +409,24 @@ class DemoRegisterModelDemoRegister extends DRModel
                     'grant_type' => 'authorization_code',
                     'access_token' => $this->getState('access_token')
                 );
+
+
+                // remove current code from database
+                $db = JFactory::getDbo();
+                $query = $db->getQuery(true);
+                $query->delete('#__demoregister_activation_codes')->where('code='.$db->quote($code));
+                $db->setQuery($query);
+                $db->execute();
+
+                // check if domain exists
+                if ($this->checkDomain($demo_details["p_domain"])) {
+                    if (strpos($demo_details['p_domain'],'.cloudaccess.net') === false) {
+                        $demo_details['p_domain'] .= '.cloudaccess.net';
+                    }
+                    JFactory::getApplication()->enqueueMessage(sprintf('The URL %s that you had choosen during signup has now been taken. Please start the signup process over and choose a new URL.',$demo_details['p_domain']),'error');
+                    JFactory::getApplication()->redirect(JFactory::getUri()->root());
+                }
+
 
                 if (strpos($demo_details['p_domain'],'.cloudaccess.net') === false) {
                     $demo_details['p_domain'] .= '.cloudaccess.net';
@@ -471,6 +485,7 @@ class DemoRegisterModelDemoRegister extends DRModel
                             JFactory::getApplication()->enqueueMessage(sprintf('Your request to %s is %s',$demo_details['p_domain'],nl2br($json['result']['status'])),'info');
                             //unset all sessions posted to blank starts if no error exists
                             $session->clear('demoregister');
+
                             return true;
                         }
                     }
