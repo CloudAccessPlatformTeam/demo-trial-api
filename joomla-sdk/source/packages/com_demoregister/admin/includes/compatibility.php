@@ -26,6 +26,8 @@ else
     class_alias('JView','DRView');
 }
 
+JTable::addIncludePath(JPATH_COMPONENT.'/tables/');
+
 // Define constants
 define('HTTP_URL_REPLACE',	0x0001);	// Replace every part of the first URL when there's one of the second URL
 define('HTTP_URL_JOIN_PATH',	0x0002);	// Join relative paths

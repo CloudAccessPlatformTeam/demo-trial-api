@@ -12,16 +12,14 @@ defined('_JEXEC') or die( 'Restricted access' );
 jimport( 'joomla.application.component.view');
 jimport( 'joomla.filesystem.folder' );
 
-JLoader::import('helpers.api',JPATH_COMPONENT);
-
 /**
- * View class for demo register
+ * View class for delete token
  *
  * @package     Joomla.Administrator
  * @subpackage  com_demoregister
  * @since       3.0
  */
-class DemoRegisterViewDemoRegister extends DRView
+class DemoRegisterViewActivationcodes extends DRView
 {
     /**
      * Display the view
@@ -46,15 +44,12 @@ class DemoRegisterViewDemoRegister extends DRView
             if (JFolder::exists($basePath)) {
                 $this->addTemplatePath($basePath);
             }
-
-            $actModel = DRModel::getInstance('Activationcodes','DemoregisterModel');
-            $codes = $actModel->getItems();
 			
-            if (count($codes)) JToolBarHelper::custom('activationcodes','trash','trash',sprintf('(%s) Activation Codes',count($codes)),false);
-			JToolBarHelper::apply('apply');
+            JToolBarHelper::custom('configuration','','','Configuration',false);
+			JToolBarHelper::deleteList();
 			
-	        $form		= $this->get('Form');
-			$component	= $this->get('Component');
+	        $items		= $this->get('Items');
+            $pagination = $this->get('Pagination');
 	
 			// Check for errors.
 			if (count($errors = $this->get('Errors'))) {
@@ -62,12 +57,8 @@ class DemoRegisterViewDemoRegister extends DRView
 				return false;
 			}
 			
-			JFactory::getlanguage()->load('com_content');
-			
-			$this->assignRef('form',		$form);
-			$this->assignRef('component',	$component);
-
-            $this->assignRef('list',		$list);
+			$this->assignRef('items',		$items);
+            $this->assignRef('pagination',  $pagination);
         }
         
         parent::display($tpl);

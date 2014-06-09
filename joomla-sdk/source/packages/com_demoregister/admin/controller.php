@@ -17,6 +17,8 @@ defined( '_JEXEC' ) or die('Restricted access');
  */
 class DemoRegisterController extends DRController
 {
+	protected $default_view = 'demoregister';
+
 	public function apply()
 	{
 		// Check for request forgeries.
@@ -96,5 +98,46 @@ class DemoRegisterController extends DRController
 		}
 
 		return true;
+	}
+
+	public function remove()
+	{
+		// Check for request forgeries
+		JSession::checkToken() or die(JText::_('JINVALID_TOKEN'));
+
+		// Get items to remove from the request.
+		$cid = JFactory::getApplication()->input->get('cid', array(), 'array');
+
+		if (!is_array($cid) || count($cid) < 1)
+		{
+			JLog::add(JText::_($this->text_prefix . '_NO_ITEM_SELECTED'), JLog::WARNING, 'jerror');
+		}
+		else
+		{
+			// Get the model.
+			$model = DRModel::getInstance('Activationcode','DemoregisterModel');
+
+			// Remove the items.
+			if ($model->delete($cid))
+			{
+				$this->setMessage(JText::plural('COM_DEMOREGISTER_N_ITEMS_DELETED', count($cid)));
+			}
+			else
+			{
+				$this->setMessage($model->getError());
+			}
+		}
+
+		$this->setRedirect(JRoute::_('index.php?option=com_demoregister&view=activationcodes', false));
+	}
+
+	public function activationcodes()
+	{
+		$this->setRedirect('index.php?option=com_demoregister&view=activationcodes');
+	}
+
+	public function configuration()
+	{
+		$this->setRedirect('index.php?option=com_demoregister');
 	}
 }
