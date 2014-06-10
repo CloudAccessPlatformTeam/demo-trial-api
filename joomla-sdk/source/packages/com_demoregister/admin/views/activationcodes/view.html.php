@@ -56,6 +56,10 @@ class DemoRegisterViewActivationcodes extends DRView
 				JError::raiseError(500, implode("\n", $errors));
 				return false;
 			}
+
+            if (count($items)) {
+                JFactory::getApplication()->enqueueMessage(JText::_('COM_DEMOREGISTER_ACTIVATIONCODES_DESC'),'info');
+            }
 			
 			$this->assignRef('items',		$items);
             $this->assignRef('pagination',  $pagination);
