@@ -29,8 +29,11 @@ if (!empty($cids)) {
         }
     }
 } else {
-    JFactory::getApplication()->enqueueMessage(sprintf('Please configure module "%s"',$module->name),'error');
-    return '';
+    $applicationsOptions['joomla-1.5'] = 'joomla 1.5';
+    $applicationsOptions['joomla-2.5'] = 'joomla 2.5';
+    $applicationsOptions['joomla-3.1'] = 'joomla 3.1';
+    $applicationsOptions['joomla-3.2'] = 'joomla 3.2';
+    $applicationsOptions['joomla-3.3'] = 'joomla 3.3';
 }
 $doc = JFactory::getDocument();
 if (JVERSION < 3.0) {

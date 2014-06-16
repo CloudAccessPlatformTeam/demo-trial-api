@@ -5,7 +5,7 @@
  * @copyright (C) 2010 - CloudAccess.net LCC
  * @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
  */
-
+ini_set('display_errors', false);
 // no direct access
 defined('_JEXEC') or die;
 
