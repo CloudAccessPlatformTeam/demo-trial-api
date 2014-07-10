@@ -9,7 +9,7 @@
 
 defined('JPATH_PLATFORM') or die;
 
-JLoader::import('helpers.api', JPATH_ADMINISTRATOR.'/components/com_demoregister');
+JLoader::import('helpers.api', JPATH_ADMINISTRATOR.'/components/com_demoapi');
 
 /**
  * Form Field to display a list of the datasets
@@ -39,14 +39,14 @@ class JFormFieldDatasetslist extends JFormField
 	{
 		$html = array();
 
-		if (!class_exists('HelperDemoRegisterApi')) {
+		if (!class_exists('HelperDemoApiApi')) {
 			JFactory::getApplication()->enqueueMessage('Cant load api helper','error');
 			return implode($html);
 		}
 
-		$token = HelperDemoRegisterApi::getApiKey();
+		$token = HelperDemoApiApi::getApiKey();
        if ($token) {
-            $list = HelperDemoRegisterApi::call(array('method' => 'ListDatasets', 'p_application' => 'joomla'));
+            $list = HelperDemoApiApi::call(array('method' => 'ListDatasets', 'p_application' => 'joomla'));
 
             $cids = !empty($this->value) ? $this->value :  array() ;
 

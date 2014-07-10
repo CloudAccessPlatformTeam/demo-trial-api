@@ -35,7 +35,7 @@ class createSiteHelper
 		$jForm = JForm::getInstance('site','site');
 
 		//bind data to form
-		$jForm->bind( JFactory::getSession()->get('demoregister') );
+		$jForm->bind( JFactory::getSession()->get('demoapi') );
 
 		return $jForm;
 	}
@@ -61,7 +61,7 @@ class createSiteHelper
 	 */
 	public function captchaIsEnabled()
 	{
-		$comParams = JComponentHelper::getParams('com_demoregister');
+		$comParams = JComponentHelper::getParams('com_demoapi');
 		return $comParams->get('captcha_enabled',0);
 	}
 
@@ -74,7 +74,7 @@ class createSiteHelper
 	 */
 	public function getActivationURL()
 	{
-		$comParams = JComponentHelper::getParams('com_demoregister');
+		$comParams = JComponentHelper::getParams('com_demoapi');
 		return $comParams->get('activation_url',(string)JFactory::getUri());
 	}
 
@@ -87,7 +87,7 @@ class createSiteHelper
 	 */
 	public function getCaptchaPublicKey()
 	{
-		$comParams = JComponentHelper::getParams('com_demoregister');
+		$comParams = JComponentHelper::getParams('com_demoapi');
 		return trim( $comParams->get('captcha_publickey') );
 	}
 
@@ -100,7 +100,7 @@ class createSiteHelper
 	 */
 	public function getCaptchaWidth()
 	{
-		$comParams = JComponentHelper::getParams('com_demoregister');
+		$comParams = JComponentHelper::getParams('com_demoapi');
 		return $comParams->get('captcha_width');
 	}
 
@@ -113,7 +113,7 @@ class createSiteHelper
 	 */
 	public function getCaptchaHeight()
 	{
-		$comParams = JComponentHelper::getParams('com_demoregister');
+		$comParams = JComponentHelper::getParams('com_demoapi');
 		return $comParams->get('captcha_height');
 	}
 }

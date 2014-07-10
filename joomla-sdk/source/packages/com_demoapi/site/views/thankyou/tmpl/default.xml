@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Thankyou Page" option="com_demoapi">
+		<message>
+			<![CDATA[Thankyou page for demo trial component]]>
+		</message>
+	</layout>
+</metadata>

@@ -83,7 +83,7 @@ jQuery(document).ready(function() {
 			else{
                 var sitenameValResult = jQuery('#sitename');
                 jQuery.ajax({
-                    url: 'index.php?option=com_demoregister&task=checkDomain&format=json',
+                    url: 'index.php?option=com_demoapi&task=checkDomain&format=json',
                     data: {domain: sitenameVal},
                     success: function (response) {
                         if (response == 'true') {
@@ -151,7 +151,7 @@ jQuery(document).ready(function() {
 			else{
                 var emailValResult = jQuery('#email');
                 jQuery.ajax({
-                    url: 'index.php?option=com_demoregister&task=checkEmail&format=json',
+                    url: 'index.php?option=com_demoapi&task=checkEmail&format=json',
                     data: {email: emailVal},
                     success: function (response) {
                     	registeredUser = response;
@@ -469,7 +469,7 @@ jQuery(document).ready(function() {
             var app = family.split('-');
             jQuery.ajax({
                 dataType: 'json',
-                url: 'index.php?option=com_demoregister&format=json&task=listdatasets&application='+app[0]+'&family='+family+'&mid='+mid,
+                url: 'index.php?option=com_demoapi&format=json&task=listdatasets&application='+app[0]+'&family='+family+'&mid='+mid,
                 beforeSend: function( xhr, settings ) {
                     //jQuery('#selectdataset').addClass('disabled').text('Loading...');
                     jQuery('#dataset').attr('disabled','disabled').find('option')
@@ -560,7 +560,7 @@ jQuery(document).ready(function() {
 			if (!nextStep) return false;
 
 			jQuery.ajax({
-	            url: 'index.php?option=com_demoregister&task=checkDomain&format=json',
+	            url: 'index.php?option=com_demoapi&task=checkDomain&format=json',
 	            data: {"domain": sitename.val().trim()},
 	            success: function (domainAvailable) {
 	                if (domainAvailable == 'false') {
@@ -572,7 +572,7 @@ jQuery(document).ready(function() {
 						}
 						var emailBlankIsOk = true;
 						jQuery.ajax({
-		                    url: 'index.php?option=com_demoregister&task=checkEmail&format=json',
+		                    url: 'index.php?option=com_demoapi&task=checkEmail&format=json',
 		                    data: {"email": email.val().trim()},
 		                    success: function (registeredUser) {
 

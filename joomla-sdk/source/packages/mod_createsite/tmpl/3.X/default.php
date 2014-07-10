@@ -27,7 +27,7 @@ custom_theme_widget: 'recaptcha_widget'
 </script>
 <div id="page" class="clearfix;">
 <div id="demoForm_j25" class="clearfix <?php echo $params->get('moduleclass_sfx'); ?>">
-<form id="demoSignUp" name="demoSignUp" action="<?php echo JRoute::_('index.php?option=com_demoregister&amp;task=save'); ?>" method="post">
+<form id="demoSignUp" name="demoSignUp" action="<?php echo JRoute::_('index.php?option=com_demoapi&amp;task=save'); ?>" method="post">
 <div id="signup_wrapper">
 	<div id="signup_inwrapper">
 		<p class="signup_header_title">Sign up for a free 30 day Joomla! Demo</p>
