@@ -60,6 +60,7 @@ foreach ($form->getFieldset() as $field) {
  *
  * @since       3.0
  */
+if (!function_exists('getModuleLayoutPath')) {
 function getModuleLayoutPath($module, $layout = 'default')
 {
     $template = JFactory::getApplication()->getTemplate();
@@ -91,6 +92,7 @@ function getModuleLayoutPath($module, $layout = 'default')
     } else {
         return $dPath;
     }
+}
 }
 
 require getModuleLayoutPath(substr(basename(__FILE__), 0, -4), $params->get('layout', 'default'));
