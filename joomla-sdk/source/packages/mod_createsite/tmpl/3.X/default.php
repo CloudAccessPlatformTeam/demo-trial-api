@@ -35,24 +35,32 @@ $document->addStyleSheet('modules/' . $module->module . '/assets/css/createsite.
   <?php endif; ?>
 </script>
 
-<div id="page" class="clearfix-ca;">
+<div id="page" class="clearfix-ca">
 <div id="demoForm_j25" class="clearfix-ca <?php echo $params->get('moduleclass_sfx'); ?>">
 <form id="demoSignUp" name="demoSignUp" action="<?php echo JRoute::_('index.php?option=com_demoapi&amp;task=save'); ?>" method="post">
 <div id="signup_wrapper">
 	<div id="signup_inwrapper">
 		<p class="signup_header_title">Sign up for a free 30 day Joomla! Demo</p>
-		<p class="signup_header_sub">Fill out the form below and your free Joomla! demo will be ready instantly. You'll have access to every core Joomla feature, and you can begin developing your site using 3rd party extensions or templates.</p>
-		<p><span id="hidden_error" style="visibility:hidden;">Please fill all the information correctly.</span></p>
+		<div>
+		  <p>Fill out the form below and your free Joomla! demo will be ready instantly. You'll have access to every core Joomla feature, and you can begin developing your site using 3rd party extensions or templates.</p>
+		
+		<div id="hidden_error" class="alert alert-error" style="display: none;">
+		  Please fill all the information correctly.
+		</div>
+		
 		<p>
 			<?php
-			// set attribute
-			$form->setFieldAttribute('fullname','class','styled');
-			echo $form->getInput('fullname');
+			  // set attribute
+			  $form->setFieldAttribute('fullname','class','input-block-level');
+        echo $form->getInput('fullname');
 			?>
 			<span id="fullnameHelp" class="example" style="display: none;"></span>
 		</p>
 		<p>
-			<?php echo $form->getInput('sitename'); ?>	
+			<?php 
+			  $form->setFieldAttribute('sitename','class','input-block-level');
+			  echo $form->getInput('sitename'); 
+      ?>	
 			<span class="example">URL :&nbsp;<span class="demo_site_name"><span id="cursorBlink"><?php if(isset($post_array['posted_sname']) && $post_array['posted_sname'] != ''){ echo $post_array['posted_sname']; } ?></span> <strong>.</strong> cloudaccess.net</span></span>
 			<span id="sitenameHelp" class="example" style="display: none;"></span>
 		</p>			

@@ -8,7 +8,7 @@
  
  /** this is css file **/
 
-/* 1.1 Clearfix
+/* 1 Clearfix
 ------------------------------------------------------------------------------*/
 
 .clearfix-ca:after {
@@ -22,67 +22,13 @@
 * html .clearfix-ca             { zoom: 1; } /* IE6 */
 *:first-child+html .clearfix-ca { zoom: 1; } /* IE7 */
 
-
-#signup_wrapper 
-{	
-	width:304px; 
-	color: #FFFFFF;
-	font-family: arial,sans-serif;
-	font-weight: bold;
-	text-shadow:none;
-	font-size: 12px;
-}
-
-#signup_inwrapper
-{
-	background:url("../images/createsite_bg.png") repeat-x scroll left bottom #225098;
-	border:1px solid #142849;
-	/*border-radius*/
-	-webkit-border-radius:0 0 10px 10px;
-	-moz-border-radius:0 0 10px 10px;
-	border-radius:0 0 10px 10px;
-	/*box-shadow*/
-	-webkit-box-shadow:0 0 6px #B9B9B9;
-	-moz-box-shadow:0 0 6px #B9B9B9;
-	box-shadow:0 0 6px #B9B9B9;
-	margin:0 2px;
-	padding:15px 12px 10px;
-}
-#signup_inwrapper p
-{
-	padding:0;
-}
-#signup_inwrapper input[type="text"], #signup_inwrapper input[type="password"], #signup_inwrapper textarea  , #signup_inwrapper select{
-    border: 1px solid #1a3867;
-    -moz-border-radius: 3px 3px 3px 3px;
-    -webkit-border-radius: 3px 3px 3px 3px;
-    border-radius: 3px 3px 3px 3px;
-    -moz-box-shadow: 0 1px 0 #8ca6cf;
-    -webkit-box-shadow: 0 1px 0 #8ca6cf;
-    box-shadow: 0 1px 0 #8ca6cf;
-    display: block;
-    width: 86%;
-	color:#7d7b7b;
-	padding:5px 25px 5px 9px;
-	margin-bottom: 18px;
-	clear: both;
-}
-
-#signup_inwrapper input.validationRed#email {
-    
-}
-#signup_inwrapper select
-{
-	width:100%;
-}
-#signup_wrapper  .launchBtn
-{	
-    bottom: 0;
-    display: block;
-    height: 74px;
-    position: relative;
-    text-indent: -9999px;
-    width: 259px;
+#signup_wrapper  .launchBtn {	
+  bottom: 0;
+  display: block;
+  height: 74px;
+  position: relative;
+  text-indent: -9999px;
+  width: 259px;
 	background: url("../images/launch_button.png") no-repeat scroll center top transparent;
 	cursor: pointer;
 	border: 0 none;
@@ -169,15 +115,6 @@
 	font-weight:normal;
 }
 
-#hidden_error
-{
-	font-size:11px;
-	color:#fff;
-	font-family:arial;
-	font-weight: bold;
-	display: inline-block;
-	padding: 5px 0;
-}
 #signup_inwrapper span.validationRed
 {
 	border:1px solid #ff0000;

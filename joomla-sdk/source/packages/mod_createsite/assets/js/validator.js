@@ -22,7 +22,7 @@ jQuery(document).ready(function() {
             {
             	jQuery('#fullnameHelp').html('Use only letters for your Full Name.');
 				jQuery('#fullnameHelp').css('display','block');
-				jQuery('#hidden_error').css('visibility','visible');
+				jQuery('#hidden_error').show('fast');
 				
             	fullname.removeClass('validationGreen').addClass('validationRed');
 				fullnameIsOk=-1;
@@ -35,7 +35,7 @@ jQuery(document).ready(function() {
 				{
 					jQuery('#fullnameHelp').html('Minimum 2 words for Full Name.');
 					jQuery('#fullnameHelp').css('display','block');
-					jQuery('#hidden_error').css('visibility','visible');
+					jQuery('#hidden_error').show('fast');
 					fullname.removeClass('validationGreen').addClass('validationRed');
 					fullnameIsOk = 0;
 					return false;
@@ -45,7 +45,7 @@ jQuery(document).ready(function() {
 					fullname.removeClass('validationRed').addClass('validationGreen');
 					jQuery('#fullnameHelp').html('');
 					jQuery('#fullnameHelp').css('display','none');
-					jQuery('#hidden_error').css('visibility','hidden');
+					jQuery('#hidden_error').hide('fast');
 					fullnameIsOk=0;
 					return true;	
 				}
@@ -67,7 +67,7 @@ jQuery(document).ready(function() {
 			if (sitenameVal == caFormDefaultValues[jQuery('#sitename').attr('id')])
 			{
 				sitename.removeClass('validationGreen').addClass('validationRed');
-				jQuery('#hidden_error').css('visibility','visible');
+				jQuery('#hidden_error').show('fast');
 				return false;
 			} 
 			var regex = /^[a-z0-9][a-z0-9\-]*[a-z0-9]$/i;
@@ -76,7 +76,7 @@ jQuery(document).ready(function() {
 				var sitenameValResult = jQuery('#sitename');
 				jQuery('#sitenameHelp').html('Please delete spaces/dots in your domain name.');
 				jQuery('#sitenameHelp').css('display','block');
-				jQuery('#hidden_error').css('visibility','visible');
+				jQuery('#hidden_error').show('fast');
 				sitename.removeClass('validationGreen').addClass('validationRed');
 				sitenameBlankIsOk = false;
 			}   
@@ -89,7 +89,7 @@ jQuery(document).ready(function() {
                         if (response == 'true') {
                             jQuery('#sitenameHelp').html('domain already exists, please choose another one.');
                             jQuery('#sitenameHelp').css('display','block');
-                            jQuery('#hidden_error').css('visibility','visible');
+                            jQuery('#hidden_error').show('fast');
                             jQuery('#cursorBlink').html('');
                             sitename.removeClass('validationGreen').addClass('validationRed');
                             sitenameBlankIsOk = false;
@@ -98,13 +98,13 @@ jQuery(document).ready(function() {
                             jQuery('#cursorBlink').html(jQuery('#sitename').val().trim());
                             jQuery('#sitenameHelp').html('');
                             jQuery('#sitenameHelp').css('display','none');
-                            jQuery('#hidden_error').css('visibility','hidden');
+                            jQuery('#hidden_error').hide('fast');
                             sitenameBlankIsOk = true;
                         } else {
                             jQuery('#sitenameHelp').html(response);
                             jQuery('#cursorBlink').html('');
                             jQuery('#sitenameHelp').css('display','block');
-                            jQuery('#hidden_error').css('visibility','visible');
+                            jQuery('#hidden_error').show('fast');
                             sitename.removeClass('validationGreen').addClass('validationRed');
                             sitenameBlankIsOk = false;
                         }
@@ -112,7 +112,7 @@ jQuery(document).ready(function() {
                 	error: function (){
                 		jQuery('#sitenameHelp').html('Error to check domain existence, try again.');
                         jQuery('#sitenameHelp').css('display','block');
-                        jQuery('#hidden_error').css('visibility','visible');
+                        jQuery('#hidden_error').show('fast');
                         jQuery('#cursorBlink').html('');
                         sitename.removeClass('validationGreen').addClass('validationRed');
                         sitenameBlankIsOk = false;
@@ -145,7 +145,7 @@ jQuery(document).ready(function() {
 				emailBlankIsOk = false;
 				jQuery('#emailHelp').html('Invalid email provided.');
 				jQuery('#emailHelp').css('display','block');
-				jQuery('#hidden_error').css('visibility','visible');
+				jQuery('#hidden_error').show('fast');
 				email.toggleValidation(false);
 			}   
 			else{
@@ -159,14 +159,14 @@ jQuery(document).ready(function() {
                             email.removeClass('validationRed').addClass('validationGreen');
                             jQuery('#emailHelp').html('');
                             jQuery('#emailHelp').css('display','none');
-                            jQuery('#hidden_error').css('visibility','hidden');
+                            jQuery('#hidden_error').hide('fast');
                             emailBlankIsOk = true;
                             email.toggleValidation(true);
                         } else if (response == 'false') {
                             email.removeClass('validationRed').addClass('validationGreen');
                             jQuery('#emailHelp').html('');
                             jQuery('#emailHelp').css('display','none');
-                            jQuery('#hidden_error').css('visibility','hidden');
+                            jQuery('#hidden_error').hide('fast');
                             emailBlankIsOk = true;
                         	email.toggleValidation(false);
                         }
@@ -174,7 +174,7 @@ jQuery(document).ready(function() {
                     error: function (){
                     	jQuery('#emailHelp').html('Our service cant validate email, please try again.');
                         jQuery('#emailHelp').css('display','block');
-                        jQuery('#hidden_error').css('visibility','visible');
+                        jQuery('#hidden_error').show('fast');
                         email.removeClass('validationGreen').addClass('validationRed');
                         emailBlankIsOk = false;
                     }
@@ -261,7 +261,7 @@ jQuery(document).ready(function() {
 	        	jQuery('#selectcountry').removeClass('validationGreen').addClass('select validationRed');
 	        	jQuery('#countryHelp').html('Select a country.');
 				jQuery('#countryHelp').css('display','block');
-	        	jQuery('#hidden_error').css('visibility','visible');
+	        	jQuery('#hidden_error').show('fast');
 				countryIsOk = -1;
 				return false;
 			}
@@ -270,7 +270,7 @@ jQuery(document).ready(function() {
 				jQuery('#selectcountry').removeClass('validationRed').addClass('select validationGreen');
 				jQuery('#countryHelp').html('');
 				jQuery('#countryHelp').css('display','none');
-				jQuery('#hidden_error').css('visibility','hidden');
+				jQuery('#hidden_error').hide('fast');
 				countryIsOk = 0;
 				return true;
 			}			
@@ -293,7 +293,7 @@ jQuery(document).ready(function() {
 					recaptchaField.removeClass('validationGreen').addClass('validationRed');
 					jQuery('#recpatchareponseHelp').html('Enter Captcha value!');
 					jQuery('#recpatchareponseHelp').css('display','block');
-					jQuery('#hidden_error').css('visibility','visible');
+					jQuery('#hidden_error').show('fast');
 					return false;
 				}
 				else
@@ -301,7 +301,7 @@ jQuery(document).ready(function() {
 					recaptchaField.addClass('');
 					jQuery('#recpatchareponseHelp').html('');
 					jQuery('#recpatchareponseHelp').css('display','none');
-					jQuery('#hidden_error').css('visibility','hidden');
+					jQuery('#hidden_error').hide('fast');
 					return true;
 				}
 			};
@@ -326,7 +326,7 @@ jQuery(document).ready(function() {
 						phonenumber.removeClass('validationGreen').addClass('validationRed');
 						jQuery('#phonenumberHelp').html('6 chars minimum, 25 maximum. Only numbers');
 						jQuery('#phonenumberHelp').css('display','block');
-						jQuery('#hidden_error').css('visibility','visible');
+						jQuery('#hidden_error').show('fast');
 						return false;
 					}   
 					else
@@ -334,7 +334,7 @@ jQuery(document).ready(function() {
 						phonenumber.removeClass('validationRed').addClass('validationGreen');
 						jQuery('#phonenumberHelp').html('');
 						jQuery('#phonenumberHelp').css('display','none');
-						jQuery('#hidden_error').css('visibility','hidden');
+						jQuery('#hidden_error').hide('fast');
 						return true;
 					}
 				}
@@ -377,7 +377,7 @@ jQuery(document).ready(function() {
 	            {
 	            	jQuery('#addressHelp').html('Use only letters for your Address.');
 					jQuery('#addressHelp').css('display','block');
-					jQuery('#hidden_error').css('visibility','visible');
+					jQuery('#hidden_error').show('fast');
 					
 	            	address.removeClass('validationGreen').addClass('validationRed');
 					addressOk=false;
@@ -390,7 +390,7 @@ jQuery(document).ready(function() {
 					{
 						jQuery('#addressHelp').html('Minimum 2 words for Address');
 						jQuery('#addressHelp').css('display','block');
-						jQuery('#hidden_error').css('visibility','visible');
+						jQuery('#hidden_error').show('fast');
 						address.removeClass('validationGreen').addClass('validationRed');
 						addressOk = 0;
 						return false;
@@ -400,7 +400,7 @@ jQuery(document).ready(function() {
 						address.removeClass('validationRed').addClass('validationGreen');
 						jQuery('#addressHelp').html('');
 						jQuery('#addressHelp').css('display','none');
-						jQuery('#hidden_error').css('visibility','hidden');
+						jQuery('#hidden_error').hide('fast');
 						addressOk=true;
 						return true;	
 					}
@@ -440,7 +440,7 @@ jQuery(document).ready(function() {
 						postCode.removeClass('validationGreen').addClass('validationRed');
 						jQuery('#postcodeHelp').html('6 chars minimum, 25 maximum. Only numbers');
 						jQuery('#postcodeHelp').css('display','block');
-						jQuery('#hidden_error').css('visibility','visible');
+						jQuery('#hidden_error').show('fast');
 						return false;
 					}   
 					else
@@ -448,7 +448,7 @@ jQuery(document).ready(function() {
 						phonenumber.removeClass('validationRed').addClass('validationGreen');
 						jQuery('#postcodeHelp').html('');
 						jQuery('#postcodeHelp').css('display','none');
-						jQuery('#hidden_error').css('visibility','hidden');
+						jQuery('#hidden_error').hide('fast');
 						return true;
 					}
 				}
@@ -538,7 +538,7 @@ jQuery(document).ready(function() {
 				var sitenameValResult = jQuery('#sitename');
 				jQuery('#sitenameHelp').html('Please delete spaces/dots in your domain name.');
 				jQuery('#sitenameHelp').css('display','block');
-				jQuery('#hidden_error').css('visibility','visible');
+				jQuery('#hidden_error').show('fast');
 				sitename.removeClass('validationGreen').addClass('validationRed');
 				sitenameBlankIsOk = false;
 				nextStep = false;
@@ -552,7 +552,7 @@ jQuery(document).ready(function() {
 				emailBlankIsOk = false;
 				jQuery('#emailHelp').html('Invalid email provided.');
 				jQuery('#emailHelp').css('display','block');
-				jQuery('#hidden_error').css('visibility','visible');
+				jQuery('#hidden_error').show('fast');
 				email.toggleValidation(false);
 				nextStep = false;
 			}
@@ -594,7 +594,7 @@ jQuery(document).ready(function() {
 								// check tos
 								if(!jQuery('#tos').is(':checked'))
 								{
-									jQuery('#hidden_error').css('visibility','visible');
+									jQuery('#hidden_error').show('fast');
 									jQuery('#termsOfServicesHelp').css('display','block');
 									jQuery('#termsOfServicesHelp').html('You must agree to Terms of Service.');
 									tosOK = false;
@@ -602,7 +602,7 @@ jQuery(document).ready(function() {
 								else
 								{
 									jQuery('#termsOfServicesHelp').html('');
-									jQuery('#hidden_error').css('visibility','hidden');
+									jQuery('#hidden_error').hide('fast');
 									tosOK = true;
 								}
 
@@ -613,11 +613,11 @@ jQuery(document).ready(function() {
 								{	
 									jQuery('#demoSubmit').addClass('launchBtn');
 									jQuery('#demoSubmit').attr('type', 'submit');
-									jQuery('#hidden_error').css('visibility','visible');
+									jQuery('#hidden_error').show('fast');
 									return false;
 								}
 
-								jQuery('#hidden_error').css('visibility','hidden');
+								jQuery('#hidden_error').hide('fast');
 								jQuery('#demoSubmit').removeClass('launchBtn');
 								jQuery('#demoSubmit').addClass('launchBtnHold');
 								jQuery('#demoSubmit').attr('type', 'button');
@@ -631,14 +631,14 @@ jQuery(document).ready(function() {
 		                    error: function (){
 		                    	jQuery('#emailHelp').html('Our service cant validate email, please try again.');
 		                        jQuery('#emailHelp').css('display','block');
-		                        jQuery('#hidden_error').css('visibility','visible');
+		                        jQuery('#hidden_error').show('fast');
 		                        email.removeClass('validationGreen').addClass('validationRed');
 		                    }
 		                });
 	                } else {
 	                	jQuery('#sitenameHelp').html('domain already exists, please choose another one.');
                         jQuery('#sitenameHelp').css('display','block');
-                        jQuery('#hidden_error').css('visibility','visible');
+                        jQuery('#hidden_error').show('fast');
                         jQuery('#cursorBlink').html('');
                         sitename.removeClass('validationGreen').addClass('validationRed');
                         sitenameBlankIsOk = false;
@@ -647,7 +647,7 @@ jQuery(document).ready(function() {
 	        	error: function (){
 	        		jQuery('#sitenameHelp').html('Error to check domain existence, try again.');
                     jQuery('#sitenameHelp').css('display','block');
-                    jQuery('#hidden_error').css('visibility','visible');
+                    jQuery('#hidden_error').show('fast');
                     jQuery('#cursorBlink').html('');
                     sitename.removeClass('validationGreen').addClass('validationRed');
 	        	}
