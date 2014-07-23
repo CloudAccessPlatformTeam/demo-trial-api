@@ -40,9 +40,9 @@ $document->addStyleSheet('modules/' . $module->module . '/assets/css/createsite.
 <form id="demoSignUp" name="demoSignUp" action="<?php echo JRoute::_('index.php?option=com_demoapi&amp;task=save'); ?>" method="post">
 <div id="signup_wrapper">
 	<div id="signup_inwrapper">
-		<p class="signup_header_title">Sign up for a free 30 day Joomla! Demo</p>
-		<div>
-		  <p>Fill out the form below and your free Joomla! demo will be ready instantly. You'll have access to every core Joomla feature, and you can begin developing your site using 3rd party extensions or templates.</p>
+		<div class="top-text">
+		  <?php echo $params->get('top_text'); ?>
+		</div>
 		
 		<div id="hidden_error" class="alert alert-error" style="display: none;">
 		  Please fill all the information correctly.

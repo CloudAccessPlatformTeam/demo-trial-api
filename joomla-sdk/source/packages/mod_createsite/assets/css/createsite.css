@@ -22,7 +22,11 @@
 * html .clearfix-ca             { zoom: 1; } /* IE6 */
 *:first-child+html .clearfix-ca { zoom: 1; } /* IE7 */
 
-#signup_wrapper  .launchBtn {	
+
+/* 1 Buttons
+------------------------------------------------------------------------------*/
+
+#signup_wrapper .launchBtn {	
   bottom: 0;
   display: block;
   height: 74px;
@@ -232,12 +236,10 @@ div.ToolTips div.footer
 #emailHelp a
 {
 	text-decoration:underline;
-	color:#fff;
 }
 #signup_inwrapper #sitenameHelp
 {
 	margin-top:-8px;
-	color:#fff;
 }
 #signup_inwrapper #fullnameHelp, #signup_inwrapper #emailHelp, 
 #signup_inwrapper #demosecureHelp , #signup_inwrapper #phonenumberHelp,
@@ -245,7 +247,6 @@ div.ToolTips div.footer
 {
 	margin-bottom: -9px;
 	margin-top: -16px;
-	color:#fff;
 }
 #signup_inwrapper #recpatchareponseHelp
 {
@@ -258,23 +259,7 @@ div.ToolTips div.footer
 	float:left;
 	margin-bottom: 8px;
 }
-.signup_header_title
-{
-	background: url("../images/signup-header-bg.png") no-repeat scroll center top transparent;
-    font-size: 16px;
-    font-weight: bold;
-    height: 42px;
-    line-height: 38px;
-    margin-left: -18px;
-    margin-top: -12px;
-    width: 310px;
-	text-align: center;
-	text-shadow: 0 1px 0 #000000;
-}
-.signup_header_title > span
-{
-	padding:0 15px;
-}
+
 .signup_header_sub
 {	
 	/* color: #3E530F; */
