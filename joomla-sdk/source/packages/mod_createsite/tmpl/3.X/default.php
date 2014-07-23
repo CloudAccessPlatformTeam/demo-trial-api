@@ -9,22 +9,34 @@
 // no direct access
 defined( '_JEXEC' ) or die( 'Restricted access' );
 ?>
-<script src="modules/<?php echo $module->module; ?>/assets/js/chosen.js" type="text/javascript"></script>
-<script src="modules/<?php echo $module->module; ?>/assets/js/validator.js" type="text/javascript"></script>
-<link href="modules/<?php echo $module->module; ?>/assets/css/chosen.css" media="screen" rel="stylesheet" type="text/css" />
-<link href="modules/<?php echo $module->module; ?>/assets/css/createsite.css" media="screen" rel="stylesheet" type="text/css" />
-<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-<script type="text/javascript">
-mid = <?php echo $module->id; ?>;
-caFormDefaultValues = <?php echo json_encode($caFormDefaultValues); ?>;
-<?php if ($helper->captchaIsEnabled()): ?>
 
-var RecaptchaOptions = {
-theme : 'custom',
-custom_theme_widget: 'recaptcha_widget'
-};
-<?php endif; ?>
+<?php
+
+$document = JFactory::getDocument();
+
+// Adding module external scripts
+$document->addScript('modules/' . $module->module . '/assets/js/chosen.js');
+$document->addScript('modules/' . $module->module . '/assets/js/validator.js');
+
+// Adding module external CSS files
+$document->addStyleSheet('modules/' . $module->module . '/assets/css/chosen.css');
+$document->addStyleSheet('modules/' . $module->module . '/assets/css/createsite.css');
+
+?>
+
+<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+
+<script type="text/javascript">
+  mid = <?php echo $module->id; ?>;
+  caFormDefaultValues = <?php echo json_encode($caFormDefaultValues); ?>;
+  <?php if ($helper->captchaIsEnabled()): ?>
+    var RecaptchaOptions = {
+      theme : 'custom',
+      custom_theme_widget: 'recaptcha_widget'
+    };
+  <?php endif; ?>
 </script>
+
 <div id="page" class="clearfix;">
 <div id="demoForm_j25" class="clearfix <?php echo $params->get('moduleclass_sfx'); ?>">
 <form id="demoSignUp" name="demoSignUp" action="<?php echo JRoute::_('index.php?option=com_demoapi&amp;task=save'); ?>" method="post">
