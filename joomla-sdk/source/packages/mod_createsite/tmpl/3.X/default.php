@@ -24,8 +24,6 @@ $document->addStyleSheet('modules/' . $module->module . '/assets/css/createsite.
 
 ?>
 
-<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-
 <script type="text/javascript">
   mid = <?php echo $module->id; ?>;
   caFormDefaultValues = <?php echo json_encode($caFormDefaultValues); ?>;
@@ -37,8 +35,8 @@ $document->addStyleSheet('modules/' . $module->module . '/assets/css/createsite.
   <?php endif; ?>
 </script>
 
-<div id="page" class="clearfix;">
-<div id="demoForm_j25" class="clearfix <?php echo $params->get('moduleclass_sfx'); ?>">
+<div id="page" class="clearfix-ca;">
+<div id="demoForm_j25" class="clearfix-ca <?php echo $params->get('moduleclass_sfx'); ?>">
 <form id="demoSignUp" name="demoSignUp" action="<?php echo JRoute::_('index.php?option=com_demoapi&amp;task=save'); ?>" method="post">
 <div id="signup_wrapper">
 	<div id="signup_inwrapper">

@@ -7,7 +7,11 @@
  */
  
  /** this is css file **/
-.clearfix:after {
+
+/* 1.1 Clearfix
+------------------------------------------------------------------------------*/
+
+.clearfix-ca:after {
 	visibility: hidden;
 	display: block;
 	font-size: 0;
@@ -15,13 +19,14 @@
 	clear: both;
 	height: 0;
 }
-* html .clearfix             { zoom: 1; } /* IE6 */
-*:first-child+html .clearfix { zoom: 1; } /* IE7 */
+* html .clearfix-ca             { zoom: 1; } /* IE6 */
+*:first-child+html .clearfix-ca { zoom: 1; } /* IE7 */
+
+
 #signup_wrapper 
 {	
 	width:304px; 
 	color: #FFFFFF;
-	/* font-family: 'Lato',sans-serif; */
 	font-family: arial,sans-serif;
 	font-weight: bold;
 	text-shadow:none;
