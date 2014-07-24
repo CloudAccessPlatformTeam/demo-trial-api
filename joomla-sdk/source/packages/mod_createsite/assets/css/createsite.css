@@ -86,11 +86,6 @@
     font-size: 12px;
 	padding:0 5px 10px;
 }
-#signup_wrapper  .termsOfServices a
-{
-	text-decoration: underline;	
-	color: #FFFFFF;
-}
 
 #signup_inwrapper select.select, #signup_inwrapper span.select
 {
@@ -297,7 +292,7 @@ div.ToolTips div.footer
 {
 	display:inline-block;
 }
-.demo_site_name , #recaptcha_widget a
+#recaptcha_widget a
 {
 	color: #fff;
     font-family: arial;
