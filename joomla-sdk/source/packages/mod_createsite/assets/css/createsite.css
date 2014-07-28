@@ -96,3 +96,12 @@ input[type="text"].validationGreen {
 #signup_inwrapper p.dn {
 	display: none;
 }
+
+/* 3. Helpers 
+------------------------------------------------------------------------------*/
+
+.demo-signup *, 
+.demo-signup *:after, 
+.demo-signup *:before {
+  box-sizing: border-box !important;
+}
