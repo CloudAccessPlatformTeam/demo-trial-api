@@ -618,10 +618,9 @@ jQuery(document).ready(function() {
 								}
 
 								jQuery('#hidden_error').hide('fast');
-								jQuery('#demoSubmit').removeClass('launchBtn');
-								jQuery('#demoSubmit').addClass('launchBtnHold');
+								//jQuery('#demoSubmit').removeClass('launchBtn');
+                jQuery('#demoSubmit').addClass('disabled').attr('disabled','disabled').val('Launching');
 								jQuery('#demoSubmit').attr('type', 'button');
-								jQuery('#demoSubmit').attr('disabled','disabled');
 
 								formCanSubmit = true;
 
