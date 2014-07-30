@@ -7,7 +7,7 @@
     <authorUrl>http://www.cloudaccess.net</authorUrl>
     <version>2.6.2</version>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-    <description>MOD_CREATESITE_CONTENT_DESCRIPTION</description>
+    <description>MOD_CREATEDEMO_CONTENT_DESCRIPTION</description>
     <files>
         <filename module="mod_createsite">mod_createsite.php</filename>
         <filename>helper.php</filename>
