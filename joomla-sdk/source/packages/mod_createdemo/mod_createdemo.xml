@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" client="site" version="2.5" method="upgrade">
-    <name>Create Site</name>
+    <name>Create Demo</name>
     <author>cloudaccess.net</author>
     <creationDate>January 2013</creationDate>
     <authorEmail>gpl@cloudaccess.net</authorEmail>
