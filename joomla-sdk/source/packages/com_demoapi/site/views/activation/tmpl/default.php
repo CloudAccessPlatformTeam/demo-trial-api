@@ -12,7 +12,7 @@ JHTML::_('behavior.modal');
 ?>
 <div id="activationmodal">
     <img src="modules/mod_createsite/assets/images/loading.gif" />
-    <p>Site creation under progress</p>
+    <p><?php echo JText::_('COM_DEMOAPI_CREATION_SITE'); ?></p>
 </div>
 <script>
 window.addEvent('domready', function() {
@@ -46,7 +46,7 @@ function checkProcess()
                         jQuery('#activationmodal').text('').html('');
                         var p = document.createElement('p');
                         if (process.status == 'succeeded') {
-                            msg = process.site+' creation completed! You will receive an email with details.';
+                            msg = '<?php echo JText::_('com_DEMOAPI_CREATION_SUCCESS'); ?>';
                         } else if (status.status == 'failure') {
                             msg = 'An error occur during creation process. '+process.status;
                         } else {

@@ -77,7 +77,11 @@ class JFormFieldDatasetslist extends JFormField
             	foreach ($cids as $cid) {
             		if ($cid == sprintf('%s;%s;%s',$row['datasetid'],$row['name'],$row['app_family'])) { $checked = true; break; }
             	}
-            	
+
+                if (isset($row['datasetid'])) {
+                    $row['datasetid'] = '';
+                }
+
             	$html[] = '<tr>';
 
             	$input = sprintf('<td><input type="checkbox" id="cb%s"',$key);

@@ -218,7 +218,6 @@ class DemoApiModelDemoApi extends JModelForm
         if (is_null($api_key) && !empty($parse_url['scheme'])) {
     		if (!HelperDemoApiApi::createApiKey($data)) {
     			JFactory::getApplication()->enqueueMessage('Cant create API keys','error');
-				return false;
     		} else {
     			JFactory::getApplication()->enqueueMessage('Your Token has been created','success');
     		}

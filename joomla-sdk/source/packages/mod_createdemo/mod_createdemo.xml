@@ -48,7 +48,7 @@
         			<option value="0">JNO</option>
 					<option value="1">JYES</option>
         		</field>
-                <field name="cid" type="datasetslist" label="Datasets" description="Customize datasets according with your module settings."></field>
+                <field name="cid" type="datasetslist" label="Available Datasets" description="Customize datasets according with your module settings."></field>
             <field name="top_text" label ="Message on top" description="Message visible above registration form" type="editor" filter="safehtml" />
         	</fieldset>
             <fieldset name="advanced">

@@ -17,13 +17,13 @@
     <fieldset name="template" label="Email Template" addfieldpath="/administrator/components/com_content/models/fields">
     	<field name="from" type="text" default="demosupport@cloudaccess.net" label="From" description="" />
     	<field name="fromname" type="text" default="Cloudaccess.net" label="From name" description="" />
-    	<field name="subject" type="text" default="Confirm your email address to create your Joomla! website" size="60" label="Subject" description="" />
+    	<field name="subject" type="text" default="Confirm your email address to launch your demo" size="60" label="Subject" description="" />
     	<field name="template_engine" type="list" label="Template Engine" default="0" description="Choose your template option">
 			<option value="0">Textarea</option>
 			<option value="1">Article</option>
 		</field>
     	<field name="body_aid" type="modal_article" label="Template Article" description="Put on your article special vars: %FIRSTNAME% and %LINK%" />
-    	<field name="body_content" type="textarea" default="Dear %FIRSTNAME%, please activate your demo site by this url: %LINK%" label="Body" description="Put your custom template body. Special vars: %FIRSTNAME% and %LINK%" />
+    	<field name="body_content" type="textarea" default="Hi %FIRSTNAME%, Please confirm your email address by visiting %LINK%. Once you visit the site, you’ll receive a second email with details on how to access the administration area of the site so you can begin developing. Thank you!" label="Body" description="Put your custom template body. Special vars: %FIRSTNAME% and %LINK%" />
     </fieldset>
 	<fieldset name="captcha" label="Captcha">
 		<field name="captcha_enabled" type="list" label="Enable Captcha" default="0" description="Enable and disable captcha">

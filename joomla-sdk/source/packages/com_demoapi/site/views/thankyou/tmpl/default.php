@@ -9,8 +9,7 @@ defined('_JEXEC') or die('Restricted access');
 .la-belle { font-family: 'La Belle Aurore', cursive; font-weight: 400; font-size: 38px; margin-top:30px;}
 .lato { font-family: 'Lato', sans-serif; font-weight: 400; font-size: 18px; }
 </style>
-<p class="la-belle">Thank You.<p>
-<p class="la-belle" style="font-size: 25px; ">You have successfully signed up for a free trial of Joomla!</p>
-<p class="lato">After launching the site you will receive a confirmation email with information about how to access your site and where you can find some help getting started.</p>
-<p class="lato">We recommend that you watch one of our free & live daily <a href="http://demo.joomla.org/register-for-a-live-webinar.html">webinars</a>. We host webinars every single day for all levels of Joomla! users. You can attend as many times as you'd like or watch a recorded version online. You can find more details about it in your welcome email.</p>
+<h1>Thank you!</h1>
+<h2>You have successfully launched a free demo trial site.</h2>
+<p>You will receive a welcome email with information about how to access your demo site, which is hosted by CloudAccess.net. Your demo site will eventually expire. Before it expires you can either upgrade to one of CloudAccess.net’s hosting & support packages or create a snapshot of the site which you can download to your computer.</p>
 <?php endif; ?>
