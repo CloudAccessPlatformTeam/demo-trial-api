@@ -21,16 +21,23 @@ class DemoApiController extends DRController
 
 	public function apply()
 	{
-		// Check for request forgeries.
-		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
-		
 		// Initialise variables.
 		$app	= JFactory::getApplication();
+
+		// Check for request forgeries.
+		if (!JSession::checkToken())
+		{
+			$app->enqueueMessage(JText::_('JINVALID_TOKEN'));
+			$app->redirect('index.php');
+		}
+
 		$model	= $this->getModel();
 		$form	= $model->getForm();
 		$data	= JRequest::getVar('jform', array(), 'post', 'array');
 		$id		= JRequest::getInt('id');
 		$option	= JRequest::getCmd('component');
+
+
 		
 		// Set FTP credentials, if given.
 		JClientHelper::setCredentialsFromRequest('ftp');
@@ -38,7 +45,7 @@ class DemoApiController extends DRController
 		// Check if the user is authorized to do this.
 		if (!JFactory::getUser()->authorise('core.admin', $option))
 		{
-			JFactory::getApplication()->redirect('index.php', JText::_('JERROR_ALERTNOAUTHOR'));
+			$app->redirect('index.php', JText::_('JERROR_ALERTNOAUTHOR'));
 			return;
 		}
 
@@ -63,8 +70,7 @@ class DemoApiController extends DRController
 			$app->setUserState('com_demoapi.config.global.data', $data);
 
 			// Redirect back to the edit screen.
-			$this->setRedirect(JRoute::_('index.php?option=demoapi', false));
-			return false;
+			$app->redirect(JRoute::_('index.php?option=demoapi', false));
 		}
 
 		// Attempt to save the configuration.
@@ -83,7 +89,7 @@ class DemoApiController extends DRController
 
 			// Save failed, go back to the screen and display a notice.
 			$message = JText::sprintf('JERROR_SAVE_FAILED', $model->getError());
-			$this->setRedirect('index.php?option=com_demoapi', $message, 'error');
+			$app->redirect(JRoute::_('index.php?option=com_demoapi', false), $message, 'error');
 			return false;
 		}
 
@@ -93,11 +99,9 @@ class DemoApiController extends DRController
 			case 'save':
 			case 'apply':
 				$message = JText::_('COM_DEMOAPI_SAVE_SUCCESS');
-				$this->setRedirect('index.php?option=com_demoapi', $message);
+				$app->redirect(JRoute::_('index.php?option=com_demoapi', false), $message);
 				break;
 		}
-
-		return true;
 	}
 
 	public function remove()
