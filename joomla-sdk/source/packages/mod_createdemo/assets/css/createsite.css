@@ -5,19 +5,19 @@
  * @copyright Copyright (C) 2008 - 2012 Cloudaccess.net, LLC
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  */
- 
- /** this is css file **/
+
+/** this is css file **/
 
 /* 1. Clearfix
 ------------------------------------------------------------------------------*/
 
 .clearfix-ca:after {
-	visibility: hidden;
-	display: block;
-	font-size: 0;
-	content: " ";
-	clear: both;
-	height: 0;
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
 }
 * html .clearfix-ca             { zoom: 1; } /* IE6 */
 *:first-child+html .clearfix-ca { zoom: 1; } /* IE7 */
@@ -26,82 +26,82 @@
 ------------------------------------------------------------------------------*/
 
 span.validationRed {
-	border:1px solid #ff0000;
+    border:1px solid #ff0000;
 }
 
 input[type="text"].validationRed {
-	border:1px solid #ff0000;
-	background: url("../images/invalid.png") no-repeat 98% center #FFF;
+    border:1px solid #ff0000;
+    background: url("../images/invalid.png") no-repeat 98% center #FFF;
 }
 
 span.validationGreen {
-	border:1px solid #1a3867;
+    border:1px solid #599722;
 }
 
 input[type="text"].validationGreen {
-	border:1px solid #1a3867;
-	background: url("../images/valid.png") no-repeat 98% center #FFF;
+    border:1px solid #599722;
+    background: url("../images/valid.png") no-repeat 98% center #FFF;
 }
 
 /* 3. ReCaptcha 
 ------------------------------------------------------------------------------*/
 
 #signup_inwrapper #recpatchareponseHelp {
-	margin:0;
-	padding:0;
+    margin:0;
+    padding:0;
 }
 
 #signup_inwrapper #recaptcha_response_field {
-	width:73%;
-	float:left;
-	margin-bottom: 8px;
+    width:73%;
+    float:left;
+    margin-bottom: 8px;
 }
 
-.signup_header_sub {	
-  font-size: 13px;
-  font-weight: bold;
-  margin-bottom: 0;
-	margin-top: 0;
+.signup_header_sub {
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 0;
+    margin-top: 0;
 }
 
 #recaptcha_image {
-	display:inline;
+    display:inline;
 }
 
 #recaptcha_image img {
-	width:272px;
-	margin-bottom:5px;
-	display:block;
-	border:1px solid #1a3867;
-	-webkit-box-shadow:0 1px 0 #8ca6cf;
-	   -moz-box-shadow:0 1px 0 #8ca6cf; 
-	        box-shadow:0 1px 0 #8ca6cf;
+    width:272px;
+    margin-bottom:5px;
+    display:block;
+    border:1px solid #1a3867;
+    -webkit-box-shadow:0 1px 0 #8ca6cf;
+    -moz-box-shadow:0 1px 0 #8ca6cf;
+    box-shadow:0 1px 0 #8ca6cf;
 }
 
 #cursorBlink {
-	display:inline-block;
+    display:inline-block;
 }
 
 #recaptcha_widget a {
-	color: #fff;
-  font-family: arial;
-  font-weight: bold;
-	margin-left: 10px;
+    color: #fff;
+    font-family: arial;
+    font-weight: bold;
+    margin-left: 10px;
 }
 
 #recaptcha_widget a {
-	float:right;
+    float:right;
 }
 
 #signup_inwrapper p.dn {
-	display: none;
+    display: none;
 }
 
 /* 3. Helpers 
 ------------------------------------------------------------------------------*/
 
-.demo-signup *, 
-.demo-signup *:after, 
+.demo-signup *,
+.demo-signup *:after,
 .demo-signup *:before {
-  box-sizing: border-box !important;
+    box-sizing: border-box !important;
 }

@@ -98,8 +98,9 @@ class DemoApiController extends DRController
 		{
 			case 'save':
 			case 'apply':
-				$message = JText::_('COM_DEMOAPI_SAVE_SUCCESS');
-				$app->redirect(JRoute::_('index.php?option=com_demoapi', false), $message, 'success');
+                $message = JText::_('COM_DEMOAPI_SAVE_SUCCESS');
+                $app->enqueueMessage($message);
+                $app->redirect(JRoute::_('index.php?option=com_demoapi', false));
 				break;
 		}
 	}
