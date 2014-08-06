@@ -88,7 +88,11 @@ class DemoApiController extends DRController
 			$app->setUserState('com_demoapi.config.global.data', $data);
 
 			// Save failed, go back to the screen and display a notice.
-			$message = JText::sprintf('JERROR_SAVE_FAILED', $model->getError());
+            $message_reason = $model->getError();
+            if ($message_reason === false) {
+                $message_reason = 'cant save data';
+            }
+			$message = JText::sprintf('JERROR_SAVE_FAILED', $message_reason);
 			$app->redirect(JRoute::_('index.php?option=com_demoapi', false), $message, 'error');
 			return false;
 		}

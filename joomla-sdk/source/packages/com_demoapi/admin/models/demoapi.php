@@ -143,6 +143,9 @@ class DemoApiModelDemoApi extends JModelForm
 		||	$lang->load($option, JPATH_BASE, $lang->getDefault(), false, false)
 		||	$lang->load($option, JPATH_BASE . "/components/$option", $lang->getDefault(), false, false);
 
+        //clear system cache
+        $cache = JFactory::getCache('_system', 'callback');
+        $cache->remove('_system');
 		$result = JComponentHelper::getComponent($option);
 
 		return $result;
