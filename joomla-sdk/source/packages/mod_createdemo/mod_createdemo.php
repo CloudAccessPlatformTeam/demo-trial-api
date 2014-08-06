@@ -12,28 +12,30 @@ defined('_JEXEC') or die( 'Restricted access' );
 jimport('joomla.application.component.helper');
 jimport('legacy.component.helper');
 
-require_once __DIR__.'/helper.php';
+if (!class_exists('createSiteHelper')) {
+    require_once __DIR__.'/helper.php';
+}
 $helper = new createSiteHelper;
 $helper->initialise();
 
-$applicationsOptions = array();
+$datasetsOptions = array();
+$applicationOptions = array();
 $cids = $params->get('cid');
 if (!empty($cids)) {
-    foreach ($cids as $cid) {
+    foreach ($cids as $key => $cid) {
         $parts = explode(';', $cid);
-        $app_family = end($parts);
-        $families = explode(',',$app_family);
-        foreach ($families as $value) {
-            $text = str_replace('-',' ',$value);
-            $applicationsOptions[$value] = $text;
+        $datasetsOptions[$parts[0]] = $parts[1];
+        if ($key == 0) {
+            $applicationOptions[$parts[2]] = str_replace('-',' ',$parts[2]);
         }
     }
 } else {
-    $applicationsOptions['joomla-1.5'] = 'joomla 1.5';
-    $applicationsOptions['joomla-2.5'] = 'joomla 2.5';
-    $applicationsOptions['joomla-3.1'] = 'joomla 3.1';
-    $applicationsOptions['joomla-3.2'] = 'joomla 3.2';
-    $applicationsOptions['joomla-3.3'] = 'joomla 3.3';
+    $datasetsOptions[''] = 'Core';
+    $applicationOptions['joomla-1.5'] = 'joomla 1.5';
+    $applicationOptions['joomla-2.5'] = 'joomla 2.5';
+    $applicationOptions['joomla-3.1'] = 'joomla 3.1';
+    $applicationOptions['joomla-3.2'] = 'joomla 3.2';
+    $applicationOptions['joomla-3.3'] = 'joomla 3.3';
 }
 $doc = JFactory::getDocument();
 if (JVERSION < 3.0) {

@@ -74,11 +74,12 @@ class JFormFieldDatasetslist extends JFormField
             foreach ($list['datasets']['joomla'] as $key => $row) {
                   $row['tag'] = !empty($row['tag']) ? $row['tag'] : '' ;
             	$checked = false;
+
             	foreach ($cids as $cid) {
             		if ($cid == sprintf('%s;%s;%s',$row['datasetid'],$row['name'],$row['app_family'])) { $checked = true; break; }
             	}
 
-                if (isset($row['datasetid'])) {
+                if (!isset($row['datasetid'])) {
                     $row['datasetid'] = '';
                 }
 

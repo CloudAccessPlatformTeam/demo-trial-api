@@ -99,17 +99,20 @@ custom_theme_widget: 'recaptcha_widget'
 			<span id="postcodeHelp" class="example" style="display: none;"></span>
 		</p>
 		<?php endif; ?>
-        <?php if (!empty($applicationsOptions)): ?>
+        <?php if (!empty($datasetsOptions)): ?>
             <p>
-                <span class="select" id="selectapplication">Joomla 1.5</span>
-                <select size="1" class="styled" name="application" id="application">
-                    <?php foreach ($applicationsOptions as $value => $text): ?>
+                <select class="input-block-level" name="dataset" id="dataset">
+                    <?php foreach ($datasetsOptions as $value => $text): ?>
                         <option value="<?php echo $value; ?>"><?php echo $text; ?></option>
                     <?php endforeach; ?>
                 </select>
             </p>
             <p>
-                <?php echo $form->getInput('dataset'); ?>
+                <select class="input-block-level" name="application" id="application">
+                    <?php foreach ($applicationOptions as $value => $text): ?>
+                        <option value="<?php echo $value; ?>"><?php echo $text; ?></option>
+                    <?php endforeach; ?>
+                </select>
             </p>
         <?php endif; ?>
 		<p>

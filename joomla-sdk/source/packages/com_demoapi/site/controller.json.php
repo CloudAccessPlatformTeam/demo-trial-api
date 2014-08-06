@@ -159,13 +159,11 @@ class DemoApiController extends DRController
         jimport( 'joomla.registry.registry' );
 
         $input = JFactory::getApplication()->input;
-        $application = $input->get('application','','string');
-        $family = $input->get('family','','string');
+        $dataset_id = $input->get('pid',0,'int');
         $module_id = $input->get('mid',0,'int');
         $options = array();
 
-        if (!empty($application) || empty($family) || $module_id) {
-
+        if ($dataset_id >= 0 && $module_id >= 0) {
             $db = JFactory::getDbo();
             // get module and check access level permision
             $query = $db->getQuery(true);
@@ -176,19 +174,21 @@ class DemoApiController extends DRController
             $params = $db->loadResult();
             if (!empty($params)) {
                 $moduleParams = new JRegistry($params);
-
                 $cids = $moduleParams->get('cid');
                 if (!empty($cids)) {
                     foreach ($cids as $cid) {
                         $parts = explode(';', $cid);
                         $value = $parts[0];
-                        $app_family = end($parts);
-                        if (strpos($app_family,$family) === false) continue;
-                        $text = $parts[1];
-                        $options[] = array(
-                            'value' => $value,
-                            'text' => $text
-                        );
+                        if ($value == $dataset_id) {
+                            $family_versions = explode(',', $parts[2]);
+                            foreach ($family_versions as $family_version) {
+                                $family_version = trim($family_version);
+                                $options[] = array(
+                                    'value' => $family_version,
+                                    'text' => str_replace('-',' ',$family_version)
+                                );
+                            }
+                        }
                     }
                 }
             }

@@ -150,19 +150,20 @@ $document->addStyleSheet('modules/' . $module->module . '/assets/css/createsite.
                         </p>
                     <?php endif; ?>
 
-                    <?php if (!empty($applicationsOptions)): ?>
+                    <?php if (!empty($datasetsOptions)): ?>
                         <p>
-                            <select class="input-block-level" name="application" id="application">
-                                <?php foreach ($applicationsOptions as $value => $text): ?>
+                            <select class="input-block-level" name="dataset" id="dataset">
+                                <?php foreach ($datasetsOptions as $value => $text): ?>
                                     <option value="<?php echo $value; ?>"><?php echo $text; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </p>
                         <p>
-                            <?php
-                            $form->setFieldAttribute('dataset','class','input-block-level');
-                            echo $form->getInput('dataset');
-                            ?>
+                            <select class="input-block-level" name="application" id="application">
+                                <?php foreach ($applicationOptions as $value => $text): ?>
+                                    <option value="<?php echo $value; ?>"><?php echo $text; ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </p>
                     <?php endif; ?>
 

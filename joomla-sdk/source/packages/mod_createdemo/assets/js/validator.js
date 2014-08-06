@@ -464,51 +464,48 @@ jQuery(document).ready(function() {
         }
 
         // add on change to application field
-        jQuery('#application').change(function() {
-            var family = jQuery('#application').val();
-            var app = family.split('-');
+        jQuery('#dataset').change(function() {
+            var pid = jQuery('#dataset').val();
             jQuery.ajax({
                 dataType: 'json',
-                url: 'index.php?option=com_demoapi&format=json&task=listdatasets&application='+app[0]+'&family='+family+'&mid='+mid,
+                url: 'index.php?option=com_demoapi&format=json&task=listdatasets&pid='+pid+'&mid='+mid,
                 beforeSend: function( xhr, settings ) {
                     //jQuery('#selectdataset').addClass('disabled').text('Loading...');
-                    jQuery('#dataset').attr('disabled','disabled').find('option')
+                    jQuery('#application').attr('disabled','disabled').find('option')
                         .remove()
                         .end()
                         .append('<option value="">Loading...</option>')
                         .val('');
                     // check if chosen are in use
                     if ((jQuery().chosen != undefined)) {
-                        jQuery('#dataset').chosen({disable_search_threshold: 10}).trigger("chosen:updated");
+                        jQuery('#application').chosen({disable_search_threshold: 10}).trigger("chosen:updated");
                     }
                 },
                 success: function (response) {
                     //jQuery('#selectdataset').removeClass('disabled').text('Default Installation');
-                    jQuery('#dataset').find('option')
+                    jQuery('#application').find('option')
                         .remove()
-                        .end()
-                        .append('<option value="">Default Installation</option>')
-                        .val('').removeAttr('disabled');
+                        .end().removeAttr('disabled');
                     if (response.length) {
                         jQuery.each(response,function(){
                             value = this.value;
                             text = this.text;
-                            jQuery('#dataset').append('<option value="'+value+'">'+text+'</option>');
+                            jQuery('#application').append('<option value="'+value+'">'+text+'</option>');
                         });
                     }
                     // check if chosen are in use
                     if ((jQuery().chosen != undefined)) {
-                        jQuery('#dataset').chosen({disable_search_threshold: 10}).trigger("chosen:updated");
+                        jQuery('#application').chosen({disable_search_threshold: 10}).trigger("chosen:updated");
                     }
                 }
             });
         });
 
-        jQuery('#dataset').change(function(){
-            jQuery('#selectdataset').text(jQuery(this).find("option:selected").text());
+        jQuery('#application').change(function(){
+            jQuery('#selectapplication').text(jQuery(this).find("option:selected").text());
         });
 
-        jQuery('#application').trigger('change');
+        jQuery('#dataset').trigger('change');
 
         function caCheckFormBeforeSubmit() {
             var nextStep = true;
