@@ -159,11 +159,11 @@ class DemoApiController extends DRController
         jimport( 'joomla.registry.registry' );
 
         $input = JFactory::getApplication()->input;
-        $dataset_id = $input->get('pid',0,'int');
+        $dataset_id = $input->get('pid','','string');
         $module_id = $input->get('mid',0,'int');
         $options = array();
 
-        if ($dataset_id >= 0 && $module_id >= 0) {
+        if ($module_id >= 0) {
             $db = JFactory::getDbo();
             // get module and check access level permision
             $query = $db->getQuery(true);
@@ -190,6 +190,30 @@ class DemoApiController extends DRController
                             }
                         }
                     }
+                }
+
+                //default
+                if ($dataset_id == '' && empty($options)) {
+                    $options[] = array(
+                        'value' => 'joomla-1.5',
+                        'text' => 'joomla 1.5'
+                    );
+                    $options[] = array(
+                        'value' => 'joomla-2.5',
+                        'text' => 'joomla 2.5'
+                    );
+                    $options[] = array(
+                        'value' => 'joomla-3.1',
+                        'text' => 'joomla 3.1'
+                    );
+                    $options[] = array(
+                        'value' => 'joomla-3.2',
+                        'text' => 'joomla 3.2'
+                    );
+                    $options[] = array(
+                        'value' => 'joomla-3.3',
+                        'text' => 'joomla 3.3'
+                    );
                 }
             }
         }

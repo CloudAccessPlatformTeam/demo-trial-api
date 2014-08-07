@@ -204,15 +204,8 @@ $document->addStyleSheet('modules/' . $module->module . '/assets/css/createsite.
 
                     <p id="submitWholeForm" class="text-center">
             <span id="mysubtbttn">
-            <!--input value="Click here to launch your Joomla! instance" name="demoSubmit" id="demoSubmit" type="submit" / -->
             <input type="button" id="demoSubmit" class="btn launchBtn" name="demoSubmit" value="Launch Application"/>
             </span>
-
-                        <!--
-<span id="aftersubtbttn">
-             <img src="modules/<?php echo $module->module; ?>/assets/images/hold_after_submit.png" width="259" height="75" />
-            </span>
--->
                     </p>
                 </div>
             </div>
