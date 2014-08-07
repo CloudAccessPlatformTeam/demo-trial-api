@@ -143,10 +143,15 @@ class DemoApiModelDemoApi extends JModelForm
 		||	$lang->load($option, JPATH_BASE, $lang->getDefault(), false, false)
 		||	$lang->load($option, JPATH_BASE . "/components/$option", $lang->getDefault(), false, false);
 
-        //clear system cache
-        $cache = JFactory::getCache('_system', 'callback');
-        $cache->remove('_system');
-		$result = JComponentHelper::getComponent($option);
+        //load component
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true)
+            ->select('extension_id AS id, element AS "option", params, enabled')
+            ->from('#__extensions')
+            ->where($db->quoteName('type') . ' = ' . $db->quote('component'))
+            ->where($db->quoteName('element') . ' = ' . $db->quote($option));
+        $db->setQuery($query);
+        $result = $db->loadObject();
 
 		return $result;
 	}
