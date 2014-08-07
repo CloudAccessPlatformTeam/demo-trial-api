@@ -118,8 +118,7 @@ class DemoApiModelDemoApi extends JModelForm
 			return false;
 		}
 		
-		$option = $this->getState('component.option');
-		$result = JComponentHelper::getComponent($option);
+		$result = $this->getComponent();
 		$form->bind($result->params);
 
 		return $form;
@@ -131,7 +130,7 @@ class DemoApiModelDemoApi extends JModelForm
 	 * @return	object
 	 * @since	1.6
 	 */
-	function getComponent()
+	public function getComponent()
 	{
 		// Initialise variables.
 		$option = $this->getState('component.option');
@@ -152,6 +151,8 @@ class DemoApiModelDemoApi extends JModelForm
             ->where($db->quoteName('element') . ' = ' . $db->quote($option));
         $db->setQuery($query);
         $result = $db->loadObject();
+
+        $result->params = json_decode($result->params, true);
 
 		return $result;
 	}
