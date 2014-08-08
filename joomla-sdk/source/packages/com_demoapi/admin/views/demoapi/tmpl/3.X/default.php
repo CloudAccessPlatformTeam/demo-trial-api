@@ -28,6 +28,7 @@ JHtml::_('formbehavior.chosen', 'select');
 <form action="<?php echo JRoute::_('index.php?option=com_demoapi');?>" id="component-form" method="post" name="adminForm" autocomplete="off" class="form-validate form-horizontal">
     <div class="row-fluid">
         <div class="span10">
+            <p><?php echo JText::_('MOD_CREATEDEMO_CONTENT_DESCRIPTION'); ?></p>
             <ul class="nav nav-tabs" id="configTabs">
                 <?php
                 $fieldSets = $this->form->getFieldsets();

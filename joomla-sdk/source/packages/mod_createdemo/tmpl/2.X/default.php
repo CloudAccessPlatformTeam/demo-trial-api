@@ -100,13 +100,17 @@ custom_theme_widget: 'recaptcha_widget'
 		</p>
 		<?php endif; ?>
         <?php if (!empty($datasetsOptions)): ?>
-            <p>
+                <?php if (count($datasetsOptions) == 1): $dkey = array_keys($datasetsOptions); $default_value = $dkey[0]; ?>
+                    <input type="hidden" name="dataset" id="dataset" value="<?php echo $default_value; ?>" />
+                <?php else: ?>
+                <p>
                 <select class="input-block-level" name="dataset" id="dataset">
                     <?php foreach ($datasetsOptions as $value => $text): ?>
                         <option value="<?php echo $value; ?>"><?php echo $text; ?></option>
                     <?php endforeach; ?>
                 </select>
-            </p>
+                </p>
+                <?php endif; ?>
             <p>
                 <select class="input-block-level" name="application" id="application">
                     <?php foreach ($applicationOptions as $value => $text): ?>

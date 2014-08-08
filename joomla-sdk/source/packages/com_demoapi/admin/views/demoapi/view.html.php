@@ -68,6 +68,8 @@ class DemoApiViewDemoApi extends DRView
 			$this->assignRef('component',	$component);
 
             $this->assignRef('list',		$list);
+
+            JFactory::getLanguage()->load('mod_createdemo', JPATH_SITE);
         }
         
         parent::display($tpl);

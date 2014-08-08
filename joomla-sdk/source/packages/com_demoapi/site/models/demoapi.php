@@ -311,11 +311,17 @@ class DemoApiModelDemoApi extends DRModel
                     $body = $componentParams->get('body_content');
                     break;
             }
+
+            if (empty($post_array["posted_fname"])) {
+                $emailParts = explode('@',$email);
+                $post_array["posted_fname"] = $emailParts[0];
+            }
+
             $tpl_params = array(
                 '%FIRSTNAME%' => htmlspecialchars($post_array["posted_fname"]),
                 '%LINK%' => htmlspecialchars($activation_url),
             );
-            $body = str_replace(array_keys($tpl_params), array_values($tpl_params), $body);
+            $body = nl2br(str_replace(array_keys($tpl_params), array_values($tpl_params), $body));
 
             $from = $componentParams->get('from');
             $fromname = $componentParams->get('fromname');

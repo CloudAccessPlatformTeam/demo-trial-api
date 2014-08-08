@@ -48,6 +48,7 @@ JHtml::_('behavior.formvalidation');
         $('jform_template_engine').fireEvent('change');
     }
 </script>
+<p><?php echo JText::_('MOD_CREATEDEMO_CONTENT_DESCRIPTION'); ?></p>
 <form action="<?php echo JRoute::_('index.php?option=com_demoapi');?>" id="component-form" method="post" name="adminForm" autocomplete="off" class="form-validate">
 	<?php
 	echo JHtml::_('tabs.start', 'config-tabs-'.$this->component->option.'_configuration', array('useCookie'=>1));

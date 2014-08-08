@@ -51,8 +51,7 @@ class JFormFieldDatasetslist extends JFormField
             $cids = !empty($this->value) ? $this->value :  array() ;
 
             if (!empty($this->element['description'])) {
-            	$html[] = '<br clear="all" /><hr>';
-			$html[] = sprintf('<p>%s</p>', $this->element['description']);
+            	$html[] = '<br clear="all" />';
             }
 
             $checkbox = (JVERSION >= 3) ? JHtml::_('grid.checkall') : '<input type="checkbox" name="checkall-toggle" value="" title="Check All" onclick="Joomla.checkAll(this)" />';

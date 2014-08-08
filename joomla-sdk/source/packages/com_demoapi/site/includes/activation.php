@@ -52,7 +52,15 @@ class Activation
 	static function generateURL($code)
 	{
 		$config = JComponentHelper::getParams('com_demoapi');
-		return $config->get('activation_url',JFactory::getURI()->root().'/').'index.php?option=com_demoapi&task=activate&code=' . urlencode($code);
+        $root_url = JFactory::getURI()->root();
+        if (substr($root_url,-1) != '/') {
+            $root_url .= '/';
+        }
+        $activation_link = $config->get('activation_url',$root_url);
+        if (substr($activation_link,-1) != '/') {
+            $activation_link .= '/';
+        }
+		return $activation_link.'index.php?option=com_demoapi&task=activate&code=' . urlencode($code);
 	}
 
     /**

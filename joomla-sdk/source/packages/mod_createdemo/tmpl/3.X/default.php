@@ -151,13 +151,17 @@ $document->addStyleSheet('modules/' . $module->module . '/assets/css/createsite.
                     <?php endif; ?>
 
                     <?php if (!empty($datasetsOptions)): ?>
-                        <p>
-                            <select class="input-block-level" name="dataset" id="dataset">
-                                <?php foreach ($datasetsOptions as $value => $text): ?>
-                                    <option value="<?php echo $value; ?>"><?php echo $text; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </p>
+                        <?php if (count($datasetsOptions) == 1): $dkey = array_keys($datasetsOptions); $default_value = $dkey[0]; ?>
+                            <input type="hidden" name="dataset" id="dataset" value="<?php echo $default_value; ?>" />
+                        <?php else: ?>
+                            <p>
+                                <select class="input-block-level" name="dataset" id="dataset">
+                                    <?php foreach ($datasetsOptions as $value => $text): ?>
+                                        <option value="<?php echo $value; ?>"><?php echo $text; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </p>
+                        <?php endif; ?>
                         <p>
                             <select class="input-block-level" name="application" id="application">
                                 <?php foreach ($applicationOptions as $value => $text): ?>
@@ -198,7 +202,7 @@ $document->addStyleSheet('modules/' . $module->module . '/assets/css/createsite.
                     </p>
 
                     <p class="termsOfServices">
-                        <label class="checkbox"><input type="checkbox" id="tos" class="" name="tos" value="1"> By Launching a Joomla! demo site, you are agreeing to the <a href="http://demo.joomla.org/terms-of-service.html" target="_blank">Terms of Service</a>.</label>
+                        <label class="checkbox"><input type="checkbox" id="tos" class="" name="tos" value="1"> By launching, you agree to the <a href="http://www.cloudaccess.net/terms-of-service.html" target="_blank">Terms of Service</a>.</label>
                         <span id="termsOfServicesHelp" class="example" style="display: none;">You must agree to Terms of Service.</span>
                     </p>
 

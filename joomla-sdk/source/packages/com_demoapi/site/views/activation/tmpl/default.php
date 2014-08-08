@@ -10,8 +10,8 @@
 defined ('_JEXEC') or die ('Restricted access');
 JHTML::_('behavior.modal');
 ?>
-<div id="activationmodal">
-    <img src="modules/mod_createsite/assets/images/loading.gif" />
+<div id="activationmodal" style="text-align: center;">
+    <img src="<?php echo JFactory::getURI()->root(); ?>modules/mod_createdemo/assets/images/loading.gif" />
     <p><?php echo JText::_('COM_DEMOAPI_CREATION_SITE'); ?></p>
 </div>
 <script>
