@@ -319,15 +319,21 @@ class DemoApiModelDemoApi extends DRModel
 
             $tpl_params = array(
                 '%FIRSTNAME%' => htmlspecialchars($post_array["posted_fname"]),
-                '%LINK%' => htmlspecialchars($activation_url),
+                '%LINK%' => '<a href="' . htmlspecialchars($activation_url) . '">'.$activation_url.'</a>',
             );
-            $body = nl2br(str_replace(array_keys($tpl_params), array_values($tpl_params), $body));
+            $body = str_replace(array_keys($tpl_params), array_values($tpl_params), nl2br($body));
+
+            //replace /r
+            $body = str_replace('\r','',$body);
+            //replace /n
+            $body = str_replace('\n','<br />',$body);
+
 
             $from = $componentParams->get('from');
             $fromname = $componentParams->get('fromname');
             $recipient = array($email);
             $subject = $componentParams->get('subject');
-            return JFactory::getMailer()->sendMail($from, $fromname, $recipient, $subject, $body, true);
+            return JFactory::getMailer()->sendMail($from, $fromname, $recipient, $subject, $body, 1);
         } else {
             $this->error(implode('<br />',array_values($post_array["error_msg"])));
         }
