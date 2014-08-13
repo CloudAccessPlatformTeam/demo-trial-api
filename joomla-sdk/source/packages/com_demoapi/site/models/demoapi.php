@@ -382,9 +382,8 @@ class DemoApiModelDemoApi extends DRModel
         // Grab session
         $session = JFactory::getSession();
         $post_array = $session->get('demoapi');
-        $code = JRequest::getVar('code', false, 'get', 'STRING', JREQUEST_ALLOWRAW);
+        $code = !empty($_REQUEST['code']) ? $_REQUEST['code'] : false ;
         $componentParams = JComponentHelper::getParams('com_demoapi');
-
         if ($code) {
             $params = Activation::use_code($code);
 
@@ -503,11 +502,14 @@ class DemoApiModelDemoApi extends DRModel
                     }
                 }
             } else {
-                $f = fopen(JPATH_ROOT . DS . 'logs' . DS . 'badcode.log', 'a');
+                JFactory::getApplication()->enqueueMessage('Activation code was already used/expired.','error');
+                $f = fopen(JPATH_ROOT . DIRECTORY_SEPARATOR . 'logs' . DIRECTORY_SEPARATOR . 'badcode.log', 'a');
                 fwrite($f, "$code\n");
                 fclose($f);
                 throw new Exception('Bad Code');
             }
+        } else {
+            JFactory::getApplication()->enqueueMessage('Missing activation code!','error');
         }
     }
 

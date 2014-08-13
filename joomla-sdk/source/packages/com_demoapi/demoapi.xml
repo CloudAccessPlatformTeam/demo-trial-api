@@ -10,6 +10,7 @@
 	<version>3.0</version>
 	<description>COM_DEMOAPI_XML_DESCRIPTION</description>
 	<files folder="site">
+		<filename>router.php</filename>
 		<filename>controller.php</filename>
 		<filename>controller.json.php</filename>
 		<filename>demoapi.php</filename>
