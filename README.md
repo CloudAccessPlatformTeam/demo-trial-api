@@ -127,3 +127,17 @@ Validates the existance of an email for `CreateService`
 		error
 		err_code
 ```
+
+### ListAllowedSubdomains () ###
+Lists the allowed subdomains of cloudaccess.net for `CreateService`
+
+#### Response ####
+```
+    []
+		result (array)
+```
+```
+	[]
+		error
+		err_code
+```
