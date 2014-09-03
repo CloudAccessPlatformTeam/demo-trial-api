@@ -67,6 +67,10 @@ function checkProcess()
             } else {
                 window.setTimeout( 'SqueezeBox.close();document.location.href="";', 8000 );
             }
+        },
+        error: function (jqXHR, textStatus, errorThrown){
+            jQuery('#activationmodal').text(textStatus);
+            window.setTimeout( 'SqueezeBox.close();document.location.href="";', 8000 );
         }
     });
 }

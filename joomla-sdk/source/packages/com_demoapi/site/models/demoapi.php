@@ -13,6 +13,7 @@ defined('_JEXEC') or die('Restricted access');
 require_once JPATH_COMPONENT_SITE.'/includes/activation.php';
 require_once JPATH_COMPONENT_SITE.'/includes/validation.php';
 require_once JPATH_COMPONENT_SITE.'/includes/recaptchalib.php';
+require_once JPATH_COMPONENT_SITE.'/helpers/module.php';
 require_once JPATH_COMPONENT_ADMINISTRATOR.'/helpers/api.php';
 
 
@@ -177,6 +178,7 @@ class DemoApiModelDemoApi extends DRModel
         $post_array["posted_tos"] = trim($input->get('tos',0,'int'));
         $post_array["application"] = trim($input->get('application','','string'));
         $post_array["dataset"] = trim($input->get('dataset','','string'));
+
 
         //replace default values
         if ($post_array["posted_city"] == "City(Optional)") {
@@ -357,10 +359,6 @@ class DemoApiModelDemoApi extends DRModel
      */
     public function checkDomain($domain)
     {
-        if (strpos($domain,'.cloudaccess.net') === false) {
-            $domain .= '.cloudaccess.net';
-        }
-
         $parse_domain = parse_url($domain);
         $return = HelperDemoApiApi::call(array(
             'method' => 'CheckDomainExistance',
@@ -421,6 +419,11 @@ class DemoApiModelDemoApi extends DRModel
                     'access_token' => $this->getState('access_token')
                 );
 
+                //automaticaly add subdomain
+                $subdomain = $params['subdomain'];
+                if (strpos($demo_details['p_domain'],$subdomain) === false) {
+                    $demo_details['p_domain'] .= $subdomain;
+                }
 
                 // remove current code from database
                 $db = JFactory::getDbo();
@@ -431,16 +434,8 @@ class DemoApiModelDemoApi extends DRModel
 
                 // check if domain exists
                 if ($this->checkDomain($demo_details["p_domain"])) {
-                    if (strpos($demo_details['p_domain'],'.cloudaccess.net') === false) {
-                        $demo_details['p_domain'] .= '.cloudaccess.net';
-                    }
                     JFactory::getApplication()->enqueueMessage(sprintf('The URL %s that you had choosen during signup has now been taken. Please start the signup process over and choose a new URL.',$demo_details['p_domain']),'error');
                     JFactory::getApplication()->redirect(JFactory::getUri()->root());
-                }
-
-
-                if (strpos($demo_details['p_domain'],'.cloudaccess.net') === false) {
-                    $demo_details['p_domain'] .= '.cloudaccess.net';
                 }
 
                 $postData = array_merge($client_details, $demo_details, $api_details);

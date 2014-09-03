@@ -1,5 +1,6 @@
 <?php
 require_once 'php-phone-sanitizer/PhoneNumberSanitizer.php';
+require_once JPATH_COMPONENT_SITE.'/helpers/module.php';
 
 function demoapi_getparams()
 {
@@ -24,7 +25,8 @@ $fields = array(
 'billing_cycle',
 'billing_paymentmethod',
 'application',
-'dataset'
+'dataset',
+'subdomain'
 );
 
 
@@ -131,6 +133,9 @@ $pass .= $pass_dict[rand(0, strlen($pass_dict) - 1)];
 $pass .= $easy_pass[rand(0, strlen($easy_pass) - 1)];
 $params['password2'] = $pass;
 $params['currency'] = 'USD';
+
+    //module subdomain
+    $params['subdomain'] = DemoApiHelperModule::getParams($input->get('mid',0,'int'))->get('subdomain', '.cloudaccess.net');
 
 return $params;
 }

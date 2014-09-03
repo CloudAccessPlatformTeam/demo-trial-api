@@ -83,7 +83,7 @@ jQuery(document).ready(function() {
             else{
                 var sitenameValResult = jQuery('#sitename');
                 jQuery.ajax({
-                    url: 'index.php?option=com_demoapi&task=checkDomain&format=json',
+                    url: 'index.php?option=com_demoapi&task=checkDomain&format=json&mid='+mid,
                     data: {domain: sitenameVal},
                     success: function (response) {
                         if (response == 'true') {
@@ -101,7 +101,8 @@ jQuery(document).ready(function() {
                             jQuery('#hidden_error').hide('fast');
                             sitenameBlankIsOk = true;
                         } else {
-                            jQuery('#sitenameHelp').html(response);
+                            jsonData = JSON.parse(response);
+                            jQuery('#sitenameHelp').html(jsonData.error);
                             jQuery('#cursorBlink').html('');
                             jQuery('#sitenameHelp').css('display','block');
                             jQuery('#hidden_error').show('fast');
@@ -557,7 +558,7 @@ jQuery(document).ready(function() {
             if (!nextStep) return false;
 
             jQuery.ajax({
-                url: 'index.php?option=com_demoapi&task=checkDomain&format=json',
+                url: 'index.php?option=com_demoapi&task=checkDomain&format=json&mid='+mid,
                 data: {"domain": sitename.val().trim()},
                 success: function (domainAvailable) {
                     if (domainAvailable == 'false') {

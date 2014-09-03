@@ -107,7 +107,7 @@ class JFormFieldDatasetslist extends JFormField
             $html[] = '</table>';
         } else {
             JFactory::getApplication()->enqueueMessage('Please regenerate your token','error');
-		return implode($html);
+		    return implode($html);
         }
 
 	     return implode($html);

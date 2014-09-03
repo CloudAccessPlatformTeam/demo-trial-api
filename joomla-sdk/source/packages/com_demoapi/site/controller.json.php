@@ -11,6 +11,7 @@
 defined('_JEXEC') or die;
 
 require_once JPATH_COMPONENT_ADMINISTRATOR.'/helpers/api.php';
+require_once JPATH_COMPONENT_SITE.'/helpers/module.php';
 
 /**
  * Demo Register Controller for JSON format
@@ -137,12 +138,15 @@ class DemoApiController extends DRController
     {
         $input = JFactory::getApplication()->input;
         $domain = $input->get('domain','','string');
-
-        if (strpos($domain,'.cloudaccess.net') === false) {
-            $domain .= '.cloudaccess.net';
+        $subdomain = DemoApiHelperModule::getParams($input->get('mid',0,'int'))->get('subdomain','.cloudaccess.net');
+        if (strpos($domain,'http://') === false) {
+            $domain = 'http://'.$domain;
         }
-
+        if (strpos($domain,$subdomain) === false) {
+            $domain .= $subdomain;
+        }
         $parse_domain = parse_url($domain);
+
         $return = HelperDemoApiApi::call(array(
             'method' => 'CheckDomainExistance',
             'p_domain' => $parse_domain['host'] ? $parse_domain['host'] : $parse_domain['path']

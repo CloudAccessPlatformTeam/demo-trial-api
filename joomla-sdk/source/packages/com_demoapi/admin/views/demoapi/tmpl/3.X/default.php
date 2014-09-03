@@ -100,6 +100,13 @@ JHtml::_('formbehavior.chosen', 'select');
             jQuery('#template').find('.control-group:nth-child(5)').css('display','none');
         }
     });
-    jQuery('#jform_thankyou_engine').fire('click');
-    jQuery('#jform_template_engine').fire('click');
+    if (jQuery.isFunction(jQuery.fn.fire)) {
+        jQuery('#jform_thankyou_engine').fire('click');
+        jQuery('#jform_template_engine').fire('click');
+    } else if (jQuery.isFunction(jQuery.fn.trigger)) {
+        jQuery('#jform_thankyou_engine').trigger('click');
+        jQuery('#jform_thankyou_engine').trigger('click');
+    } else {
+        alert('Please update your jQuery!');
+    }
 </script>

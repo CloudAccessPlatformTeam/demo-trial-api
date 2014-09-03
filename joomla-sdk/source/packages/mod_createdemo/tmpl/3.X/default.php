@@ -60,7 +60,7 @@ $document->addStyleSheet('modules/' . $module->module . '/assets/css/createsite.
                         $form->setFieldAttribute('sitename','class','input-block-level');
                         echo $form->getInput('sitename');
                         ?>
-                        <span class="example">URL: <span class="demo_site_name"><span id="cursorBlink"><?php if(isset($post_array['posted_sname']) && $post_array['posted_sname'] != ''){ echo $post_array['posted_sname']; } ?></span> <strong>.</strong> cloudaccess.net</span></span>
+                        <span class="example">URL: <span class="demo_site_name"><span id="cursorBlink"><?php if(isset($post_array['posted_sname']) && $post_array['posted_sname'] != ''){ echo $post_array['posted_sname']; } ?></span> <strong>.</strong> <?php echo substr($params->get('subdomain','.cloudaccess.net'),1); ?></span></span>
                         <span id="sitenameHelp" class="example" style="display: none;"></span>
                     </p>
 
@@ -216,6 +216,7 @@ $document->addStyleSheet('modules/' . $module->module . '/assets/css/createsite.
             <input type="hidden" name="selectcopmanysize" value="">
             <input type="hidden" name="billing_cycle" value="Free Account" />
             <input type="hidden" name="billing_paymentmethod" value="nopayment" />
+            <input type="hidden" name="mid" id="mid" value="<?php echo $module->id; ?>">
         </form>
     </div>
 </div>
