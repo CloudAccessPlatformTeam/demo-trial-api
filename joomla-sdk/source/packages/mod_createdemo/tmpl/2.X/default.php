@@ -29,8 +29,7 @@ custom_theme_widget: 'recaptcha_widget'
 <form id="demoSignUp" name="demoSignUp" action="<?php echo JRoute::_('index.php?option=com_demoapi&amp;task=save'); ?>" method="post">
 <div id="signup_wrapper">
 	<div id="signup_inwrapper">
-		<p class="signup_header_title">Sign up for a free 30 day Joomla! Demo</p>
-		<p class="signup_header_sub">Fill out the form below and your free Joomla! demo will be ready instantly. You'll have access to every core Joomla feature, and you can begin developing your site using 3rd party extensions or templates.</p>
+		<p class="signup_header_title"><?php echo $params->get('top_text'); ?></p>
 		<p><span id="hidden_error" style="visibility:hidden;">Please fill all the information correctly.</span></p>
 		<p>
 			<?php
