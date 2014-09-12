@@ -611,7 +611,7 @@ jQuery(document).ready(function() {
                                 if (cantSubmit)
                                 {
                                     jQuery('#demoSubmit').addClass('launchBtn');
-                                    jQuery('#demoSubmit').attr('type', 'submit');
+                                    jQuery('#demoSubmit').prop('type', 'submit');
                                     jQuery('#hidden_error').show('fast');
                                     return false;
                                 }
@@ -619,8 +619,8 @@ jQuery(document).ready(function() {
                                 jQuery('#hidden_error').hide('fast');
                                 //jQuery('#demoSubmit').removeClass('launchBtn');
                                 jQuery('#demoSubmit').addClass('disabled').attr('disabled','disabled').val('Launching...');
-                                jQuery('#demoSubmit').attr('type', 'button');
-
+                                jQuery('#demoSubmit').prop('type', 'button');
+                                
                                 formCanSubmit = true;
 
                                 //submit
