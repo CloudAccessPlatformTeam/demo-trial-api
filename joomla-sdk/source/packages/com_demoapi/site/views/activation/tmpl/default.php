@@ -35,6 +35,7 @@ function checkProcess()
     jQuery.ajax({
         dataType: 'json',
         url: 'index.php?option=com_demoapi&task=checkStatus&format=json',
+        cache: false,
         success: function (response)
         {
             var emptyResponse = jQuery.isEmptyObject(response);
