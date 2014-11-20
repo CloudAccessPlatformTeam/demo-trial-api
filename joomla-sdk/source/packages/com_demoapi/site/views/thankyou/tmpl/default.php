@@ -10,6 +10,6 @@ defined('_JEXEC') or die('Restricted access');
 .lato { font-family: 'Lato', sans-serif; font-weight: 400; font-size: 18px; }
 </style>
 <h1>Thank you!</h1>
-<h2>Check your email, your demo is just a click away.</h2>
-<p>You will receive a welcome email with information about how to access your demo site, which is hosted by CloudAccess.net. Your demo site will eventually expire. Before it expires you can either upgrade to one of CloudAccess.net’s hosting & support packages or create a snapshot of the site which you can download to your computer.</p>
+<h2>Check your email, your new site is just a click away.</h2>
+<p>You will receive a welcome email with information about how to access your site, which is hosted by CloudAccess.net.</p>
 <?php endif; ?>
