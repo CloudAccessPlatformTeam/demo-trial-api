@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <extension type="package" version="1.7" method="upgrade">
-	<name>Demo API Package</name>
+	<name>CloudAccess.net API Package</name>
 	<packagename>demoapi</packagename>
 	<author>Cloudaccess.net</author>
 	<authorEmail>support@cloudaccess.net</authorEmail>
@@ -11,7 +11,7 @@
 	<version>3.0.1</version>
 	<packager>CloudAccess</packager>
 	<packagerurl></packagerurl>
-	<description>Demo Trial API component</description>
+	<description>CloudAccess.net API component</description>
 	<files folder="packages">
 		<file type="component" id="com_demoapi">com_demoapi</file>
 		<file type="module" id="mod_createdemo" client="site">mod_createdemo</file>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" client="site" version="2.5" method="upgrade">
-    <name>Create Demo</name>
+    <name>Launch Site</name>
     <author>cloudaccess.net</author>
     <creationDate>January 2013</creationDate>
     <authorEmail>gpl@cloudaccess.net</authorEmail>
@@ -51,7 +51,7 @@
                 <field name="subdomain" type="subdomains" label="Subdomain" description="Select a free subdomain.">
                 </field>
                 <field name="cid" type="datasetslist" label="Select Datasets" description="Customize datasets according with your module settings."></field>
-                <field name="top_text" label="Module Subtitle" description="Message visible above registration form" default="Instantly launch a 30 day demo." type="editor" filter="safehtml" />
+                <field name="top_text" label="Module Subtitle" description="Message visible above registration form" default="Instantly launch a pre-configured site" type="editor" filter="safehtml" />
         	</fieldset>
             <fieldset name="advanced">
                 <field name="layout" type="modulelayoutbyjoomlaversion"
