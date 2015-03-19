@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<metadata>
-	<layout title="Activation Page" option="com_demoapi">
-		<message>
-			<![CDATA[activation page for demo trial component]]>
-		</message>
-	</layout>
-</metadata>

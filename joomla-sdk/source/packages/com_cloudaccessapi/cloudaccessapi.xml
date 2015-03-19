@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="2.5.0" method="upgrade">
+	<name>com_cloudaccessapi</name>
+	<author>Cloudaccess.net</author>
+	<creationDate>January 2013</creationDate>
+	<copyright>(C) 2008 - 2011 Cloudaccess.net. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later</license>
+	<authorEmail>support@cloudaccess.net</authorEmail>
+	<authorUrl>www.cloudaccess.net</authorUrl>
+	<version>3.0.1</version>
+	<description>COM_CLOUDACCESSAPI_XML_DESCRIPTION</description>
+	<files folder="site">
+		<filename>router.php</filename>
+		<filename>controller.php</filename>
+		<filename>controller.json.php</filename>
+		<filename>cloudaccessapi.php</filename>
+		<folder>models</folder>
+		<folder>views</folder>
+		<folder>includes</folder>
+		<folder>helpers</folder>
+	</files>
+	<languages folder="site/languages">
+		<language tag="en-GB">en-GB.com_cloudaccessapi.ini</language>
+	</languages>
+	<install folder="admin">
+        <sql>
+            <file driver="mysql" charset="utf8">sql/mysql.install.sql</file>
+        </sql>
+    </install>
+    <uninstall folder="admin">
+        <sql>
+            <file driver="mysql" charset="utf8">sql/mysql.uninstall.sql</file>
+        </sql>
+    </uninstall>
+	<administration>
+		<files folder="admin">
+			<filename>cloudaccessapi.php</filename>
+			<filename>controller.php</filename>
+			<folder>views</folder>
+			<folder>helpers</folder>
+			<folder>includes</folder>
+			<folder>models</folder>
+			<folder>tables</folder>
+			<folder>sql</folder>
+			<filename>config.xml</filename>
+		</files>
+		<languages folder="admin/languages">
+			<language tag="en-GB">en-GB.com_cloudaccessapi.ini</language>
+			<language tag="en-GB">en-GB.com_cloudaccessapi.sys.ini</language>
+		</languages>
+	</administration>
+</extension>

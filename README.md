@@ -51,17 +51,27 @@ Lists the allowed datasets for `CreateService`
 			[datasets]
 				[joomla]
 					[0]
-						date_added
-						version
-						app_family
-						datasetid
 						name
+						app_family
+						tag
+						version
+						date_added
+						type
+						[options]
+                                preview_path
+                                description
+                        datasetid
 					[1]
-						date_added
-						version
-						app_family
-						datasetid
 						name
+						app_family
+						tag
+						version
+						date_added
+						type
+						[options]
+                                preview_path
+                                description
+                        datasetid
 			[families]
 				[joomla]
 					0
