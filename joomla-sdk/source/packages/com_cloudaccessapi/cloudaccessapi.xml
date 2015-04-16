@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="component" version="2.5.0" method="upgrade">
+<extension type="component" version="1.6.0" method="upgrade">
 	<name>com_cloudaccessapi</name>
 	<author>Cloudaccess.net</author>
 	<creationDate>January 2013</creationDate>
@@ -33,6 +33,9 @@
         </sql>
     </uninstall>
 	<administration>
+		<!-- Administration Menu Section -->
+        <menu img="">COM_CLOUDACCESSAPI</menu>
+
 		<files folder="admin">
 			<filename>cloudaccessapi.php</filename>
 			<filename>controller.php</filename>

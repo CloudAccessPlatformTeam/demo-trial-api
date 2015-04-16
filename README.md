@@ -1,6 +1,5 @@
 # demo-trial-api #
 
-
 API Methods
 ==============
 

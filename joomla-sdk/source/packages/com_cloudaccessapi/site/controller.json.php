@@ -199,24 +199,8 @@ class CloudaccessApiController extends DRController
                 //default
                 if ($dataset_id == '' && empty($options)) {
                     $options[] = array(
-                        'value' => 'joomla-1.5',
-                        'text' => 'joomla 1.5'
-                    );
-                    $options[] = array(
-                        'value' => 'joomla-2.5',
-                        'text' => 'joomla 2.5'
-                    );
-                    $options[] = array(
-                        'value' => 'joomla-3.1',
-                        'text' => 'joomla 3.1'
-                    );
-                    $options[] = array(
-                        'value' => 'joomla-3.2',
-                        'text' => 'joomla 3.2'
-                    );
-                    $options[] = array(
-                        'value' => 'joomla-3.3',
-                        'text' => 'joomla 3.3'
+                        'value' => 'joomla-3.4',
+                        'text' => 'Joomla 3.4'
                     );
                 }
             }

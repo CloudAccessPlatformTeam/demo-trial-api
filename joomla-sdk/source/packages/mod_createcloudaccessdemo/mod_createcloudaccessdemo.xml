@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" client="site" version="2.5" method="upgrade">
+<extension type="module" client="site" version="3.0" method="upgrade">
     <name>Launch Site</name>
     <author>cloudaccess.net</author>
     <creationDate>Feb 2015</creationDate>

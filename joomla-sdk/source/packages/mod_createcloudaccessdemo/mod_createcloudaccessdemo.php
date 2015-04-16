@@ -36,6 +36,7 @@ if (!empty($cids)) {
     $applicationOptions['joomla-3.1'] = 'joomla 3.1';
     $applicationOptions['joomla-3.2'] = 'joomla 3.2';
     $applicationOptions['joomla-3.3'] = 'joomla 3.3';
+    $applicationOptions['joomla-3.4'] = 'joomla 3.4';
 }
 $doc = JFactory::getDocument();
 if (JVERSION < 3.0) {
