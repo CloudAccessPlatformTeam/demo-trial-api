@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<metadata>
-	<layout title="Activation Page" option="com_cloudaccessapi">
-		<message>
-			<![CDATA[activation page for Cloudaccess demo trial component]]>
-		</message>
-	</layout>
-</metadata>
