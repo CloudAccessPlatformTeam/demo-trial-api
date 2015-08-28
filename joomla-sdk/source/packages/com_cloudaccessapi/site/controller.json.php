@@ -88,6 +88,7 @@ class CloudaccessApiController extends DRController
         $processes = $session->get('cloudaccessapi.process',array());
         $response = array();
         $remove = array();
+
         foreach ($processes as $id => $data) {
             if (empty($id)) {
                 $remove[] = $id;

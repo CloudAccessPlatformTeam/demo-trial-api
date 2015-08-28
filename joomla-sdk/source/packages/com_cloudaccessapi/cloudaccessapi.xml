@@ -2,12 +2,12 @@
 <extension type="component" version="1.6.0" method="upgrade">
 	<name>com_cloudaccessapi</name>
 	<author>Cloudaccess.net</author>
-	<creationDate>April 2015</creationDate>
+	<creationDate>Aug 2015</creationDate>
 	<copyright>(C) 2008 - 2011 Cloudaccess.net. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later</license>
 	<authorEmail>support@cloudaccess.net</authorEmail>
 	<authorUrl>www.cloudaccess.net</authorUrl>
-	<version>3.0.1</version>
+	<version>3.0.2</version>
 	<description>COM_CLOUDACCESSAPI_XML_DESCRIPTION</description>
 	<files folder="site">
 		<filename>controller.php</filename>

@@ -2,10 +2,10 @@
 <extension type="module" client="site" version="3.0" method="upgrade">
     <name>Launch Site</name>
     <author>cloudaccess.net</author>
-    <creationDate>Feb 2015</creationDate>
+    <creationDate>Aug 2015</creationDate>
     <authorEmail>gpl@cloudaccess.net</authorEmail>
     <authorUrl>http://www.cloudaccess.net</authorUrl>
-    <version>3.0.1</version>
+    <version>3.0.2</version>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
     <description>MOD_CREATECLOUDACCESSDEMO_CONTENT_DESCRIPTION</description>
     <files>

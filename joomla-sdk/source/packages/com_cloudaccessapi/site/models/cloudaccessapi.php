@@ -178,8 +178,7 @@ class CloudaccessApiModelCloudaccessApi extends DRModel
         $post_array["posted_tos"] = trim($input->get('tos',0,'int'));
         $post_array["application"] = trim($input->get('application','','string'));
         $post_array["dataset"] = trim($input->get('dataset','','string'));
-
-
+        
         //replace default values
         if ($post_array["posted_city"] == "City(Optional)") {
             $post_array["posted_city"] = "";
@@ -382,6 +381,8 @@ class CloudaccessApiModelCloudaccessApi extends DRModel
         $post_array = $session->get('cloudaccessapi');
         $code = !empty($_REQUEST['code']) ? $_REQUEST['code'] : false ;
         $componentParams = JComponentHelper::getParams('com_cloudaccessapi');
+        JLoader::import('helpers.api', JPATH_ADMINISTRATOR.'/components/com_cloudaccessapi');
+        
         if ($code) {
             $params = Activation::use_code($code);
 
@@ -405,11 +406,19 @@ class CloudaccessApiModelCloudaccessApi extends DRModel
                 $demo_details = array(
                     'p_domain' => $params["sitename"],
                     'p_application' => $params['application'],
-                    'p_datasetid' => $params["dataset"]
-//					'billingcycle' => $params["billing_cycle"],
-//					'paymentmethod' => $params["billing_paymentmethod"],
-//					'packageid'	=> $componentParams->get('packageid',141)
+                    'p_datasetid' => $params["dataset"],
+                    'p_pid' => NULL
                 );
+
+                //collect product id as per application and value settted in API settings in CCP
+                $create_application_ary = explode('-', $params['application']);
+                $create_application = strtolower(trim($create_application_ary[0]));
+                $listdatasetsResp = HelperCloudaccessApiApi::call(array('method' => 'ListDatasets', 'p_application' => $create_application));
+                if(is_array($listdatasetsResp['products'][$create_application]))
+                {
+                    $demo_details['p_pid'] = $listdatasetsResp['products'][$create_application][0];
+                }
+                
                 $api_details = array(
                     'client_id' => JComponentHelper::getParams('com_cloudaccessapi')->get('api_user'),
                     'token_type' => 'Bearer',
@@ -440,16 +449,7 @@ class CloudaccessApiModelCloudaccessApi extends DRModel
 
                 $postData = array_merge($client_details, $demo_details, $api_details);
 
-                // demo
-                /*
-				if ($demo_details['packageid'] == 141) {
-					if (strpos($demo_details['packageid'],'.cloudaccess.net') == false)
-						$demo_details['domain'] .= '.cloudaccess.net';
-				}
-                */
-
                 $api_call = sprintf('%s/api',JComponentHelper::getParams('com_cloudaccessapi')->get('api_host'));
-
                 $createServiceResponse = $this->http->post($api_call,$postData);
 
                 if ($createServiceResponse->code != 200) {

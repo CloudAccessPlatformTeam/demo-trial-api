@@ -41,30 +41,32 @@ function checkProcess()
             var emptyResponse = jQuery.isEmptyObject(response);
             var found = false;
 
-            if (response) {
-                jQuery.each( response, function( pid, process ) {
-                    if (process.status != 'running' && process.status != 'pending') {
-                        jQuery('#activationmodal').text('').html('');
-                        var p = document.createElement('p');
-                        if (process.status == 'succeeded') {
-                            msg = '<?php echo JText::_('com_CLOUDACCESSAPI_CREATION_SUCCESS'); ?>';
-                        } else if (status.status == 'failure') {
-                            msg = 'An error occur during creation process. '+process.status;
-                        } else {
-                            msg = 'An error occur during creation process. '+process.status;
-                        }
-                        p.innerHTML = msg;
-                        jQuery('#activationmodal').append(p);
-                    } else {
-                        found = true;
-                    }
-                });
-            } else {
+            if (response == null || response.length === 0) {
                 jQuery('#activationmodal').text('no processes are running.');
+                window.setTimeout( 'SqueezeBox.close();', 5000 );
+                return false;
+            } else {
+                jQuery.each( response, function( pid, process ) {
+                        if (process.status != 'running' && process.status != 'pending') {
+                            jQuery('#activationmodal').text('').html('');
+                            var p = document.createElement('p');
+                            if (process.status == 'succeeded') {
+                                msg = '<?php echo JText::_('com_CLOUDACCESSAPI_CREATION_SUCCESS'); ?>';
+                            } else if (status.status == 'failure') {
+                                msg = 'An error occur during creation process. '+process.status;
+                            } else {
+                                msg = 'An error occur during creation process. '+process.status;
+                            }
+                            p.innerHTML = msg;
+                            jQuery('#activationmodal').append(p);
+                        } else {
+                            found = true;
+                        }
+                });
             }
 
             if (found) {
-                window.setTimeout('checkProcess()', 6000);
+                window.setTimeout('checkProcess()', 5000);
             } else {
                 window.setTimeout( 'SqueezeBox.close();document.location.href="";', 8000 );
             }

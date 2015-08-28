@@ -20,9 +20,10 @@ Creates the demo service
  `p_postcode`        | String             | Yes      | User's postal code
  `p_country`         | String             | Yes      | User's country of residence
  `p_domain`          | String             | Yes      | Cloudaccess sub-domain to use for the application (without scheme or `www.`)
- `p_application`     | String             | Yes      | Application to be created. Format `name-version`, eg: `joomla-3.2`. The supported versions/families can be obtained via `ListDatasets`
+ `p_application`     | String             | Yes      | Application to be created. Format `name-version`, eg: `joomla-3.2`. The supported versions/families/product ids can be obtained via `ListDatasets`
  `p_datasetid`       | Integer            | No       | Dataset Id to use while creating the application. The supported datasets can be obtained via `ListDatasets`
- 
+ `p_pid`             | Integer            | No       | Product Id to use while creating the application. The supported product ids can be obtained via `ListDatasets` as per API settings in Cloud Control Panel
+
 #### Response ####
 ```
     []
@@ -75,6 +76,12 @@ Lists the allowed datasets for `CreateService`
 				[joomla]
 					0
 					1
+			[products]
+			    [joomla] 
+                    [0] => 12
+                
+
+        )		
 ```
 ```
 	[]

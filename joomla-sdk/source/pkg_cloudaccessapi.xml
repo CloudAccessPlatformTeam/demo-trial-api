@@ -5,10 +5,10 @@
 	<author>Cloudaccess.net</author>
 	<authorEmail>support@cloudaccess.net</authorEmail>
 	<authorUrl>www.cloudaccess.net</authorUrl>
-	<creationDate>26-February-2015</creationDate>
+	<creationDate>27-Aug-2015</creationDate>
 	<copyright>Copyright (C) 2010 - CloudAccess.net LCC</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-	<version>3.0.1</version>
+	<version>3.0.2</version>
 	<packager>CloudAccess</packager>
 	<packagerurl></packagerurl>
 	<description>CloudAccess.net API component</description>
