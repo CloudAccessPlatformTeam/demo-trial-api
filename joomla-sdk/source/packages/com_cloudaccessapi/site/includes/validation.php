@@ -43,99 +43,105 @@ $fields = array(
 $params = array();
         $input = JFactory::getApplication()->input;
         $fullname = $input->get('fullname','','string');
+        $lastname = '';
         $nameParts = explode(' ',$fullname);
         if (count($nameParts) == 1 && empty($nameParts[1]))
         {
-            $nameParts[1] = ' ';
+            $lastname = '';
         }
+        else
+        {
+            $firstname_len = strlen($nameParts[0]) + 1;
+            $lastname = substr($fullname, $firstname_len); 
+        }
+
         
+        $post = JRequest::get();
+        foreach($fields as $field)
+        {
+            if($field == "reason")
+            {
+                $params[$field] = "";
+                $listreasons = JRequest::getVar($field, NULL, 'post', 'array');
 
-$post = JRequest::get();
-foreach($fields as $field)
-{
-if($field == "reason")
-{
-$params[$field] = "";
-$listreasons = JRequest::getVar($field, NULL, 'post', 'array');
+                if($listreasons != NULL)
+                {
+                    $params[$field] = implode(" , ", $listreasons);
+                }
 
-if($listreasons != NULL)
-{
-$params[$field] = implode(" , ", $listreasons);
-}
+            }
+            else
+            {
+                $params[$field] = JRequest::getVar($field, NULL, 'post', 'string');
+            }	
+        }
 
-}
-else
-{
-$params[$field] = JRequest::getVar($field, NULL, 'post', 'string');
-}	
-}
+        //lowercase and delete whitespaces if exists
+        $params['sitename'] = strtolower($params['sitename']);
+        $params['sitename'] = str_replace(" ", "", $params['sitename']);
 
-//lowercase and delete whitespaces if exists
-    $params['sitename'] = strtolower($params['sitename']);
-$params['sitename'] = str_replace(" ", "", $params['sitename']);
-
-$params['username'] = $params['sitename'];
+        $params['username'] = $params['sitename'];
         if (empty($params['firstname']))
         {
             $params['firstname'] = $nameParts[0];
         }
         if (empty($params['lastname']))
         {
-            $params['lastname'] = $nameParts[1];
+            $params['lastname'] = $lastname;
         }
 
-if ($params["phonenumber"] == 'PhoneNumber(Optional)')
-{
-$params["phonenumber"] = "";
-}
-
-/* Sanitize phone number if entered by user */
-if(trim($params['phonenumber']) != "")
-{
-//replace ( ) - + from user input
-$params['phonenumber'] = str_replace("(", "", $params['phonenumber']);
-$params['phonenumber'] = str_replace(")", "", $params['phonenumber']);
-$params['phonenumber'] = str_replace("-", "", $params['phonenumber']);
-$params['phonenumber'] = str_replace(" ", "", $params['phonenumber']);	
-$params['phonenumber'] = str_replace("+", "", $params['phonenumber']);
-
-$sanitizer = new PhoneNumberSanitizer(false);
-$number = $params['phonenumber'];
-$params['rawPhone'] = $number;
-try
-{
-$params['phonenumber'] = $sanitizer->Sanitize($params['country'], $params['phonenumber']);
-}
-catch(PhoneNumberSanitizerCountryException $ex)
-{
-$log = fopen(JPATH_ROOT.'/logs/domaincreate.log', 'a');
-fwrite($f, $ex->getMessage() . "\n");
-fclose($log);
-}
-catch(PhoneNumberSanitizerException $ex)
-{
-$log = fopen(JPATH_ROOT.'/logs/domaincreate.log', 'a');
-fwrite($f, $ex->getMessage() . "\n");
-fclose($log);
-}
+        if ($params["phonenumber"] == 'PhoneNumber(Optional)')
+        {
+            $params["phonenumber"] = "";
         }
 
-/* Generate password */
-$easy_pass = 'abcdfghjkmnpqrstvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ';
-$pass_dict = "0123456789!abcdfghjkmnpqrstvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-srand((double)microtime()*1000000);
-$pass = '';
-$pass .= $easy_pass[rand(0, strlen($easy_pass) - 1)];
-for($i = 0; $i < rand(7, 9); $i++)
-{
-$pass .= $pass_dict[rand(0, strlen($pass_dict) - 1)];
-}
-$pass .= $easy_pass[rand(0, strlen($easy_pass) - 1)];
-$params['password2'] = $pass;
-$params['currency'] = 'USD';
+        /* Sanitize phone number if entered by user */
+        if(trim($params['phonenumber']) != "")
+        {
+            //replace ( ) - + from user input
+            $params['phonenumber'] = str_replace("(", "", $params['phonenumber']);
+            $params['phonenumber'] = str_replace(")", "", $params['phonenumber']);
+            $params['phonenumber'] = str_replace("-", "", $params['phonenumber']);
+            $params['phonenumber'] = str_replace(" ", "", $params['phonenumber']);	
+            $params['phonenumber'] = str_replace("+", "", $params['phonenumber']);
 
-    //module subdomain
-    $params['subdomain'] = CloudaccessApiHelperModule::getParams($input->get('mid',0,'int'))->get('subdomain', '.cloudaccess.net');
+            $sanitizer = new PhoneNumberSanitizer(false);
+            $number = $params['phonenumber'];
+            $params['rawPhone'] = $number;
+            try
+            {
+                $params['phonenumber'] = $sanitizer->Sanitize($params['country'], $params['phonenumber']);
+            }
+            catch(PhoneNumberSanitizerCountryException $ex)
+            {
+                $log = fopen(JPATH_ROOT.'/logs/domaincreate.log', 'a');
+                fwrite($f, $ex->getMessage() . "\n");
+                fclose($log);
+            }
+            catch(PhoneNumberSanitizerException $ex)
+            {
+                $log = fopen(JPATH_ROOT.'/logs/domaincreate.log', 'a');
+                fwrite($f, $ex->getMessage() . "\n");
+                fclose($log);
+            }
+        }
 
-return $params;
+        /* Generate password */
+        $easy_pass = 'abcdfghjkmnpqrstvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ';
+        $pass_dict = "0123456789!abcdfghjkmnpqrstvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        srand((double)microtime()*1000000);
+        $pass = '';
+        $pass .= $easy_pass[rand(0, strlen($easy_pass) - 1)];
+        for($i = 0; $i < rand(7, 9); $i++)
+        {
+            $pass .= $pass_dict[rand(0, strlen($pass_dict) - 1)];
+        }
+        $pass .= $easy_pass[rand(0, strlen($easy_pass) - 1)];
+        $params['password2'] = $pass;
+        $params['currency'] = 'USD';
+
+        //module subdomain
+        $params['subdomain'] = CloudaccessApiHelperModule::getParams($input->get('mid',0,'int'))->get('subdomain', '.cloudaccess.host');
+
+        return $params;
 }

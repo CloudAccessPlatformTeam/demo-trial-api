@@ -158,15 +158,22 @@ class CloudaccessApiModelCloudaccessApi extends DRModel
             $post_array["error_msg"]["fullname"] = "Please type a Full Name";
             $fullname = '';
         }
+        
+        $lastname = '';
         $nameParts = explode(' ',$fullname);
         if (count($nameParts) == 1 && empty($nameParts[1]))
         {
-            $nameParts[1] = ' ';
+            $lastname = '';
+        }
+        else
+        {
+            $firstname_len = strlen($nameParts[0]) + 1;
+            $lastname = substr($fullname, $firstname_len); 
         }
 
         $post_array["posted_prodid"] = $input->get('productid',102,'int');
         $post_array["posted_fname"] = trim($input->get('firstname',$nameParts[0],'string'));
-        $post_array["posted_lname"] = trim($input->get('lastname',$nameParts[1],'string'));
+        $post_array["posted_lname"] = trim($input->get('lastname',$lastname,'string'));
         $post_array["posted_phnum"] = trim($input->get('phonenumber','','string'));
         $post_array["posted_zip"] = trim($input->get('postcode','','string'));
         $post_array["posted_cntry"] = trim($input->get('country','','string'));
