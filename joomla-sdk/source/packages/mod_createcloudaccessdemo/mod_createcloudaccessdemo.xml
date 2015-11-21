@@ -50,7 +50,7 @@
         		</field>
                 <field name="subdomain" type="subdomains" label="Subdomain" description="Select a free subdomain.">
                 </field>
-                <field name="cid" type="datasetslist" label="Select Datasets" description="Customize datasets according with your module settings."></field>
+                <field name="cid" type="datasetslist" label="Select Packages" description="Customize packages according with your module settings."></field>
                 <field name="top_text" label="Module Subtitle" description="Message visible above registration form" default="Instantly launch a pre-configured site" type="editor" filter="safehtml" />
         	</fieldset>
             <fieldset name="advanced">

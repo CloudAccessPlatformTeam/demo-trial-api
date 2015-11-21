@@ -63,7 +63,7 @@ class JFormFieldDatasetslist extends JFormField
             $html[] = '<th>Pkg. Description</th>';
             $html[] = '<th>Preview Image</th>';
             $html[] = '<th>Pkg. Version</th>';
-            $html[] = '<th>Joomla Version</th>';
+            $html[] = '<th>Application Version</th>';
             $html[] = '<th>Pkg. Date</th>';
             $html[] = '<th>ID</th>';
             $html[] = '</tr>';
