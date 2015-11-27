@@ -183,8 +183,8 @@ class CloudaccessApiModelCloudaccessApi extends DRModel
         $post_array["posted_cname"] = trim($input->get('cname','','string'));
         $post_array["posted_csize"] = trim($input->get('companysize','','string'));
         $post_array["posted_tos"] = trim($input->get('tos',0,'int'));
-        $post_array["application"] = trim($input->get('application','','string'));
         $post_array["dataset"] = trim($input->get('dataset','','string'));
+        $post_array["application"] = trim($input->get('application','joomla','string'));
         
         //replace default values
         if ($post_array["posted_city"] == "City(Optional)") {
@@ -195,16 +195,6 @@ class CloudaccessApiModelCloudaccessApi extends DRModel
         }
         if ($post_array["posted_postcode"] == "Post code") {
             $post_array["posted_postcode"] = "";
-        }
-
-        // validate posted values
-        if($post_array["posted_prodid"] == 0)
-        {
-            $post_array["error_msg"]["prodid"] = "Please choose Joomla! version.";
-        }
-        elseif($post_array["posted_prodid"] != 102) //demo productid from billing
-        {
-            $post_array["error_msg"]["prodid"] = "Please choose correct Joomla! version.";
         }
 
         //validate firstname
@@ -412,15 +402,15 @@ class CloudaccessApiModelCloudaccessApi extends DRModel
                 );
                 $demo_details = array(
                     'p_domain' => $params["sitename"],
-                    'p_application' => $params['application'],
+                    'p_application' => empty($params["application"]) ? 'joomla' : $params["application"],
                     'p_datasetid' => $params["dataset"],
                     'p_pid' => NULL
                 );
 
                 //collect product id as per application and value settted in API settings in CCP
-                $create_application_ary = explode('-', $params['application']);
-                $create_application = strtolower(trim($create_application_ary[0]));
+                $create_application = strtolower(trim($demo_details['p_application']));
                 $listdatasetsResp = HelperCloudaccessApiApi::call(array('method' => 'ListDatasets', 'p_application' => $create_application));
+                
                 if(is_array($listdatasetsResp['products'][$create_application]))
                 {
                     $demo_details['p_pid'] = $listdatasetsResp['products'][$create_application][0];

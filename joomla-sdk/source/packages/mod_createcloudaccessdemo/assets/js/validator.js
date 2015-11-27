@@ -464,50 +464,6 @@ jQuery(document).ready(function() {
             });
         }
 
-        // add on change to application field
-        jQuery('#dataset').change(function() {
-            var pid = jQuery('#dataset').val();
-            jQuery.ajax({
-                dataType: 'json',
-                url: 'index.php?option=com_cloudaccessapi&format=json&task=listdatasets&pid='+pid+'&mid='+mid,
-                beforeSend: function( xhr, settings ) {
-                    //jQuery('#selectdataset').addClass('disabled').text('Loading...');
-                    jQuery('#application').attr('disabled','disabled').find('option')
-                        .remove()
-                        .end()
-                        .append('<option value="">Loading...</option>')
-                        .val('');
-                    // check if chosen are in use
-                    if ((jQuery().chosen != undefined)) {
-                        jQuery('#application').chosen({disable_search_threshold: 10}).trigger("chosen:updated");
-                    }
-                },
-                success: function (response) {
-                    //jQuery('#selectdataset').removeClass('disabled').text('Default Installation');
-                    jQuery('#application').find('option')
-                        .remove()
-                        .end().removeAttr('disabled');
-                    if (response.length) {
-                        jQuery.each(response,function(){
-                            value = this.value;
-                            text = this.text;
-                            jQuery('#application').append('<option value="'+value+'">'+text+'</option>');
-                        });
-                    }
-                    // check if chosen are in use
-                    if ((jQuery().chosen != undefined)) {
-                        jQuery('#application').chosen({disable_search_threshold: 10}).trigger("chosen:updated");
-                    }
-                }
-            });
-        });
-
-        jQuery('#application').change(function(){
-            jQuery('#selectapplication').text(jQuery(this).find("option:selected").text());
-        });
-
-        jQuery('#dataset').trigger('change');
-
         function caCheckFormBeforeSubmit() {
             var nextStep = true;
             var fullnameOk = fullname.validate();

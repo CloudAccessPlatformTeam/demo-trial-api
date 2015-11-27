@@ -108,13 +108,6 @@ custom_theme_widget: 'recaptcha_widget'
                 </select>
                 </p>
                 <?php endif; ?>
-            <p>
-                <select class="input-block-level" name="application" id="application">
-                    <?php foreach ($applicationOptions as $value => $text): ?>
-                        <option value="<?php echo $value; ?>"><?php echo $text; ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </p>
         <?php endif; ?>
 		<p>
 			<?php if ($helper->captchaIsEnabled()): ?>
