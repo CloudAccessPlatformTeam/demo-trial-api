@@ -117,7 +117,7 @@ class CloudaccessApiModelCloudaccessApi extends DRModel
         //validate email
         if($post_array["posted_email"] == "") {
             $post_array["error_msg"]["email"] = "Wrong e-mail.";
-        } elseif(!eregi("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$", $post_array["posted_email"])) {
+        } elseif(!preg_match("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i", $post_array["posted_email"])) {
             //validate correct email id
             $post_array["error_msg"]["email"] = "Wrong e-mail.";
         }
@@ -143,7 +143,7 @@ class CloudaccessApiModelCloudaccessApi extends DRModel
         else
         {
             //check for special characters
-            if(!eregi("^[a-z0-9][a-z0-9\-]*[a-z0-9]$", $post_array["posted_sname"] ))
+            if(!preg_match("/^[a-z0-9][a-z0-9\-]*[a-z0-9]$/i", $post_array["posted_sname"] ))
             {
                 $post_array["error_msg"]["sitename"] = "Please delete spaces in you domain name.";
             }
@@ -203,7 +203,7 @@ class CloudaccessApiModelCloudaccessApi extends DRModel
             $post_array["error_msg"]["fname"] = "2 chars minimum, 50 maximum, only letters.";
         } else {
             //check for special characters
-            if(!eregi("^[^\'\"\^0-9]{2,50}$", $post_array["posted_fname"] )) {
+            if(!preg_match("/^[^\'\"\^0-9]{2,50}$/i", $post_array["posted_fname"] )) {
                 $post_array["error_msg"]["fname"] = "2 chars minimum, 50 maximum, only letters.";
             }
         }
@@ -223,7 +223,7 @@ class CloudaccessApiModelCloudaccessApi extends DRModel
             $tmphoneholder = str_replace(" ", "", $tmphoneholder);
             $tmphoneholder = str_replace("+", "", $tmphoneholder);
 
-            if(!eregi("^[0-9]{6,25}$", $tmphoneholder )) {
+            if(!preg_match("/^[0-9]{6,25}$/i", $tmphoneholder )) {
                 $post_array["error_msg"]["phnum"] = "6 numbers minimum, 25 maximum.";
             }
 
