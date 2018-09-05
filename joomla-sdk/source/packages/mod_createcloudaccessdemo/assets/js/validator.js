@@ -256,27 +256,29 @@ jQuery(document).ready(function() {
 
         /* Country Validation */
         var country = jQuery('#country');
-        country.validate = function(){
-            var countryVal = jQuery('#country').val();
-            if (countryVal == null || countryVal == "empty" ) {
-                jQuery('#selectcountry').removeClass('validationGreen').addClass('select validationRed');
-                jQuery('#countryHelp').html('Select a country.');
-                jQuery('#countryHelp').css('display','block');
-                jQuery('#hidden_error').show('fast');
-                countryIsOk = -1;
-                return false;
-            }
-            else
-            {
-                jQuery('#selectcountry').removeClass('validationRed').addClass('select validationGreen');
-                jQuery('#countryHelp').html('');
-                jQuery('#countryHelp').css('display','none');
-                jQuery('#hidden_error').hide('fast');
-                countryIsOk = 0;
-                return true;
-            }
-        };
-        country.blur(country.validate);
+        if (country.length > 0) {
+            country.validate = function(){
+                var countryVal = jQuery('#country').val();
+                if (countryVal == null || countryVal == "empty" ) {
+                    jQuery('#selectcountry').removeClass('validationGreen').addClass('select validationRed');
+                    jQuery('#countryHelp').html('Select a country.');
+                    jQuery('#countryHelp').css('display','block');
+                    jQuery('#hidden_error').show('fast');
+                    countryIsOk = -1;
+                    return false;
+                }
+                else
+                {
+                    jQuery('#selectcountry').removeClass('validationRed').addClass('select validationGreen');
+                    jQuery('#countryHelp').html('');
+                    jQuery('#countryHelp').css('display','none');
+                    jQuery('#hidden_error').hide('fast');
+                    countryIsOk = 0;
+                    return true;
+                }
+            };
+            country.blur(country.validate);
+        }
 
         /* Captchs Validation */
         var checkcaptcha = false
@@ -576,7 +578,7 @@ jQuery(document).ready(function() {
                                 //jQuery('#demoSubmit').removeClass('launchBtn');
                                 jQuery('#demoSubmit').addClass('disabled').attr('disabled','disabled').val('Launching...');
                                 jQuery('#demoSubmit').prop('type', 'button');
-                                
+
                                 formCanSubmit = true;
 
                                 //submit
