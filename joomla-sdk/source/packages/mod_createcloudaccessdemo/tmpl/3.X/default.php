@@ -83,25 +83,26 @@ $document->addStyleSheet('modules/' . $module->module . '/assets/css/createsite.
                         </p>
                     <?php endif; ?>
 
-                    <p>
-                        <?php
-                        $form->setFieldAttribute('country','class','input-block-level');
-                        echo $form->getInput('country');
-                        ?>
-                        <?php // Validation icon ?>
-                        <?php if(isset($post_array["error_msg"]["cntry"]) && $post_array["error_msg"]["cntry"] != ""){ ?>
-                            <span id="countryValResult" class="validationRed"></span>
-                        <?php }else{ ?>
-                            <span id="countryValResult"></span>
-                        <?php } ?>
-                        <?php // Error message ?>
-                        <?php if(isset($post_array["error_msg"]["cntry"]) && $post_array["error_msg"]["cntry"] != ""){ ?>
-                            <span id="countryHelp" style="display: block;"><?php echo $post_array["error_msg"]["cntry"]; ?></span>
-                        <?php }else{ ?>
-                            <span id="countryHelp" style="display: none;"></span>
-                        <?php } ?>
-                    </p>
-                    </p>
+                    <?php if ($params->get('form_field_country')): ?>
+                        <p>
+                            <?php
+                            $form->setFieldAttribute('country','class','input-block-level');
+                            echo $form->getInput('country');
+                            ?>
+                            <?php // Validation icon ?>
+                            <?php if(isset($post_array["error_msg"]["cntry"]) && $post_array["error_msg"]["cntry"] != ""){ ?>
+                                <span id="countryValResult" class="validationRed"></span>
+                            <?php }else{ ?>
+                                <span id="countryValResult"></span>
+                            <?php } ?>
+                            <?php // Error message ?>
+                            <?php if(isset($post_array["error_msg"]["cntry"]) && $post_array["error_msg"]["cntry"] != ""){ ?>
+                                <span id="countryHelp" style="display: block;"><?php echo $post_array["error_msg"]["cntry"]; ?></span>
+                            <?php }else{ ?>
+                                <span id="countryHelp" style="display: none;"></span>
+                            <?php } ?>
+                        </p>
+                    <?php endif; ?>
 
                     <?php if ($params->get('form_field_state')): ?>
                         <p>

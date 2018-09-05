@@ -38,12 +38,12 @@ custom_theme_widget: 'recaptcha_widget'
 			<span id="fullnameHelp" class="example" style="display: none;"></span>
 		</p>
 		<p>
-			<?php echo $form->getInput('sitename'); ?>	
+			<?php echo $form->getInput('sitename'); ?>
 			<span class="example">URL :&nbsp;<span class="demo_site_name"><span id="cursorBlink"><?php if(isset($post_array['posted_sname']) && $post_array['posted_sname'] != ''){ echo $post_array['posted_sname']; } ?></span> <strong>.</strong>  <?php echo substr($params->get('subdomain','.cloudaccess.net'),1); ?></span></span>
 			<span id="sitenameHelp" class="example" style="display: none;"></span>
-		</p>			
+		</p>
 		<p>
-			<?php echo $form->getInput('email'); ?>		
+			<?php echo $form->getInput('email'); ?>
 		 	<span id="emailHelp" class="example" style="display: none;"></span>
 		</p>
 		<?php if ($params->get('form_field_phonenumber')): ?>
@@ -53,6 +53,7 @@ custom_theme_widget: 'recaptcha_widget'
 			<span id="phonenumberHelp" class="example" style="display: none;"></span>
 		</p>
 		<?php endif; ?>
+		<?php if ($params->get('form_field_country')): ?>
 		<p>
 			<?php echo $form->getInput('country'); ?>
 			<?php // Validation icon ?>
@@ -66,9 +67,10 @@ custom_theme_widget: 'recaptcha_widget'
 			<span id="countryHelp" style="display: block;"><?php echo $post_array["error_msg"]["cntry"]; ?></span>
 			<?php }else{ ?>
 			<span id="countryHelp" style="display: none;"></span>
-			<?php } ?>	
+			<?php } ?>
 			</p>
 		</p>
+		<?php endif; ?>
 		<?php if ($params->get('form_field_state')): ?>
 		<p>
 			<?php echo $form->getInput('state'); ?>
@@ -117,7 +119,7 @@ custom_theme_widget: 'recaptcha_widget'
 				<div class="recaptcha_only_if_incorrect_sol" style="color:red">Incorrect please try again</div>
 				<!-- <span class="recaptcha_only_if_image">Enter the words above:</span> -->
 				<span class="recaptcha_only_if_audio">Enter the numbers you hear:</span>
-				<?php if(isset($post_array["error_msg"]["captcha"]) && $post_array["error_msg"]["captcha"] != ""){ ?>	
+				<?php if(isset($post_array["error_msg"]["captcha"]) && $post_array["error_msg"]["captcha"] != ""){ ?>
 				<input type="text" id="recaptcha_response_field" name="recaptcha_response_field" class="validationRed" />
 				<?php }else{ ?>
 				<input type="text" id="recaptcha_response_field" name="recaptcha_response_field" value="<?php if(isset($post_array['recaptcha_response_field']) && $post_array['recaptcha_response_field'] != ''){ echo $post_array['recaptcha_response_field']; }else{ echo 'Type the words above in the image'; } ?>" onblur="if (this.value == '') {this.value = 'Type the words above in the image';}"
