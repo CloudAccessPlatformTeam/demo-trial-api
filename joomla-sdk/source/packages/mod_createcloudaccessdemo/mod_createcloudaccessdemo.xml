@@ -23,36 +23,40 @@
     </languages>
     <config>
         <fields name="params" addfieldpath="/modules/mod_createcloudaccessdemo/fields/">
-        	<fieldset name="basic">
-        		<field name="form_field_phonenumber" type="list" label="Phone Number (Optional)" description="Show this optional form field">
-        			<option value="0">JNO</option>
-					<option value="1">JYES</option>
-        		</field>
-        		<field name="form_field_state" type="list" label="State (Optional)" description="Show this optional form field">
-        			<option value="0">JNO</option>
-					<option value="1">JYES</option>
-        		</field>
-        		<field name="form_field_city" type="list" label="City (Optional)" description="Show this optional form field">
-        			<option value="0">JNO</option>
-					<option value="1">JYES</option>
-        		</field>
-        		<field name="form_field_address" type="list" label="Address (Optional)" description="Show this optional form field">
-        			<option value="0">JNO</option>
-					<option value="1">JYES</option>
-        		</field>
-        		<field name="form_field_address2" type="list" label="Address 2(Optional)" description="Show this optional form field">
-        			<option value="0">JNO</option>
-					<option value="1">JYES</option>
-        		</field>
-        		<field name="form_field_postcode" type="list" label="Post Code(Optional)" description="Show this optional form field">
-        			<option value="0">JNO</option>
-					<option value="1">JYES</option>
-        		</field>
+            <fieldset name="basic">
+                <field name="form_field_phonenumber" type="list" label="Phone Number (Optional)" description="Show this optional form field">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="form_field_country" type="list" label="Country (Optional)" description="Show this optional form field">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="form_field_state" type="list" label="State (Optional)" description="Show this optional form field">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="form_field_city" type="list" label="City (Optional)" description="Show this optional form field">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="form_field_address" type="list" label="Address (Optional)" description="Show this optional form field">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="form_field_address2" type="list" label="Address 2(Optional)" description="Show this optional form field">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="form_field_postcode" type="list" label="Post Code(Optional)" description="Show this optional form field">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
                 <field name="subdomain" type="subdomains" label="Subdomain" description="Select a free subdomain.">
                 </field>
                 <field name="cid" type="datasetslist" label="Select Packages" description="Customize packages according with your module settings."></field>
                 <field name="top_text" label="Module Subtitle" description="Message visible above registration form" default="Instantly launch a pre-configured site" type="editor" filter="safehtml" />
-        	</fieldset>
+            </fieldset>
             <fieldset name="advanced">
                 <field name="layout" type="modulelayoutbyjoomlaversion"
                     label="JFIELD_ALT_LAYOUT_LABEL" description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
