@@ -469,7 +469,11 @@ jQuery(document).ready(function() {
         function caCheckFormBeforeSubmit() {
             var nextStep = true;
             var fullnameOk = fullname.validate();
-            var countryOK = country.validate();
+            if (country.length>0) {
+                var countryOK = country.validate();
+            } else {
+                var countryOK = true;
+            }
             if (phonenumber.length>0) {
                 var phonenumberOk = phonenumber.validate();
             } else {
@@ -563,7 +567,17 @@ jQuery(document).ready(function() {
                                     tosOK = true;
                                 }
 
-                                cantSubmit = (fullnameOk == false || (postcodeOk == false) || emailBlankIsOk == false || sitenameBlankIsOk == false || addressOk == false ||  (phonenumberOk == false) || countryOK == false || demosecureOK == false || tosOK == false);
+                                cantSubmit = (
+                                    fullnameOk == false ||
+                                    postcodeOk == false ||
+                                    emailBlankIsOk == false ||
+                                    sitenameBlankIsOk == false ||
+                                    addressOk == false ||
+                                    phonenumberOk == false ||
+                                    countryOK == false ||
+                                    demosecureOK == false ||
+                                    tosOK == false
+                                );
 
                                 // check required fields
                                 if (cantSubmit)
