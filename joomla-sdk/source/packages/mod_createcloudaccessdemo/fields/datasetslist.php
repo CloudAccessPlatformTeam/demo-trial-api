@@ -20,40 +20,41 @@ JLoader::import('helpers.api', JPATH_ADMINISTRATOR.'/components/com_cloudaccessa
  */
 class JFormFieldDatasetslist extends JFormField
 {
-	/**
-	 * The form field type.
-	 *
-	 * @var    string
-	 * @since  11.1
-	 */
-	protected $type = 'Datasetslist';
+    /**
+     * The form field type.
+     *
+     * @var    string
+     * @since  11.1
+     */
+    protected $type = 'Datasetslist';
 
-	/**
-	 * Method to get the field input for module layouts.
-	 *
-	 * @return  string  The field input.
-	 *
-	 * @since   11.1
-	 */
-	protected function getInput()
-	{
-		$html = array();
+    /**
+     * Method to get the field input for module layouts.
+     *
+     * @return  string  The field input.
+     *
+     * @since   11.1
+     */
+    protected function getInput()
+    {
+        $html = array();
 
-		if (!class_exists('HelperCloudaccessApiApi')) {
-			JFactory::getApplication()->enqueueMessage('Cant load api helper','error');
-			return implode($html);
-		}
+        if (!class_exists('HelperCloudaccessApiApi')) {
+            JFactory::getApplication()->enqueueMessage('Cant load api helper','error');
+            return implode($html);
+        }
 
-		$token = HelperCloudaccessApiApi::getApiKey();
-       if ($token) {
-            $list = HelperCloudaccessApiApi::call(array('method' => 'ListDatasets', 'p_application' => 'joomla'));
+        $token = HelperCloudaccessApiApi::getApiKey();
+        $cms = (string) $this->element['cms'];
+        if ($token && in_array($cms, ['joomla', 'wordpress'])) {
+            $list = HelperCloudaccessApiApi::call(array('method' => 'ListDatasets', 'p_application' => $cms));
             $cids = !empty($this->value) ? $this->value :  array() ;
 
             if (!empty($this->element['description'])) {
-            	$html[] = '<br clear="all" />';
+                $html[] = '<br clear="all" />';
             }
 
-            $checkbox = (JVERSION >= 3) ? JHtml::_('grid.checkall') : '<input type="checkbox" name="checkall-toggle" value="" title="Check All" onclick="Joomla.checkAll(this)" />';
+            $checkbox = (JVERSION >= 3) ? JHtmlGrid::checkall('checkall-toggle', 'JGLOBAL_CHECK_ALL', "Joomla.checkAll(this, 'cb-{$cms}')") : '<input type="checkbox" name="checkall-toggle" value="" title="Check All" onclick="Joomla.checkAll(this, \'cb-'. $cms .'\')" />';
 
             $html[] = '<hr><table class="table table-striped">';
             $html[] = '<thead>';
@@ -69,46 +70,47 @@ class JFormFieldDatasetslist extends JFormField
             $html[] = '</tr>';
             $html[] = '</thead>';
             $html[] = '<tbody>';
-            foreach ($list['datasets']['joomla'] as $key => $row) {
-                  $row['tag'] = !empty($row['tag']) ? $row['tag'] : '' ;
-            	$checked = false;
+            foreach ($list['datasets'][$cms] as $key => $row) {
+                $row['tag'] = !empty($row['tag']) ? $row['tag'] : '' ;
+                $checked = false;
 
-            	foreach ($cids as $cid) {
-            		if ($cid == sprintf('%s;%s;%s',$row['datasetid'],$row['name'],$row['app_family'])) { $checked = true; break; }
-            	}
+                foreach ($cids as $cid) {
+                    if ($cid == sprintf('%s;%s;%s',$row['datasetid'],$row['name'],$row['app_family'])) { $checked = true; break; }
+                }
 
                 if (!isset($row['datasetid'])) {
                     $row['datasetid'] = '';
                 }
 
-            	$html[] = '<tr>';
+                $html[] = '<tr>';
 
-            	$input = sprintf('<td><input type="checkbox" id="cb%s"',$key);
-            	$input .= ($checked) ? ' checked ' : '';
-            	$input .= ' ' . sprintf('name="%s[]"',$this->name);
-            	$input .= ' ' . sprintf('value="%s"',$row['datasetid'].';'.$row['name'].';'.$row['app_family']);
-            	$input .= '>';
+                $input = sprintf('<td><input type="checkbox" id="cb-%s-%s"', $cms, $key);
+                $input .= ($checked) ? ' checked ' : '';
+                $input .= ' ' . sprintf('name="%s[]"',$this->name);
+                $input .= ' ' . sprintf('value="%s"',$row['datasetid'].';'.$row['name'].';'.$row['app_family']);
+                $input .= '>';
 
 
-				$html[] = $input;
-				$html[] = '</td>';
+                $html[] = $input;
+                $html[] = '</td>';
 
-            		$html[] = sprintf('<td>%s</td>',$row['name']);
-                    $html[] = sprintf('<td>%s</td>',ucfirst($row['options']['description']));
-                    $html[] = '<td><img src="https://ccp.cloudaccess.net'.$row['options']['preview_path'].'" width="30" height="30" /></td>';
-            		$html[] = sprintf('<td>%s</td>',$row['version']);
-            		$html[] = sprintf('<td>%s</td>',$row['app_family']);
-            		$html[] = sprintf('<td>%s</td>',$row['date_added']);
-            		$html[] = sprintf('<td>%s</td>',$row['datasetid']);
-            	$html[] = '</tr>';
+                $html[] = sprintf('<td>%s</td>',$row['name']);
+                $html[] = sprintf('<td>%s</td>',ucfirst($row['options']['description']));
+                $html[] = '<td><img src="https://ccp.cloudaccess.net'.$row['options']['preview_path'].'" width="30" height="30" /></td>';
+                $html[] = sprintf('<td>%s</td>',$row['version']);
+                $html[] = sprintf('<td>%s</td>',$row['app_family']);
+                $html[] = sprintf('<td>%s</td>',$row['date_added']);
+                $html[] = sprintf('<td>%s</td>',$row['datasetid']);
+                $html[] = '</tr>';
             }
+
             $html[] = '</tbody>';
             $html[] = '</table>';
         } else {
             JFactory::getApplication()->enqueueMessage('Please regenerate your token','error');
-		    return implode($html);
+            return implode($html);
         }
 
-	     return implode($html);
-	}
+        return implode($html);
+    }
 }

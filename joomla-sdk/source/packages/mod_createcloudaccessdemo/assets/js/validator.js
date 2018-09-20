@@ -628,5 +628,17 @@ jQuery(document).ready(function() {
         jQuery('#demoSubmit').click(function(){
             caCheckFormBeforeSubmit();
         });
+
+        var application = jQuery('#application');
+        if (application.length > 0) {
+            application.change(function (e) {
+                var cms = jQuery(this).val();
+                jQuery('input[name="dataset"]').prop('disabled', true);
+                jQuery('select[name="dataset"]').prop('disabled', true);
+                jQuery('#' + cms + '-dataset').prop('disabled', false);
+                jQuery('p.dataset-p').hide();
+                jQuery('#' + cms + '-dataset-p').show();
+            });
+        }
     }
 });

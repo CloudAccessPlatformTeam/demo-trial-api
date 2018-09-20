@@ -24,6 +24,10 @@
     <config>
         <fields name="params" addfieldpath="/modules/mod_createcloudaccessdemo/fields/">
             <fieldset name="basic">
+                <field name="form_field_application" type="list" label="Application (Optional)" description="Show this optional form field">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
                 <field name="form_field_phonenumber" type="list" label="Phone Number (Optional)" description="Show this optional form field">
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
@@ -55,6 +59,7 @@
                 <field name="subdomain" type="subdomains" label="Subdomain" description="Select a free subdomain.">
                 </field>
                 <field name="cid" type="datasetslist" label="Select Packages" description="Customize packages according with your module settings."></field>
+                <field name="wp_dataset_id" cms="wordpress" type="datasetslist" label="Wordpress Packages" description="Customize packages according with your module settings."></field>
                 <field name="top_text" label="Module Subtitle" description="Message visible above registration form" default="Instantly launch a pre-configured site" type="editor" filter="safehtml" />
             </fieldset>
             <fieldset name="advanced">

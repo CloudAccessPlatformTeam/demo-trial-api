@@ -38,6 +38,18 @@ if (!empty($cids)) {
     $applicationOptions['joomla-3.3'] = 'joomla 3.3';
     $applicationOptions['joomla-3.4'] = 'joomla 3.4';
 }
+
+$wpDatasetsOptions = array();
+$wp_dataset_ids = $params->get('wp_dataset_id');
+if (!empty($wp_dataset_ids)) {
+    foreach ($wp_dataset_ids as $key => $wp_dataset_id) {
+        $parts = explode(';', $wp_dataset_id);
+        $wpDatasetsOptions[$parts[0]] = $parts[1];
+    }
+} else {
+    $wpDatasetsOptions[''] == 'Core';
+}
+
 $doc = JFactory::getDocument();
 if (JVERSION < 3.0) {
     $doc->addScript('modules/'.$module->module.'/assets/js/jquery.js');
