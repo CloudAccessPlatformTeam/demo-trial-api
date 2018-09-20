@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
 	<fieldset>
+			<field id="application" type="list" name="application" class="styled" label="MOD_CREATEDEMO_FIELD_APPLICATION_LABEL" description="">
+				<option value="joomla">Joomla</option>
+				<option value="wordpress">Wordpress</option>
+			</field>
 			<field id="fullname" name="fullname" default="Full Name" type="text" label="MOD_CREATEDEMO_FIELD_FULLNAME_LABEL" description="" />
 			<field id="sitename" name="sitename" default="Site Name" type="text" label="MOD_CREATEDEMO_FIELD_SITENAME_LABEL" description="" />
 			<field id="email" name="email" default="Email Address" type="text" label="MOD_CREATEDEMO_FIELD_EMAIL_LABEL" description="" />

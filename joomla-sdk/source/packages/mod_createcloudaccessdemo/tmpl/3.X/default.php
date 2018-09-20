@@ -55,6 +55,15 @@ $document->addStyleSheet('modules/' . $module->module . '/assets/css/createsite.
                         <span id="fullnameHelp" class="example" style="display: none;"></span>
                     </p>
 
+                    <?php if ($params->get('form_field_application')): ?>
+                        <p>
+                            <?php
+                            $form->setFieldAttribute('application','class','input-block-level');
+                            echo $form->getInput('application');
+                            ?>
+                        </p>
+                    <?php endif; ?>
+
                     <p>
                         <?php
                         $form->setFieldAttribute('sitename','class','input-block-level');
@@ -153,11 +162,25 @@ $document->addStyleSheet('modules/' . $module->module . '/assets/css/createsite.
 
                     <?php if (!empty($datasetsOptions)): ?>
                         <?php if (count($datasetsOptions) == 1): $dkey = array_keys($datasetsOptions); $default_value = $dkey[0]; ?>
-                            <input type="hidden" name="dataset" id="dataset" value="<?php echo $default_value; ?>" />
+                            <input type="hidden" name="dataset" id="joomla-dataset" value="<?php echo $default_value; ?>" />
                         <?php else: ?>
-                            <p>
-                                <select class="input-block-level" name="dataset" id="dataset">
+                            <p id="joomla-dataset-p" class="dataset-p">
+                                <select class="input-block-level" name="dataset" id="joomla-dataset">
                                     <?php foreach ($datasetsOptions as $value => $text): ?>
+                                        <option value="<?php echo $value; ?>"><?php echo $text; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </p>
+                        <?php endif; ?>
+                    <?php endif; ?>
+
+                    <?php if (!empty($wpDatasetsOptions)): ?>
+                        <?php if (count($wpDatasetsOptions) == 1): $dkey = array_keys($wpDatasetsOptions); $default_value = $dkey[0]; ?>
+                            <input type="hidden" name="dataset" id="wordpress-dataset" disabled value="<?php echo $default_value; ?>" />
+                        <?php else: ?>
+                            <p id="wordpress-dataset-p" class="dataset-p" style="display: none;">
+                                <select class="input-block-level" name="dataset" disabled id="wordpress-dataset">
+                                    <?php foreach ($wpDatasetsOptions as $value => $text): ?>
                                         <option value="<?php echo $value; ?>"><?php echo $text; ?></option>
                                     <?php endforeach; ?>
                                 </select>
