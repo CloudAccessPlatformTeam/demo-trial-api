@@ -15,7 +15,7 @@ require_once JPATH_COMPONENT_SITE.'/helpers/module.php';
 
 /**
  * Cloudaccess Demo Register Controller for JSON format
- * 
+ *
  * @package     CloudaccessApi
  * @subpackage  GitHub
  * @since       3.0
@@ -24,7 +24,7 @@ class CloudaccessApiController extends DRController
 {
 	/**
 	 * check captcha validation
-	 * 
+	 *
 	 * @return  interger code
 	 */
 	public function checkCaptcha()
@@ -48,19 +48,19 @@ class CloudaccessApiController extends DRController
 				else if (isset($_SESSION['challenge']) && $_SESSION['challenge'] != $challenge_field)
 				{
 					$_SESSION['challenge'] = $challenge_field;
-				}	
+				}
 			}
 			if (!empty($response_field))
 			{
 				jimport('joomla.application.component.helper');
 	            $config = JComponentHelper::getParams('com_cloudaccessapi');
-	            
+
 	            require_once JPATH_COMPONENT.'/includes/recaptchalib.php';
 	            $resp = recaptcha_check_answer($config->get('captcha_privatekey'),
 				$_SERVER["REMOTE_ADDR"],
 				$challenge_field,
 				$response_field);
-				if (!$resp->is_valid) 
+				if (!$resp->is_valid)
 				{
 						# set the error code so that we can display it
 						$code = 'Incorrect captcha words';
@@ -71,14 +71,14 @@ class CloudaccessApiController extends DRController
 					$_SESSION['recaptcha'] = true;
 				}
 			}
-			else 
+			else
 			{
 				$code = 1;
 			}
 		}
-		
+
 		echo json_encode($code);
-		
+
 		JFactory::getApplication()->close();
 	}
 
