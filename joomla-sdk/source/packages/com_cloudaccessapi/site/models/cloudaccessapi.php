@@ -99,7 +99,7 @@ class CloudaccessApiModelCloudaccessApi extends DRModel
      */
     public function save()
     {
-        // Grab session 
+        // Grab session
         $session = JFactory::getSession();
         $msg = NULL;
         $level = 'message';
@@ -158,7 +158,7 @@ class CloudaccessApiModelCloudaccessApi extends DRModel
             $post_array["error_msg"]["fullname"] = "Please type a Full Name";
             $fullname = '';
         }
-        
+
         $lastname = '';
         $nameParts = explode(' ',$fullname);
         if (count($nameParts) == 1 && empty($nameParts[1]))
@@ -168,7 +168,7 @@ class CloudaccessApiModelCloudaccessApi extends DRModel
         else
         {
             $firstname_len = strlen($nameParts[0]) + 1;
-            $lastname = substr($fullname, $firstname_len); 
+            $lastname = substr($fullname, $firstname_len);
         }
 
         $post_array["posted_prodid"] = $input->get('productid',102,'int');
@@ -185,7 +185,7 @@ class CloudaccessApiModelCloudaccessApi extends DRModel
         $post_array["posted_tos"] = trim($input->get('tos',0,'int'));
         $post_array["dataset"] = trim($input->get('dataset','','string'));
         $post_array["application"] = trim($input->get('application','joomla','string'));
-        
+
         //replace default values
         if ($post_array["posted_city"] == "City(Optional)") {
             $post_array["posted_city"] = "";
@@ -289,7 +289,7 @@ class CloudaccessApiModelCloudaccessApi extends DRModel
                 case 1:
                     $aid = $componentParams->get('body_aid',0);
                     if (intval($aid) == 0) {
-                        //get text area if no content selected
+                            //get text area if no content selected
                         $body = $componentParams->get('body_content');
                     } else {
                         $db = JFactory::getDbo();
@@ -379,7 +379,7 @@ class CloudaccessApiModelCloudaccessApi extends DRModel
         $code = !empty($_REQUEST['code']) ? $_REQUEST['code'] : false ;
         $componentParams = JComponentHelper::getParams('com_cloudaccessapi');
         JLoader::import('helpers.api', JPATH_ADMINISTRATOR.'/components/com_cloudaccessapi');
-        
+
         if ($code) {
             $params = Activation::use_code($code);
 
@@ -389,10 +389,10 @@ class CloudaccessApiModelCloudaccessApi extends DRModel
                 $client_details = array(
                     'p_firstname' => $params["firstname"],
                     'p_lastname' => $params["lastname"],
-//					'companyname' => (string)$params["companyname"],
+                    // 'companyname' => (string)$params["companyname"],
                     'p_email' => $params["email"],
                     'p_address1' => $params["address"],
-//					'address2' => $params["address2"],
+                    // 'address2' => $params["address2"],
                     'p_city' => empty($params["city"]) ? 'Default City' : $params["city"] ,
                     'p_state' => empty($params["state"]) ? 'default state' : $params["state"] ,
                     'p_postcode' => empty($params["postcode"]) ? '00112233' : (string)$params["postcode"],
@@ -410,12 +410,12 @@ class CloudaccessApiModelCloudaccessApi extends DRModel
                 //collect product id as per application and value settted in API settings in CCP
                 $create_application = strtolower(trim($demo_details['p_application']));
                 $listdatasetsResp = HelperCloudaccessApiApi::call(array('method' => 'ListDatasets', 'p_application' => $create_application));
-                
+
                 if(is_array($listdatasetsResp['products'][$create_application]))
                 {
                     $demo_details['p_pid'] = $listdatasetsResp['products'][$create_application][0];
                 }
-                
+
                 $api_details = array(
                     'client_id' => JComponentHelper::getParams('com_cloudaccessapi')->get('api_user'),
                     'token_type' => 'Bearer',

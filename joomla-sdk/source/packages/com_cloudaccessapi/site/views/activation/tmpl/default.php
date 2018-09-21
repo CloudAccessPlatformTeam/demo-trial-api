@@ -9,6 +9,8 @@
 //!no direct access
 defined ('_JEXEC') or die ('Restricted access');
 JHTML::_('behavior.modal');
+$support_mail = JComponentHelper::getParams('com_cloudaccessapi')->get('from');
+$creation_failed_message = JText::_('COM_CLOUDACCESSAPI_CREATION_FAILED') . " <a href=\"mailto:{$support_mail}\">{$support_mail}</a>";
 ?>
 <div id="activationmodal" style="text-align: center;">
     <img src="<?php echo JFactory::getURI()->root(); ?>modules/mod_createcloudaccessdemo/assets/images/loading.gif" />
@@ -42,7 +44,7 @@ function checkProcess()
             var found = false;
 
             if (response == null || response.length === 0) {
-                jQuery('#activationmodal').text('no processes are running.');
+                jQuery('#activationmodal').text('<?php echo JText::_('COM_CLOUDACCESSAPI_CREATION_SUCCESS'); ?>');
                 window.setTimeout( 'SqueezeBox.close();', 5000 );
                 return false;
             } else {
@@ -51,11 +53,11 @@ function checkProcess()
                             jQuery('#activationmodal').text('').html('');
                             var p = document.createElement('p');
                             if (process.status == 'succeeded') {
-                                msg = '<?php echo JText::_('com_CLOUDACCESSAPI_CREATION_SUCCESS'); ?>';
+                                msg = '<?php echo JText::_("COM_CLOUDACCESSAPI_CREATION_SUCCESS"); ?>';
                             } else if (status.status == 'failure') {
-                                msg = 'An error occur during creation process. '+process.status;
+                                msg = '<?php echo $creation_failed_message; ?>';
                             } else {
-                                msg = 'An error occur during creation process. '+process.status;
+                                msg = '<?php echo $creation_failed_message; ?>';
                             }
                             p.innerHTML = msg;
                             jQuery('#activationmodal').append(p);

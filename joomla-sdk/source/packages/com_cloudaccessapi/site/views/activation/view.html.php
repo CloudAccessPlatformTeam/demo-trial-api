@@ -18,5 +18,5 @@ defined ('_JEXEC') or die ('Restricted access');
 */
 class CloudaccessApiViewActivation extends DRView
 {
-    
+
 }
