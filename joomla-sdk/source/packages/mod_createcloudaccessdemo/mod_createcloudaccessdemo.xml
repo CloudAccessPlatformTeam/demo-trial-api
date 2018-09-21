@@ -58,7 +58,7 @@
                 </field>
                 <field name="subdomain" type="subdomains" label="Subdomain" description="Select a free subdomain.">
                 </field>
-                <field name="cid" type="datasetslist" label="Select Packages" description="Customize packages according with your module settings."></field>
+                <field name="cid" cms="joomla" type="datasetslist" label="Select Packages" description="Customize packages according with your module settings."></field>
                 <field name="wp_dataset_id" cms="wordpress" type="datasetslist" label="Wordpress Packages" description="Customize packages according with your module settings."></field>
                 <field name="top_text" label="Module Subtitle" description="Message visible above registration form" default="Instantly launch a pre-configured site" type="editor" filter="safehtml" />
             </fieldset>
