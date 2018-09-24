@@ -20,7 +20,8 @@ class CloudaccessApiController extends DRController
 
     public function activate()
     {
-        $this->getModel()->activate();
+        $result = $this->getModel()->activate();
+        JFactory::getSession()->set('ca_activate_result', $result);
         $this->setRedirect('index.php?option=com_cloudaccessapi&view=activation');
         $this->redirect();
     }

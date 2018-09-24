@@ -441,7 +441,7 @@ class CloudaccessApiModelCloudaccessApi extends DRModel
                 // check if domain exists
                 if ($this->checkDomain($demo_details["p_domain"])) {
                     JFactory::getApplication()->enqueueMessage(sprintf('The URL %s that you had choosen during signup has now been taken. Please start the signup process over and choose a new URL.',$demo_details['p_domain']),'error');
-                    JFactory::getApplication()->redirect(JFactory::getUri()->root());
+                    return fasle;
                 }
 
                 $postData = array_merge($client_details, $demo_details, $api_details);
@@ -485,10 +485,9 @@ class CloudaccessApiModelCloudaccessApi extends DRModel
                             $process = $session->get('cloudaccessapi.process',array());
                             $process[$postData['p_opid']] = array('status' => $json['result']['status'],'site' => $demo_details['p_domain']);
                             $session->set('cloudaccessapi.process', $process);
-                            JFactory::getApplication()->enqueueMessage(sprintf('Your request to %s is %s',$demo_details['p_domain'],nl2br($json['result']['status'])),'info');
+                            // JFactory::getApplication()->enqueueMessage(sprintf('Your request to %s is %s',$demo_details['p_domain'],nl2br($json['result']['status'])),'info');
                             //unset all sessions posted to blank starts if no error exists
                             $session->clear('cloudaccessapi');
-
                             return true;
                         }
                     }
@@ -498,11 +497,15 @@ class CloudaccessApiModelCloudaccessApi extends DRModel
                 $f = fopen(JPATH_ROOT . DIRECTORY_SEPARATOR . 'logs' . DIRECTORY_SEPARATOR . 'badcode.log', 'a');
                 fwrite($f, "$code\n");
                 fclose($f);
-                throw new Exception('Bad Code');
+                // throw new Exception('Bad Code');
+                return false;
             }
         } else {
             JFactory::getApplication()->enqueueMessage('Missing activation code!','error');
+            return false;
         }
+
+        return false;
     }
 
     /**
