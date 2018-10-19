@@ -26,12 +26,14 @@
         <field name="body_content" type="editor" filter="raw" width="300" editor="TinyMCE" default="Hi %FIRSTNAME%, \n\n Please confirm your email address by visiting %LINK%. \n\n Once you visit the site, you will receive a second email with details on how to access the administration area of the site so you can begin developing. \n\n Thank you!" label="Body" description="Put your custom template body. Special vars: %FIRSTNAME% and %LINK%" />
     </fieldset>
     <fieldset name="joomla_welcome" label="Joomla Email" addfieldpath="/administrator/components/com_content/models/fields">
-        <field name="joomla_welcome_subject" type="text" default="Confirm your email address to launch your demo" size="60" label="Subject" description="" />
+        <field name="joomla_welcome_subject" type="text" default="Your Free Joomla! Site Login Information" size="60" label="Subject" description="" />
         <field name="joomla_welcome_body_content" type="editor" filter="raw" width="300" editor="TinyMCE" default="" label="Body" description="Put your custom template body. Special vars: %USERNAME% and %PASSWORD%" />
+        <field name="joomla_welcome_template_id" default="0" type="hidden" />
     </fieldset>
     <fieldset name="wordpress_welcome" label="Wordpress Email" addfieldpath="/administrator/components/com_content/models/fields">
-        <field name="wordpress_welcome_subject" type="text" default="Confirm your email address to launch your demo" size="60" label="Subject" description="" />
+        <field name="wordpress_welcome_subject" type="text" default="Your Free WordPress Site Login Information" size="60" label="Subject" description="" />
         <field name="wordpress_welcome_body_content" type="editor" filter="raw" width="300" editor="TinyMCE" default="" label="Body" description="Put your custom template body. Special vars: %USERNAME% and %PASSWORD%" />
+        <field name="wordpress_welcome_template_id" default="0" type="hidden" />
     </fieldset>
     <fieldset name="captcha" label="Captcha">
         <field name="captcha_enabled" type="list" label="Enable Captcha" default="0" description="Enable and disable captcha">

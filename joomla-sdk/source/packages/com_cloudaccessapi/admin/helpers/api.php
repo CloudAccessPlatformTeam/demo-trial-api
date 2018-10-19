@@ -46,7 +46,7 @@ class HelperCloudaccessApiApi
             JFactory::getApplication()->enqueueMessage(sprintf('Error when try to connect with api host "%s", please verify url.',$api_call),'error');
             return false;
         }
-        
+
         $json = json_decode($statusResponse->body, true);
 
         if ($statusResponse->code != 200) {
@@ -180,5 +180,46 @@ class HelperCloudaccessApiApi
 
 
         return false;
+    }
+
+    public static function updateEmailTemplates($data)
+    {
+        $j_template_id = $data['params']['joomla_welcome_template_id'];
+        $joomlaTemplateData = [
+            'method' => 'SetEmailTemplate',
+            'p_fromname' => $data['params']['fromname'],
+            'p_fromemail' => $data['params']['from'],
+            'p_name' => '[API module] Free Joomla welcome email',
+            'p_subject' => $data['params']['joomla_welcome_subject'],
+            'p_message' => $data['params']['joomla_welcome_body_content'],
+            'p_product' => 'joomla',
+        ];
+        if ($j_template_id) {
+            $joomlaTemplateData['p_id'] = $j_template_id;
+        }
+        $result = self::call($joomlaTemplateData);
+        if (!is_array($result) && !$j_template_id) {
+            $j_template_id = $result;
+        }
+
+        $w_template_id = $data['params']['joomla_welcome_template_id'];
+        $wordpressTemplateData = [
+            'method' => 'SetEmailTemplate',
+            'p_fromname' => $data['params']['fromname'],
+            'p_fromemail' => $data['params']['from'],
+            'p_name' => '[API module] Free Wordpress welcome email',
+            'p_subject' => $data['params']['wordpress_welcome_subject'],
+            'p_message' => $data['params']['wordpress_welcome_body_content'],
+            'p_product' => 'wordpress'
+        ];
+        if ($w_template_id) {
+            $wordpressTemplateData['p_id'] = $w_template_id;
+        }
+        $result = self::call($wordpressTemplateData);
+        if (!is_array($result) && !$w_template_id) {
+            $w_template_id = $result;
+        }
+
+        return [$j_template_id, $w_template_id];
     }
 }
